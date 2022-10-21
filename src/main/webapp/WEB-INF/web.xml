@@ -19,7 +19,7 @@
   <!-- 필터 순서 주의 : 인코딩필터 맨 처음으로(세션필터 등등 밑으로) --> 
   <filter>
     <filter-name>encodingFilter</filter-name>
-    <filter-class>kosta.mvc.filter.EncodingFilter</filter-class>
+    <filter-class>mvc.filter.EncodingFilter</filter-class>
     <init-param>
       <param-name>encoding</param-name>
       <param-value>UTF-8</param-value>
