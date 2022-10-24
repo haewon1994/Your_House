@@ -1,0 +1,134 @@
+package mvc.dao.user;
+
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Properties;
+
+
+import mvc.dto.user.UserDTO;
+import mvc.util.DBUtil;
+
+
+public class UserDAOImpl implements UserDAO {
+private Properties proFile = new Properties();
+	
+	public UserDAOImpl() {
+		try {
+			//dbQuery를 준비한 ~.properties파일을 로딩해서 Properties 자료구조에 저장한다.
+			
+			//현재 프로젝트가 런타임(실행)될때, 즉 서버가 실행될때 classes폴더의 위치를
+			//동적으로 가져와서 경로를 설정해야한다.
+			InputStream is = getClass().getClassLoader().getResourceAsStream("dbQuery.properties");
+			proFile.load(is);
+			
+			System.out.println("query.userlogin = " +proFile.getProperty("query.userlogin"));
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public UserDTO loginCheck(UserDTO userDTO) throws SQLException {
+		Connection con=null;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		UserDTO dbDTO =null;
+		
+		String sql= proFile.getProperty("query.userlogin");//select * from user_s where email=? and password=?
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, userDTO.getEmail());
+			ps.setString(2, userDTO.getPassword());
+			
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				dbDTO = new UserDTO(rs.getString(1), rs.getString(2));
+			}
+			
+		}finally {
+			DBUtil.dbClose(con, ps, rs);
+		}
+		return dbDTO;
+	}
+
+	public int insert(UserDTO user) throws SQLException {
+		Connection con=null;
+		PreparedStatement ps=null;
+		int result=0;
+		String sql=
+			"INSERT INTO USER_S(USER_CODE,EMAIL,PASSWORD,BIRTH,NICKNAME,PHONE,ADRESS, GENDER, REG_DATE, CATEGORY_CODE) VALUES(USER_S_SEQ.nextval, ?, ?, ?, ?, ?, ?, ?, sysdate, ?)";
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, user.getEmail());
+			ps.setString(2, user.getPassword());
+			ps.setString(3, user.getBirth());
+			ps.setString(4, user.getNickname());
+			ps.setString(5, user.getPhone());
+			ps.setString(6, user.getAdress());
+			ps.setString(7, user.getGender());
+			ps.setString(8, user.getCategory_code());
+			
+			result = ps.executeUpdate();
+			
+		}finally {
+			DBUtil.dbClose(con, ps);
+		}
+		return result;
+	}
+
+	@Override
+	public boolean duplicateCheckByEmail(String email) {
+		Connection con=null;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		boolean result=false;
+		String sql="SELECT email FROM USER_S WHERE email=?";
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, email);
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				result = true;
+			}
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBUtil.dbClose(con, ps, rs);
+		}
+		return result;
+	}
+	
+	@Override
+	public boolean duplicateCheckByNickname(String nickname) {
+		Connection con=null;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		boolean result=false;
+		String sql="SELECT nickname FROM USER_S WHERE nickname=?";
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, nickname);
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				result = true;
+			}
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBUtil.dbClose(con, ps, rs);
+		}
+		return result;
+	}
+	
+}
