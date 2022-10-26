@@ -29,7 +29,7 @@ public class DispatcherServlet extends HttpServlet {
 	}
 	
 	/**
-	 * ¸ðµç »ç¿ëÀÚ ¿äÃ»À» Ã³¸®ÇÒ ÁøÀÔÁ¡ ControllerÀÇ ¿ªÇÒ
+	 * ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Controllerï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String key = request.getParameter("key");
@@ -38,14 +38,14 @@ public class DispatcherServlet extends HttpServlet {
 		if(key==null || key.equals("")) key="product";
 		if(methodName==null || methodName.equals("")) methodName="selectAll";
 		
-		System.out.println(key);
+		System.out.println(key+" , " + methodName);
 		
 		try {
 			Controller con = map.get(key);
 			Class<?> clz = clzMap.get(key);
 
 			Method method = clz.getMethod(methodName, HttpServletRequest.class, HttpServletResponse.class);
-			ModelAndView mv = (ModelAndView)method.invoke(con, request, response);	//invoke(½ÇÁ¦ ¸Þ¼Òµå°¡ È£ÃâµÊ)
+			ModelAndView mv = (ModelAndView)method.invoke(con, request, response);	//invoke(ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼Òµå°¡ È£ï¿½ï¿½ï¿½)
 			
 			if(mv.isRedirect()) {
 				response.sendRedirect(mv.getViewName());
@@ -55,7 +55,7 @@ public class DispatcherServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMsg", e.getCause().getMessage());
-			request.getRequestDispatcher("error/error.jsp").forward(request, response);
+			request.getRequestDispatcher("error/userError.jsp").forward(request, response);
 		}
 		
 	}//service

@@ -26,6 +26,46 @@ public class ProductDTO {
 		this.stock = stock;
 	}
 
+	public ProductDTO(int productCode, int categoryCode, String productName, String image, 
+			String productDetail, int stock, int price) {
+		this.productCode = productCode;
+		this.categoryCode = categoryCode;
+		this.productName = productName;
+		this.image = image;
+		this.productDetail = productDetail;
+		this.stock = stock;
+		this.price = price;
+	}
+	
+	public ProductDTO(int categoryCode, String productName, String image, 
+			String productDetail, int stock, int price) {
+		this.categoryCode = categoryCode;
+		this.productName = productName;
+		this.image = image;
+		this.productDetail = productDetail;
+		this.stock = stock;
+		this.price = price;
+	}
+	
+	public ProductDTO(int productCode, int categoryCode, String productName, 
+			String productDetail, int stock, int price) {
+		this.productCode = productCode;
+		this.categoryCode = categoryCode;
+		this.productName = productName;
+		this.productDetail = productDetail;
+		this.stock = stock;
+		this.price = price;
+	}
+	
+	public ProductDTO(int categoryCode, String productName, 
+			String productDetail, int stock, int price) {
+		this.categoryCode = categoryCode;
+		this.productName = productName;
+		this.productDetail = productDetail;
+		this.stock = stock;
+		this.price = price;
+	}
+	
 	public ProductDTO(int productCode, int categoryCode, String productName, String image, String createdReg,
 			String productDetail, int stock, int price) {
 		this(productCode, stock);
