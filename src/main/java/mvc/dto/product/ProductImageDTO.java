@@ -6,6 +6,15 @@ public class ProductImageDTO {
 	private String fileName;
 	
 	public ProductImageDTO() {}
+	
+	public ProductImageDTO(String fileName) {
+		this.fileName = fileName;
+	}
+	
+	public ProductImageDTO(int productCode, String fileName) {
+		this.productCode = productCode;
+		this.fileName = fileName;
+	}
 
 	public ProductImageDTO(int imageCode, int productCode, String fileName) {
 		this.imageCode = imageCode;
