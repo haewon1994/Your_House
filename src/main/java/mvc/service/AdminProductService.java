@@ -18,7 +18,12 @@ import mvc.dto.product.ProductImageDTO;
 public interface AdminProductService {
 	
 	/**
-	 * 상품 등록(상품만)
+	 * 상품 통합 등록
+	 */
+	void insertTotalProduct(ProductDTO product, ColorDTO color, ProductImageDTO productImage) throws SQLException;
+	
+	/**
+	 * 상품만 등록
 	 */
 	void insertProduct(ProductDTO product) throws SQLException;
 	
@@ -40,8 +45,9 @@ public interface AdminProductService {
 	//////////////////////////////////////////
 	/**
 	 * 상품코드에 해당하는 상품 수정(사진, 색상은 수정 없음)
+	 * 썸네일(대표이미지) 변경시 이전 파일은 삭제
 	 */
-	void updateProductByProductCode(ProductDTO product) throws SQLException;
+	void updateProductByProductCode(ProductDTO product, String saveDir) throws SQLException;
 	
 	/**
 	 * 상품코드에 해당하는 재고량 수정(상품정보만)
@@ -57,11 +63,22 @@ public interface AdminProductService {
 	void deleteColorByColorCode(int colorCode) throws SQLException;
 	
 	/**
-	 * 상품사진코드로 상품사진 삭제
+	 * 상품사진코드로 상품사진정보 삭제
+	 * 저장 서버에서의 사진도 삭제한다
 	 */
-	void deleteProductImageByProductImageCode(int productImageCode) throws SQLException;
+	void deleteProductImageByProductImageCode(int productImageCode, String saveDir) throws SQLException;
+	
+	/**
+	 * 카테고리코드로 카테고리 삭제
+	 */
+	void deleteCategoryByCategoryCode(int categoryCode) throws SQLException;
 	
 	//////////////////////////////////////////
+	/**
+	 * 상품리스트 출력 : 최근 생성일 맨 앞으로
+	 * 등록,수정등 성공후 연결 페이지
+	 */
+	List<ProductDTO> selectAllProduct() throws SQLException;
 	
 	/**
 	 * 상품코드에 해당하는 상품만 조회
@@ -69,14 +86,25 @@ public interface AdminProductService {
 	ProductDTO selectProductByProductCode(int productCode) throws SQLException;
 	
 	/**
-	 * 상품코드에 해당하는 상품사진 조회
+	 * 사진코드로 사진 조회
 	 */
-	List<ProductImageDTO> selectByProductCode(int productCode) throws SQLException;
+	ProductImageDTO selectProductImageByProductImageCode(int productImageCode) throws SQLException;
 	
 	/**
-	 * 상품코드에 해당하는 상품색상 조회
+	 * 상품코드에 해당하는 상품사진 조회
 	 */
-	ColorDTO selectByColorCode(int colorCode) throws SQLException;
+	List<ProductImageDTO> selectAllProductImageByProductCode(int productCode) throws SQLException;
+
+	
+	/**
+	 * 색상코드로 색상 조회
+	 */
+	ColorDTO selectColorByColorCode(int colorCode) throws SQLException;
+	
+	/**
+	 * 상품코드에 해당하는 색상 조회
+	 */
+	List<ColorDTO> selectAllColorByProductCode(int productCode) throws SQLException;
 	
 	/**
 	 * 카테고리 코드로 카테고리 조회
@@ -86,10 +114,10 @@ public interface AdminProductService {
 	/**
 	 * 카테고리 전체 조회
 	 */
-	List<ProductCategoryDTO> selectProductCategory() throws SQLException;
+	List<ProductCategoryDTO> selectAllProductCategory() throws SQLException;
 	
 	/**
 	 * 카테고리 코드로 카테고리 수정(버젼업시 생성)
 	 */
-	void updateByCategoryCode(int productCategoryCode) throws SQLException;
+	void updateProductCategoryByCategoryCode(int productCategoryCode) throws SQLException;
 }
