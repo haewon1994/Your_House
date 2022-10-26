@@ -12,7 +12,7 @@ import javax.sql.DataSource;
 public class DBUtil {
 	private static DataSource ds;
 
-	// 濡쒕뱶
+
 	static {
 		try {
 			Context initContext = new InitialContext();
@@ -24,15 +24,14 @@ public class DBUtil {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}// static �걹
+	}// static
 	
-	// �뿰寃�
+	
 	public static Connection getConnection() throws SQLException {
 		Connection conn = ds.getConnection();
 		return conn;
 	}
 	
-	// �떕湲�
 	public static void dbClose(Connection con, Statement st, ResultSet rs) {
 		try {
 			if(rs!=null) rs.close();
@@ -42,7 +41,7 @@ public class DBUtil {
 		}
 	}
 
-	// �떕湲�
+
 	public static void dbClose(Connection con, Statement st) {
 		try {
 			if(st!=null) st.close();
