@@ -10,6 +10,14 @@ public class ProductCategoryDTO {
 	private List<ProductDTO> productList = new ArrayList<ProductDTO>();
 	
 	public ProductCategoryDTO() {}
+	
+	public ProductCategoryDTO(String categoryName) {
+		this.categoryName = categoryName;
+	}
+	
+	public ProductCategoryDTO(int categoryCode) {
+		this.categoryCode = categoryCode;
+	}
 
 	public ProductCategoryDTO(int categoryCode, String categoryName) {
 		this.categoryCode = categoryCode;

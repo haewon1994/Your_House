@@ -1,8 +1,8 @@
 package mvc.dto.user;
 
 public class UserDTO {
-	
-	private String user_code;
+
+	private int userCode;
 	private String email;
 	private String password;
 	private String birth;
@@ -10,27 +10,24 @@ public class UserDTO {
 	private String phone;
 	private String adress;
 	private String gender;
-	private String reg_date;
-	private String category_code;
+	private String regDate;
+	private int categoryCode;
+
+	public UserDTO() {}
+	public UserDTO(String email, String password) {
+		this.email = email;
+		this.password = password;
+
+	}
 	
-	   public UserDTO() {}
-	   public UserDTO(String email, String password) {
-			super();
-			this.email = email;
-			this.password = password;
-			
-		}
-		public UserDTO(String email, String password, String nickname) {
-		super();
+	public UserDTO(String email, String password, String nickname) {
 		this.email = email;
 		this.password = password;
 		this.nickname = nickname;
 	}
-	
-	public UserDTO(String user_code, String email, String password, String birth, String nickname, String phone,
-			String adress, String gender, String reg_date, String category_code) {
-		super();
-		this.user_code = user_code;
+
+	public UserDTO(String email, String password, String birth, String nickname, String phone,
+			String adress, String gender, int categoryCode) {
 		this.email = email;
 		this.password = password;
 		this.birth = birth;
@@ -38,20 +35,33 @@ public class UserDTO {
 		this.phone = phone;
 		this.adress = adress;
 		this.gender = gender;
-		this.reg_date = reg_date;
-		this.category_code = category_code;
-	}
-	
+		this.categoryCode = categoryCode;
 
-
-	public String getUser_code() {
-		return user_code;
 	}
 
-	public void setUser_code(String user_code) {
-		this.user_code = user_code;
+
+	public UserDTO(int userCode, String email, String password, String birth, String nickname, String phone,
+			String adress, String gender, String regDate, int categoryCode) {
+		this.userCode = userCode;
+		this.email = email;
+		this.password = password;
+		this.birth = birth;
+		this.nickname = nickname;
+		this.phone = phone;
+		this.adress = adress;
+		this.gender = gender;
+		this.regDate = regDate;
+		this.categoryCode = categoryCode;
 	}
 
+
+	public int getUserCode() {
+		return userCode;
+	}
+
+	public void setUserCode(int userCode) {
+		this.userCode = userCode;
+	}
 	public String getEmail() {
 		return email;
 	}
@@ -108,22 +118,22 @@ public class UserDTO {
 		this.gender = gender;
 	}
 
-	public String getReg_date() {
-		return reg_date;
+	public String getRegDate() {
+		return regDate;
 	}
 
-	public void setReg_date(String reg_date) {
-		this.reg_date = reg_date;
+	public void setRegDate(String regDate) {
+		this.regDate = regDate;
 	}
 
-	public String getCategory_code() {
-		return category_code;
+	public int getCategoryCode() {
+		return categoryCode;
 	}
 
-	public void setCategory_code(String category_code) {
-		this.category_code = category_code;
+	public void setCategoryCode(int categoryCode) {
+		this.categoryCode = categoryCode;
 	}
-   
+
 
 }
 

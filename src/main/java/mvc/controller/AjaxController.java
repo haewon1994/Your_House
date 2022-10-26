@@ -8,4 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public interface AjaxController {
     void handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException ;
+
+  
 }
+

@@ -28,7 +28,7 @@ public class LikedController implements Controller{
 	public ModelAndView selectByUserCode(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		UserDTO user = (UserDTO) request.getSession().getAttribute("loginUser");
-		int userCode = Integer.parseInt(user.getUser_code());
+		int userCode = user.getUserCode();
 
 
 		List<Story> list = service.selectByUserCode(userCode);

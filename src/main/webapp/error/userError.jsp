@@ -9,7 +9,7 @@
 <div class="container">
 	<div class="col-lg-8 col-lg-offset-2 text-center">
 		<div class="logo">
-			<h1>Error Page</h1>
+			<h1>login Error Page</h1>
 		</div>
 		<p class="lead text-muted">${errorMsg} </p>
 		<div class="clearfix"></div>

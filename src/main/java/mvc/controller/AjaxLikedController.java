@@ -30,7 +30,7 @@ public class AjaxLikedController implements AjaxController {
 		PrintWriter out = response.getWriter();
 		
 		UserDTO user = (UserDTO) request.getSession().getAttribute("loginUser");
-		int userCode = Integer.parseInt(user.getUser_code());
+		int userCode = user.getUserCode();
 		String storyCode = request.getParameter("storyCode");
 		
 		boolean result = service.isLiked(userCode, Integer.parseInt(storyCode));

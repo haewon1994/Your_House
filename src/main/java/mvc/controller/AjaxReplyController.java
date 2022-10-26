@@ -31,7 +31,7 @@ public class AjaxReplyController implements AjaxController{
 		String replyCode = request.getParameter("reply_code");
 		String storyCode = request.getParameter("story_code");
 		UserDTO user = (UserDTO) request.getSession().getAttribute("loginUser");
-		int userCode = Integer.parseInt(user.getUser_code());
+		int userCode = user.getUserCode();
 		String replyContent = request.getParameter("reply_content");
 		String createdReg = request.getParameter("created_reg");
 
