@@ -9,7 +9,7 @@
 <div class="container">
 	<div class="col-lg-8 col-lg-offset-2 text-center">
 		<div class="logo">
-			<h1>login Error Page</h1>
+			<h1>Admin Error Page</h1>
 		</div>
 		<p class="lead text-muted">${errorMsg} </p>
 		<div class="clearfix"></div>
@@ -17,7 +17,7 @@
 		<div class="clearfix"></div>
 		<br />
 		<c:choose>
-		  <c:when test="${empty loginUser}">
+		  <c:when test="${empty loginAdmin}">
 		      <div class="col-lg-6  col-lg-offset-3">
 			<div class="btn-group btn-group-justified">
 				<a href="${pageContext.request.contextPath}/user/login.jsp" class="btn btn-primary">login</a>

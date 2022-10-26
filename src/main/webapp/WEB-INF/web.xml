@@ -15,6 +15,10 @@
   	<param-name>fileName</param-name>
   	<param-value>actionMapping</param-value>
   </context-param>
+  <context-param>
+  	<param-name>ajaxMapping</param-name>
+  	<param-value>ajaxMapping</param-value>
+  </context-param>
   
   <!-- 필터 순서 주의 : 인코딩필터 맨 처음으로(세션필터 등등 밑으로) --> 
   <filter>
@@ -32,7 +36,7 @@
    
   <!-- 세션필터 : user,admin
   	   경로: /front -->
-  <filter>
+   <filter>
     <filter-name>userSessionCheckFilter</filter-name>
     <filter-class>mvc.filter.UserSessionCheckFilter</filter-class>
   </filter>
@@ -40,13 +44,15 @@
    <filter-name>userSessionCheckFilter</filter-name>
    <url-pattern>/front</url-pattern>
   </filter-mapping>
+  
   <filter>
     <filter-name>adminSessionCheckFilter</filter-name>
     <filter-class>mvc.filter.AdminSessionCheckFilter</filter-class>
   </filter>
   <filter-mapping>
-   <filter-name>userSessionCheckFilter</filter-name>
+   <filter-name>adminSessionCheckFilter</filter-name>
    <url-pattern>/front</url-pattern>
   </filter-mapping>
+ 
   
 </web-app>

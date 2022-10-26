@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import mvc.controller.AjaxController;
 import mvc.controller.Controller;
 
 /**
@@ -29,7 +30,6 @@ public class AjaxDispatcherServlet extends HttpServlet {
 		ServletContext application = super.getServletContext();
 		Object obj = application.getAttribute("ajaxMap");
 		map = (Map<String, Controller>)obj;
-		
 		clzMap = (Map<String, Class<?>>)super.getServletContext().getAttribute("ajaxClzMap");
 		
 	}//ServletException end
@@ -41,9 +41,9 @@ public class AjaxDispatcherServlet extends HttpServlet {
 		System.out.println("key = " + key+", methodName = " + methodName);
 		try {
 			Class<?> clz = clzMap.get(key);
+			System.out.println(clz);
 			Method method = clz.getMethod(methodName, HttpServletRequest.class , HttpServletResponse.class);
-			
-			Controller controller = map.get(key);
+			AjaxController controller =(AjaxController) map.get(key);
 			method.invoke(controller, request , response);
 			
 		}catch (Exception e) {
