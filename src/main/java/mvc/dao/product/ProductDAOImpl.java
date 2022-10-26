@@ -55,7 +55,7 @@ public class ProductDAOImpl implements ProductDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		ProductDTO product = null;
-		String sql = "selelct * from product where product_code = ?";
+		String sql = "select * from product where product_code = ?";
 		
 		try {
 			con = DBUtil.getConnection();
@@ -85,32 +85,121 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Override
 	public boolean duplicateCheckByProductName(String productName) throws SQLException {
-		// TODO Auto-generated method stub
-		return false;
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		boolean result = false;
+		String sql = "select product_name from product where product_name = ?";
+		
+		try {
+			con = DBUtil.getConnection();
+			
+			ps = con.prepareStatement(sql);
+			ps.setString(1, productName);
+			
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				result = true;
+			}
+		} finally {
+			DBUtil.dbClose(con, ps, rs);
+		}
+		
+		return result;
 	}
 
 	@Override
 	public int insert(ProductDTO product) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		Connection con = null;
+		PreparedStatement ps = null;
+		int result = 0;
+		String sql = "insert into product values(product_seq.nextval, ?, ?, ?, sysdate, ?, ?, ?)";
+		
+		try {
+			con = DBUtil.getConnection();
+			
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, product.getCategoryCode());
+			ps.setString(2, product.getProductName());
+			ps.setString(3, product.getImage());
+			ps.setString(4, product.getProductDetail());
+			ps.setInt(5, product.getStock());
+			ps.setInt(6, product.getPrice());
+			
+			result = ps.executeUpdate();
+		} finally {
+			DBUtil.dbClose(con, ps);
+		}
+		
+		return result;
 	}
 
 	@Override
 	public int update(ProductDTO product) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		Connection con = null;
+		PreparedStatement ps = null;
+		int result = 0;
+		String sql = "update product set product_name=?, product_detail=?, price=? where product_code=?";
+		
+		try {
+			con = DBUtil.getConnection();
+			
+			ps = con.prepareStatement(sql);
+			ps.setString(1, product.getProductName());
+			ps.setString(2, product.getProductDetail());
+			ps.setInt(3, product.getPrice());
+			ps.setInt(4, product.getProductCode());
+			
+			result = ps.executeUpdate();
+		} finally {
+			DBUtil.dbClose(con, ps);
+		}
+		
+		return result;
 	}
 
 	@Override
 	public int updateByProductCode(int productCode, int stock) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		Connection con = null;
+		PreparedStatement ps = null;
+		int result = 0;
+		String sql = "update product set stock=? where product_code=?";
+		
+		try {
+			con = DBUtil.getConnection();
+			
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, stock);
+			ps.setInt(2, productCode);
+			
+			result = ps.executeUpdate();
+		} finally {
+			DBUtil.dbClose(con, ps);
+		}
+		
+		return result;
 	}
 
 	@Override
 	public int delete(int productCode) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		Connection con = null;
+		PreparedStatement ps = null;
+		int result = 0;
+		String sql = "delete from product where product_code=?";
+		
+		try {
+			con = DBUtil.getConnection();
+			
+			ps = con.prepareStatement(sql);
+			ps.setInt(2, productCode);
+			
+			result = ps.executeUpdate();
+		} finally {
+			DBUtil.dbClose(con, ps);
+		}
+		
+		return result;
 	}
 
 }

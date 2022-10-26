@@ -21,7 +21,7 @@ import mvc.controller.Controller;
 public class AjaxDispatcherServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-    private Map<String, Controller> map;
+    private Map<String, AjaxController> map;
     private Map<String, Class<?>> clzMap;
  	@Override
 	public void init() throws ServletException {
@@ -29,7 +29,7 @@ public class AjaxDispatcherServlet extends HttpServlet {
 		
 		ServletContext application = super.getServletContext();
 		Object obj = application.getAttribute("ajaxMap");
-		map = (Map<String, Controller>)obj;
+		map = (Map<String, AjaxController>)obj;
 		clzMap = (Map<String, Class<?>>)super.getServletContext().getAttribute("ajaxClzMap");
 		
 	}//ServletException end
@@ -43,7 +43,10 @@ public class AjaxDispatcherServlet extends HttpServlet {
 			Class<?> clz = clzMap.get(key);
 			System.out.println(clz);
 			Method method = clz.getMethod(methodName, HttpServletRequest.class , HttpServletResponse.class);
-			AjaxController controller =(AjaxController) map.get(key);
+
+			System.out.println(method);
+			AjaxController controller = map.get(key);
+
 			method.invoke(controller, request , response);
 			
 		}catch (Exception e) {

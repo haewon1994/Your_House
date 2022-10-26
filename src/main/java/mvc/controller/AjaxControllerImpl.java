@@ -42,25 +42,4 @@ public class AjaxControllerImpl implements AjaxController {
 	
 	}
 
-	public void  searchByUserCode(HttpServletRequest request, HttpServletResponse response) throws  ServletException, IOException,SQLException  {
-		
-		
-		response.setContentType("text/html;charset=UTF-8");
-		PrintWriter out = response.getWriter();
-		
-		String userCode = request.getParameter("userCode");
-		System.out.println(userCode);
-		
-		UserDTO userDTO = dao.searchByUserCode(Integer.parseInt(userCode));
-		
-		
-		System.out.println(22222);
-		
-		JSONArray dto = JSONArray.fromObject(userDTO);
-	    //out.print("OK 된다!!");
-		out.print(dto);
-	
-	}
- 
-
 }

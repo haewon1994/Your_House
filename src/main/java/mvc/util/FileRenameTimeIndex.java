@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.FileRenamePolicy;
+
 /**
  * 파일 업로드시 이름 변경 (중복방지) 클래스
  * -> 기존파일명+생성시간+중복index로 변경
@@ -12,14 +15,19 @@ import java.text.SimpleDateFormat;
  * 업로드 파일이름 : 기존파일명_yyyy-MM-dd_hhMMss_sss
  * 중복시 파일이름 : 기존파일명_yyyy-MM-dd_hhMMss_sss(1~9999)
  * 
- * 사용예시
+ * 사용예시1
+ * MultipartRequest m = 
+ * 		new MultipartRequest(request,saveDir, maxSize, 
+ * 					encoding, new FileRenameTimeIndex());
+ * 
+ * 사용예시2
  * File file = new File(UploadUtil.SAVE + bean.getFileFileName());
  * file = new FileRenameTimeIndex().rename(file);
  * 
  * @author 강주형
  *
  */
-public class FileRenameTimeIndex {
+public class FileRenameTimeIndex implements FileRenamePolicy {
    
 	//파일명 변경 메소드
 	/**

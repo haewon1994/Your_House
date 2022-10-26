@@ -1,7 +1,7 @@
 package mvc.dto.user;
 
 public class UserDTO {
-	
+
 	private int userCode;
 	private String email;
 	private String password;
@@ -12,24 +12,22 @@ public class UserDTO {
 	private String gender;
 	private String regDate;
 	private int categoryCode;
+
+	public UserDTO() {}
+	public UserDTO(String email, String password) {
+		this.email = email;
+		this.password = password;
+
+	}
 	
-	   public UserDTO() {}
-	   public UserDTO(String email, String password) {
-			super();
-			this.email = email;
-			this.password = password;
-			
-		}
-		public UserDTO(String email, String password, String nickname) {
-		super();
+	public UserDTO(String email, String password, String nickname) {
 		this.email = email;
 		this.password = password;
 		this.nickname = nickname;
 	}
-		
+
 	public UserDTO(String email, String password, String birth, String nickname, String phone,
 			String adress, String gender, int categoryCode) {
-		super();
 		this.email = email;
 		this.password = password;
 		this.birth = birth;
@@ -38,11 +36,12 @@ public class UserDTO {
 		this.adress = adress;
 		this.gender = gender;
 		this.categoryCode = categoryCode;
+
 	}
-	
+
+
 	public UserDTO(int userCode, String email, String password, String birth, String nickname, String phone,
 			String adress, String gender, String regDate, int categoryCode) {
-		super();
 		this.userCode = userCode;
 		this.email = email;
 		this.password = password;
@@ -54,7 +53,6 @@ public class UserDTO {
 		this.regDate = regDate;
 		this.categoryCode = categoryCode;
 	}
-	
 
 
 	public int getUserCode() {
@@ -64,7 +62,6 @@ public class UserDTO {
 	public void setUserCode(int userCode) {
 		this.userCode = userCode;
 	}
-
 	public String getEmail() {
 		return email;
 	}
@@ -136,7 +133,7 @@ public class UserDTO {
 	public void setCategoryCode(int categoryCode) {
 		this.categoryCode = categoryCode;
 	}
-   
+
 
 }
 

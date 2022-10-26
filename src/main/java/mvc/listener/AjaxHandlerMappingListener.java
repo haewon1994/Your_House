@@ -32,7 +32,7 @@ public class AjaxHandlerMappingListener implements ServletContextListener {
         try {
 	        for(String key : rb.keySet()) {
 	        	String value = rb.getString(key);
-	        	//System.out.println(key +" = " + value );
+	        	System.out.println(key +" = " + value );
 	        	
 	        	//String의 문자열을 Controller의 객체로 생성해야한다!!!
 	        	//Class<?>는 어떤 객체가 가지고 있는 필드, 생성자, 메소드의 정보를 동적으로 가져올수 있도록 도와주는 객체이다 - reflection 개념
@@ -40,6 +40,7 @@ public class AjaxHandlerMappingListener implements ServletContextListener {
 	    		//동적으로 호출해줄수 있도록 하는 개념을 reflection이라고 하고 자바에서 이 개념을 적용해 놓은 API가 Class<?> 이다.
 	
 	        	Class<?> className = Class.forName(value);
+
 	        	AjaxController controller = (AjaxController)className.getDeclaredConstructor().newInstance();
 	        	
 	        	System.out.println("controller = " + controller);

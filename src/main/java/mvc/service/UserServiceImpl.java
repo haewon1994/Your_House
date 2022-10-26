@@ -35,9 +35,14 @@ public class UserServiceImpl implements UserService {
 		List<UserDTO> list = userDAO.searchUser();
 		return list;
 	}
+
+	@Override
+	public UserDTO select(String email) throws SQLException {
+		UserDTO user = userDAO.selectByUserCode(email);
+		return user;
+	}
 	
-
-
+	
 }
 
 

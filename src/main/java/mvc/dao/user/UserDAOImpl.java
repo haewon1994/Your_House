@@ -73,6 +73,7 @@ private Properties proFile = new Properties();
 			ps.setString(6, user.getAdress());
 			ps.setString(7, user.getGender());
 			ps.setInt(8, user.getCategoryCode());
+
 			
 			result = ps.executeUpdate();
 			
@@ -131,7 +132,7 @@ private Properties proFile = new Properties();
 		}
 		return result;
 	}
-
+	
 	/**
 	 * 유저 정보 조회
 	 * */
@@ -160,33 +161,38 @@ private Properties proFile = new Properties();
 	}
 
 	@Override
-	public UserDTO searchByUserCode(int userCode) throws SQLException {
-		 Connection con = null;
-		  PreparedStatement ps = null;
-		  ResultSet rs = null;
-	    	UserDTO userDTO = null; 
-		  try {
-		   con = DBUtil.getConnection();
-		   ps = con.prepareStatement("select * from USER_S where  user_code=?");
-		   ps.setInt(1, userCode);
-		   rs= ps.executeQuery();	   
-		   if(rs.next()){
-			   System.out.println("db 데니터 거져옴");
-			   userDTO  =new UserDTO(rs.getInt(1), rs.getString(2), rs.getString(3), 
-		      rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)
-		      , rs.getString(8), rs.getString(9), rs.getInt(10));
-		   }
-   
-	
-		  }finally {
-		   DBUtil.dbClose(con, ps, rs);
-		  
-		  
-		  }
-		  
-		  
-		  return userDTO;
-	
+	public UserDTO selectByUserCode(String email) throws SQLException {
+		Connection con=null;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		UserDTO user=null;
+		String sql = "select * from user_s where email=?";
+		
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, email);
+			
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				user = new UserDTO(
+						rs.getInt(1),
+						rs.getString(2),
+						rs.getString(3),
+						rs.getString(4),
+						rs.getString(5),
+						rs.getString(6),
+						rs.getString(7),
+						rs.getString(8),
+						rs.getString(9),
+						rs.getInt(10)
+					);
+			}
+		} finally {
+			DBUtil.dbClose(con, ps, rs);
+		}
+		return user;
 	}
 
 }
