@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import mvc.dao.user.UserDAO;
 import mvc.dao.user.UserDAOImpl;
 import mvc.dto.user.UserDTO;
-import net.sf.json.JSONArray;
+
 
 public class AjaxControllerImpl implements AjaxController {
 

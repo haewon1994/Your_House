@@ -27,6 +27,7 @@ public class DBUtil {
 	}// static �걹
 	
 	// �뿰寃�
+	
 	public static Connection getConnection() throws SQLException {
 		Connection conn = ds.getConnection();
 		return conn;
