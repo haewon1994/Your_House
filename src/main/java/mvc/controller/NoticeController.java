@@ -35,7 +35,7 @@ public class NoticeController implements Controller {
 		//String noticeCode=request.getParameter("noticeCode");
 	
 		List<Notice> list = notiService.selectAll();
-		request.setAttribute("list", list);//뷰에서 ${list}
+		request.setAttribute("noticeList", list);//뷰에서 ${list}
 		System.out.println(list);
 		return new ModelAndView("notice/list.jsp"); //forward방식으로 이동
 		

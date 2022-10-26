@@ -9,7 +9,7 @@
 <script type="text/javascript" scr="../js/jquery-3.6.1.js"></script>
 </head>
 <body>
-	<c:forEach items="${list }" var="notice">
+	<c:forEach items="${noticeList }" var="notice">
 	${notice.noticeCode }
 	</c:forEach>
 </body>

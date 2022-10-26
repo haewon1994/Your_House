@@ -1,6 +1,6 @@
 package mvc.dao.notice;
 
-import java.io.InputStream;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -161,18 +161,25 @@ public class NoticeDAOImpl implements NoticeDAO {
 		ResultSet rs=null;
 		List<Notice> list = new ArrayList<Notice>();
 		
+		System.out.println(11);
+		
 		//String sql= proFile.getProperty("query.selectAll");
 		try {
 			con = DBUtil.getConnection();
 			ps = con.prepareStatement("select * from Notice");
 			rs = ps.executeQuery();
+			
+			System.out.println(12);
+			
 			while(rs.next()) {
+				System.out.println("11");
 				Notice notice = 
 				new Notice(rs.getInt(1), rs.getString(2), rs.getString(3),
 						rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
 				
 			   list.add(notice);
 			}
+			
 		}finally {
 			DBUtil.dbClose(con, ps, rs);
 		}
