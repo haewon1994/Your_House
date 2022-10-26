@@ -13,14 +13,12 @@
 		</div>
 		<p class="lead text-muted">${errorMsg} </p>
 		<div class="clearfix"></div>
-		
-		<div class="clearfix"></div>
 		<br />
 		<c:choose>
 		  <c:when test="${empty loginAdmin}">
 		      <div class="col-lg-6  col-lg-offset-3">
 			<div class="btn-group btn-group-justified">
-				<a href="${pageContext.request.contextPath}/user/login.jsp" class="btn btn-primary">login</a>
+				<a href="${pageContext.request.contextPath}/admin/adminlogin.jsp" class="btn btn-primary">login</a>
 				<a href="${pageContext.request.contextPath}" class="btn btn-success">index</a>
 				<a href="javascript:history.back()" class="btn btn-success">back</a>
 			</div>
@@ -32,12 +30,9 @@
 			<div class="btn-group btn-group-justified">
 				<a href="javascript:history.back()" class="btn btn-primary">back</a>
 				<a href="${pageContext.request.contextPath}" class="btn btn-success">index</a>
-				<a href="javascript:history.back()" class="btn btn-success">back</a>
 			</div>
-
 		</div>
 		  </c:otherwise>
 		</c:choose>	
 	</div>
-
 </div>

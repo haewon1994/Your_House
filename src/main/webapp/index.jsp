@@ -50,8 +50,14 @@
 	
 	<a href="${pageContext.request.contextPath}/front?key=admin&methodName=adminlogout">admin로그아웃</a>
 	
-	<a href="admin/adminlogin.jsp">akd</a>
-	
+	<hr>
+	User
+	<br>
+	로그인된 아이디 : ${loginUser.email} 비밀번호 : ${loginUser.password}
+	<hr>
+	Admin
+	<br>
+	로그인된 아이디 : ${loginAdmin.email} 비밀번호 : ${loginAdmin.password}
 	<hr>
 	
 	<form action="front?key=product&value=selectByProductCode">

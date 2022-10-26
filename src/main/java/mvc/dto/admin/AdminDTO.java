@@ -2,34 +2,35 @@ package mvc.dto.admin;
 
 public class AdminDTO {
 	
-	private String adminId;
-	private String adminPwd;
+	private String email;
+	private String password;
 	
 	
-	public AdminDTO(String adminId, String adminPwd) {
+	public AdminDTO(String email , String password) {
 		super();
-		this.adminId = adminId;
-		this.adminPwd = adminPwd;
+		this.email=email;
+		this.password=password;
+		
 	}
 
 
-	public String getAdminId() {
-		return adminId;
+	public String getEmail() {
+		return email;
 	}
 
 
-	public void setAdminId(String adminId) {
-		this.adminId = adminId;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 
-	public String getAdminPwd() {
-		return adminPwd;
+	public String getPassword() {
+		return password;
 	}
 
 
-	public void setAdminPwd(String adminPwd) {
-		this.adminPwd = adminPwd;
+	public void setPassword(String password) {
+		 this.password= password;
 	}
 
 	

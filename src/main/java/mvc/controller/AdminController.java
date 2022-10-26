@@ -32,17 +32,17 @@ public class AdminController implements Controller {
 			throws Exception {
     
 		//두개의 전송되는 값을 받는다.
-		String adminId =request.getParameter("adminId");
-		String adminPwd =request.getParameter("adminPwd");
+		String email =request.getParameter("email");
+		String password =request.getParameter("password");
 		
 		//서비스 호출 
-		AdminDTO admindbDTO = adminService.adminloginCheck( new AdminDTO(adminId, adminPwd) );
-		System.out.println("adminId : "+adminId+" , "+"adminPwd : "+adminPwd);
+		AdminDTO admindbDTO = adminService.adminloginCheck( new AdminDTO(email, password) );
+		System.out.println("email : "+email+" , "+"password : "+password);
 		
 		//로그인성공하면 세션에 정보를 저장 - ${loginAdmin} / ${loginAdminId}
 		HttpSession session = request.getSession();
 		session.setAttribute("loginAdmin", admindbDTO);
-		session.setAttribute("loginAdminId", admindbDTO.getAdminId());
+		session.setAttribute("loginAdminId", admindbDTO.getEmail());
 		
 
 		//index.jsp이동 - redirect방식
@@ -61,9 +61,7 @@ public class AdminController implements Controller {
 		
 		return new ModelAndView("admin/adminlogout.jsp", true);
 		
-		
 	}
-	
 }
 
 

@@ -40,8 +40,8 @@ private Properties proFile = new Properties();
 		try {
 			con = DBUtil.getConnection();
 			ps = con.prepareStatement(sql);
-			ps.setString(1, adminDTO.getAdminId());
-			ps.setString(2, adminDTO.getAdminPwd());
+			ps.setString(1, adminDTO.getEmail());
+			ps.setString(2, adminDTO.getPassword());
 			
 			rs = ps.executeQuery();
 			if(rs.next()) {
