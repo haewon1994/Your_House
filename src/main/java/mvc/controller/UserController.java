@@ -66,7 +66,7 @@ public class UserController implements Controller {
 				}else {
 					 //이메일 + 닉네임 모두 가능
 					UserDTO user = 
-							new UserDTO(null, email, password, birth, nickname, phone, adress, gender, null, category_code);
+							new UserDTO(0, email, password, birth, nickname, phone, adress, gender, null, Integer.parseInt(category_code));
 							
 						if( dao.insert(user) > 0) {
 							url="index.jsp";
@@ -91,13 +91,19 @@ public class UserController implements Controller {
 		String email =request.getParameter("email");
 		String password =request.getParameter("password");
 		
+		System.out.println(email);
+		
 		//서비스 호출 
 		UserDTO dbDTO = userService.loginCheck( new UserDTO(email, password) );
 		System.out.println("로그인 된 이메일 : "+email+" , "+"비밀번호 : "+password);
 		
 		//로그인성공하면 세션에 정보를 저장 - ${loginUser} / ${loginName}
+		
+		UserDTO user = userService.select(email);
 		HttpSession session = request.getSession();
-		session.setAttribute("loginUser", dbDTO);
+		session.setAttribute("loginUser", user);
+		
+		System.out.println(user.getUser_code());
 		session.setAttribute("loginName", dbDTO.getNickname());
 		
 

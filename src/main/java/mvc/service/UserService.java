@@ -13,6 +13,7 @@ public interface UserService {
 	 * */
    UserDTO loginCheck(UserDTO userDTO)throws SQLException , AuthenticationException;
    
+   UserDTO select(String email) throws SQLException;
    
    void insert(UserDTO userDTO)throws SQLException;
 }

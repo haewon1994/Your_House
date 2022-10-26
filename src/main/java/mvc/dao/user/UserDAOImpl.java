@@ -71,7 +71,7 @@ private Properties proFile = new Properties();
 			ps.setString(5, user.getPhone());
 			ps.setString(6, user.getAdress());
 			ps.setString(7, user.getGender());
-			ps.setString(8, user.getCategory_code());
+			ps.setInt(8, user.getCategory_code());
 			
 			result = ps.executeUpdate();
 			
@@ -129,6 +129,41 @@ private Properties proFile = new Properties();
 			DBUtil.dbClose(con, ps, rs);
 		}
 		return result;
+	}
+
+	@Override
+	public UserDTO selectByUserCode(String email) throws SQLException {
+		Connection con=null;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		UserDTO user=null;
+		String sql = "select * from user_s where email=?";
+		
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, email);
+			
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				user = new UserDTO(
+						rs.getInt(1),
+						rs.getString(2),
+						rs.getString(3),
+						rs.getString(4),
+						rs.getString(5),
+						rs.getString(6),
+						rs.getString(7),
+						rs.getString(8),
+						rs.getString(9),
+						rs.getInt(10)
+					);
+			}
+		} finally {
+			DBUtil.dbClose(con, ps, rs);
+		}
+		return user;
 	}
 	
 }

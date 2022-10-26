@@ -16,6 +16,11 @@
   	<param-value>actionMapping</param-value>
   </context-param>
   
+  <context-param>
+  	<param-name>ajaxMapping</param-name>
+  	<param-value>ajaxMapping</param-value>
+  </context-param>
+  
   <!-- 필터 순서 주의 : 인코딩필터 맨 처음으로(세션필터 등등 밑으로) --> 
   <filter>
     <filter-name>encodingFilter</filter-name>

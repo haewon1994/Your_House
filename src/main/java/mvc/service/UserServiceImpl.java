@@ -28,8 +28,14 @@ public class UserServiceImpl implements UserService {
 		if(result==0)throw new SQLException("회원가입 실패");
 		
 	}
-	
 
+	@Override
+	public UserDTO select(String email) throws SQLException {
+		UserDTO user = userDAO.selectByUserCode(email);
+		return user;
+	}
+	
+	
 
 }
 

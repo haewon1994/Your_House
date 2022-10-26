@@ -29,6 +29,11 @@ public interface UserDAO {
  	 * 닉네임 중복 체크
  	 **/
       boolean duplicateCheckByNickname(String email);
+      
+      /**
+       * 회원정보 가져오기
+       */
+      UserDTO selectByUserCode(String email)throws SQLException;
 	
 }
 
