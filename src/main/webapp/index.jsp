@@ -19,16 +19,11 @@
  text-align:left;
  margin-top:7px;
 }
-
-
 </style>
-
-
 <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <script type="text/javascript">
-           
-     $(function() {
-        
+<script type="text/javascript">
+	$(function() {
+		
     	let state=false;  
     	 
         document.
@@ -61,8 +56,8 @@
          		  		  
         	     }
         	   
-        	    $('input[name="key"]').val(keyV);
-                $('input[name="methodName"]').val(methodNameV); 
+        	    $('input[name="key"]').val();
+                $('input[name="methodName"]').val(); 
                 e.target.submit();
           }
              
@@ -71,22 +66,8 @@
     
      })
   
-   </script>
-
-
- 
-
-
-
-
-
-
-
-
-
-
+</script>
 </head>
-
 <body>
  <div class="text-center"style="margin-left:auto; margin-right:auto; margin-top:120px;">
    <div>
@@ -111,8 +92,8 @@
        <div class="d-grid gap-2" style="margin-top: 10px ">
            <button class="btn btn-primary btn-lg mt-3" style="height:70px" type="submit" id="login" >로그인</button>  
         </div>
-   <input type="hidden" name="key" value="">
-   <input type="hidden" name="methodName" value="">
+   <input type="hidden" name="key" value="user">
+   <input type="hidden" name="methodName" value="login">
   
   </form>
     <section style="margin-top: 60px;">

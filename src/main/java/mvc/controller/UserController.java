@@ -1,9 +1,6 @@
 package mvc.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +12,6 @@ import mvc.dao.user.UserDAOImpl;
 import mvc.dto.user.UserDTO;
 import mvc.service.UserService;
 import mvc.service.UserServiceImpl;
-import net.sf.json.JSONArray;
 
 
 
@@ -87,6 +83,54 @@ public class UserController implements Controller {
 		return new ModelAndView(url, isRedirect);
 
 	}	//끝
+	
+	/**
+	 * 회원정보 수정
+	 * */
+	public ModelAndView update(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		response.setContentType("text/html;charset=UTF-8");
+		
+		String url="error/signupError.jsp";
+		String errMsg="회원 정보 수정을 실패했습니다.";
+		boolean isRedirect=false;
+
+		String password = request.getParameter("password");
+		String pwdCheck = request.getParameter("pwdCheck");
+		String nickname = request.getParameter("nickname");
+		String adress = request.getParameter("adress");
+		String categoryCode = request.getParameter("categoryCode");
+
+
+			if(password==null || password.equals("") || pwdCheck==null || pwdCheck.equals("") || 
+				nickname==null || nickname.equals("") || adress==null  || adress.equals("") ||  
+				categoryCode==null  || categoryCode.equals("")){
+
+			errMsg="전부 입력해주세요.";
+			request.setAttribute("errMsg", errMsg);
+		}else {
+			UserDAO dao = new UserDAOImpl();
+				if(dao.duplicateCheckByNickname(nickname)) {
+					errMsg = nickname+"는 사용중인 닉네임입니다.";
+					request.setAttribute("errMsg", errMsg);
+				}else {
+					UserDTO user1 = (UserDTO) request.getSession().getAttribute("loginUser");
+					int userCode = user1.getUserCode();
+					
+					//이메일 + 닉네임 모두 가능
+					UserDTO user = 
+							new UserDTO(userCode, password, nickname, adress, Integer.parseInt(categoryCode));
+
+
+					if( dao.update(user) > 0) {
+						url="index.jsp";
+						isRedirect=true;
+					}
+				}
+			}	
+			System.out.println("updateController..");
+		return new ModelAndView(url, isRedirect);
+	}	//끝
 
 	/**
 	 * 로그인 기능
@@ -111,7 +155,7 @@ public class UserController implements Controller {
 		session.setAttribute("loginUser", user);
 
 		//index.jsp이동 - redirect방식
-		return new ModelAndView("index.jsp", true);
+		return new ModelAndView("store/storeHome.jsp", true);
 	}
 
 	/**
@@ -128,24 +172,6 @@ public class UserController implements Controller {
 
 	}
 
-	/**
-	 * 유저 정보 조회
-	 * @throws SQLException 
-	 * */
-
-	public void searchUser(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException, SQLException {
-		response.setContentType("text/html;charset=UTF-8");   
-
-		List<UserDTO> list = userService.searchUser();
-
-		//list를 응답할수 없기때문에 list를 jsonArray변환해서 보낸다.
-		JSONArray arr = JSONArray.fromObject(list);
-
-		PrintWriter out = response.getWriter();
-		out.print(arr);
-
-	}
 }
 
 

@@ -21,6 +21,11 @@ public interface UserDAO {
 	int insert(UserDTO user)throws SQLException;
 	
 	/**
+	 * 회원정보 수정
+	 **/
+	int update(UserDTO user)throws SQLException;
+	
+	/**
 	 * 이메일 중복 체크
 	 **/
     boolean duplicateCheckByEmail(String email)throws SQLException;
