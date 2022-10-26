@@ -40,6 +40,10 @@ public interface UserDAO {
     */
     UserDTO selectByUserCode(String email)throws SQLException;
 
+    /**
+     * userCode로 회원정보 가져오기
+     */
+     UserDTO searchByUserCode(int userCode)throws SQLException;
 }
 
 

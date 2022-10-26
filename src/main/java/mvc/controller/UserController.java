@@ -87,6 +87,53 @@ public class UserController implements Controller {
 		return new ModelAndView(url, isRedirect);
 
 	}	//끝
+	
+	/**
+	 * 회원정보 수정
+	 * */
+	public ModelAndView update(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+
+		String password = request.getParameter("password");
+		String pwdCheck = request.getParameter("pwdCheck");
+		String nickname = request.getParameter("nickname");
+		String adress = request.getParameter("adress");
+		String categoryCode = request.getParameter("categoryCode");
+
+
+			if(password==null || password.equals("") || pwdCheck==null || pwdCheck.equals("") || 
+				nickname==null || nickname.equals("") || adress==null  || adress.equals("") ||  
+				categoryCode==null  || categoryCode.equals("")){
+
+			errMsg="전부 입력해주세요.";
+			request.setAttribute("errMsg", errMsg);
+		}else {
+			UserDAO dao = new UserDAOImpl();
+			if( dao.duplicateCheckByEmail(email) ) {
+				errMsg = email+"는 사용중인 이메일입니다.";
+				request.setAttribute("errMsg", errMsg);
+			}else {
+				if(dao.duplicateCheckByNickname(nickname)) {
+					errMsg = nickname+"는 사용중인 닉네임입니다.";
+					request.setAttribute("errMsg", errMsg);
+				}else {
+					//이메일 + 닉네임 모두 가능
+					UserDTO user = 
+							new UserDTO(email, password, birth, nickname, phone, adress, gender, Integer.parseInt(categoryCode));
+
+
+					if( dao.insert(user) > 0) {
+						url="index.jsp";
+						isRedirect=true;
+					}
+				}
+			}
+		}	
+
+
+		return new ModelAndView(url, isRedirect);
+
+	}	//끝
 
 	/**
 	 * 로그인 기능

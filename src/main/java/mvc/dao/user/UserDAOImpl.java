@@ -61,7 +61,7 @@ private Properties proFile = new Properties();
 		PreparedStatement ps=null;
 		int result=0;
 		String sql=
-			"INSERT INTO USER_S(USER_CODE,EMAIL,PASSWORD,BIRTH,NICKNAME,PHONE,ADRESS, GENDER, REG_DATE, CATEGORY_CODE) VALUES(USER_S_SEQ.nextval, ?, ?, ?, ?, ?, ?, ?, sysdate, ?)";
+			"INSERT INTO USER_S(USER_CODE,EMAIL,PASSWORD,BIRTH,NICKNAME,PHONE,ADRESS, GENDER, REG_DATE, CATEGORY_CODE) VALUES(USER_S_SEQ.nextval, ?, ?, ?, ?, ?, ?, ?, sysdate+9/24, ?)";
 		try {
 			con = DBUtil.getConnection();
 			ps = con.prepareStatement(sql);
@@ -172,6 +172,41 @@ private Properties proFile = new Properties();
 			con = DBUtil.getConnection();
 			ps = con.prepareStatement(sql);
 			ps.setString(1, email);
+			
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				user = new UserDTO(
+						rs.getInt(1),
+						rs.getString(2),
+						rs.getString(3),
+						rs.getString(4),
+						rs.getString(5),
+						rs.getString(6),
+						rs.getString(7),
+						rs.getString(8),
+						rs.getString(9),
+						rs.getInt(10)
+					);
+			}
+		} finally {
+			DBUtil.dbClose(con, ps, rs);
+		}
+		return user;
+	}
+
+	@Override
+	public UserDTO searchByUserCode(int userCode) throws SQLException {
+		Connection con=null;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		UserDTO user=null;
+		String sql = "select * from user_s where user_code=?";
+		
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, userCode);
 			
 			rs = ps.executeQuery();
 			
