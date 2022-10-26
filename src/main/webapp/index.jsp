@@ -41,8 +41,7 @@
 		${product.productName} <button id="btn" value="${product.productCode}">장바구니 담기</button>
 	</c:forEach>
 	
-<<<<<<< HEAD
-		<a href="user/login.jsp">로그인</a>
+	<a href="user/login.jsp">로그인</a>
 	<a href="${pageContext.request.contextPath}/front?key=user&methodName=logout">로그아웃</a>
 	
 	<a href="signup.html">회원가입</a>	

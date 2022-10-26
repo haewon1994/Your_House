@@ -28,7 +28,7 @@ public class OrdersController implements Controller {
 	public ModelAndView selectAll(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
 		UserDTO userdto = (UserDTO) request.getSession().getAttribute("loginUser");
-		int userCode =  userdto.getUser_code();
+		int userCode =  userdto.getUserCode();
 		
 		 List<OrdersDTO> ordersList = service.selectAll(userCode);
 		 request.setAttribute("ordersList", ordersList);
@@ -45,7 +45,7 @@ public class OrdersController implements Controller {
 			throws ServletException, IOException {
 		//넘오는 파라미터 값 받기
 		UserDTO userdto = (UserDTO) request.getSession().getAttribute("loginUser");
-		int userCode =  userdto.getUser_code();
+		int userCode =  userdto.getUserCode();
 		
 		String totalPrice = request.getParameter("totalPrice");
 		String orderAdrss = request.getParameter("orderAdrss");

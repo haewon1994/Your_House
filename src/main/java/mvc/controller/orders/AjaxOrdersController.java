@@ -41,7 +41,7 @@ public class AjaxOrdersController implements AjaxController {
 		UserDTO userdto = (UserDTO) request.getSession().getAttribute("loginUser");
 		System.out.println("userdto"+userdto);
 		List<OrdersDetail> detaillist = new ArrayList<OrdersDetail>();
-		int userCode =  userdto.getUser_code();
+		int userCode =  userdto.getUserCode();
 		System.out.println("userCode"+userCode);
 		
 		String totalPrice = request.getParameter("totalPrice");
