@@ -53,8 +53,15 @@ public class UserDTO {
 		this.regDate = regDate;
 		this.categoryCode = categoryCode;
 	}
-
-
+	
+	public UserDTO(int userCode, String password, String nickname,
+			String adress, int categoryCode) {
+		this.userCode = userCode;
+		this.password = password;
+		this.nickname = nickname;
+		this.adress = adress;
+		this.categoryCode = categoryCode;
+	}
 	public int getUserCode() {
 		return userCode;
 	}

@@ -1,5 +1,10 @@
 package mvc.dto.notice;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import mvc.dto.reply.Reply;
+
 public class Notice {
 	private int noticeCode;
 	private String noticeCategory;
@@ -11,6 +16,8 @@ public class Notice {
 	
 	
 	public Notice() {}
+	
+	private List<Notice> noticeList = new ArrayList<Notice>();
 	
 	public Notice(int noticeCode, String isPrivate, String subject,String noticContent) {
 		this.noticeCode = noticeCode;

@@ -23,7 +23,7 @@ public interface StoryDAO {
 	  /**
 		  * 레코드 전체 검색(페이지처리)
 		  * */
-	  // List<Story> getBoardList(int storyCode) throws SQLException;
+	  List<Story> getBoardList(int pageNo) throws SQLException;
 	 
 	
 	//등록
@@ -32,7 +32,7 @@ public interface StoryDAO {
 	
 	//수정
 	/**
-	    * 공지번호에 해당하는 레코드 수정
+	    * 게시물번호에 해당하는 레코드 수정
 	    * @return : 1-수정성공 , 0 - 수정실패
 	    * */
 	int update(Story story) throws SQLException;
@@ -41,7 +41,7 @@ public interface StoryDAO {
 	//삭제 // 관리자만 지울 수 있게!!!!!!!!
 	
 	 /**
-	   * 공지번호에 해당하는 레코드 삭제
+	   * 게시물번호에 해당하는 레코드 삭제
 	   * @return : 1-삭제성공 , 0 - 삭제실패
 	   * */
 	int delete(int storyCode) throws SQLException;
@@ -49,7 +49,7 @@ public interface StoryDAO {
 	
 	
 	 /**
-	   *공지번호에 해당하는 레코드 검색
+	   *게시물번호에 해당하는 레코드 검색
 	   * */
 	Story selectByStoryCode(int storyCode) throws SQLException;
 	

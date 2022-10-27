@@ -17,12 +17,12 @@ public interface FollowDAO {
 	
 	
 
-	Follow isFollow(int userCode, int followCode)throws SQLException;
+	Follow isFollow(int userCode, int followerCode)throws SQLException;
 
 	
 	
-	//파로잉한 사람목록 전체보기
-	List<UserDTO> selectByUserCode(int userCode)throws SQLException;
+	//내가 파로잉한 사람목록 전체보기
+	List<Integer> selectByUserCode(int userCode)throws SQLException;
 	
 	
 	//내가 팔로잉한 살 글 전체보기

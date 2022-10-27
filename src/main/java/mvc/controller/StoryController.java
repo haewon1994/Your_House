@@ -33,9 +33,14 @@ public class StoryController implements Controller {
 	public ModelAndView select(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		
+		  String pageNo = request.getParameter("pageNo");
+		  if(pageNo==null || pageNo.equals("")) {
+			  pageNo="1";
+		  }
 		
 		List<Story> list = storyService.selectAll();
 		request.setAttribute("list", list);//뷰에서 ${list}
+		request.setAttribute("pageNo", pageNo); //뷰에서 ${pageNo}
 		System.out.println(list);
 		return new ModelAndView("story/list.jsp"); //forward방식으로 이동
 	}

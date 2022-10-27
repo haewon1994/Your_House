@@ -35,6 +35,7 @@ public class AdminSessionCheckFilter implements Filter {
 		System.out.println("AdminSessionCheck....");
 		//사전처리 -> 인증여부를 체크한다.
 		String key = request.getParameter("key");
+		System.out.println(key);
 		if(key==null || key.equals("")) {//조건식에 진입하는 key 넣기-Dispatcher서블릿에 입력된 그대로
 			
 			//인증된 사용자만 해라...
