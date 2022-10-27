@@ -78,16 +78,16 @@ public class NoticeController implements Controller {
 			new Notice(0,noticeCategory, isPrivate, null, subject, null, noticContent);
 		
 		//만약, 파일첨부가 되었다면....
-		if(m.getFilesystemName("file") != null) {
+		if(m.getFilesystemName("notice_image") != null) {
 			//파일이름저장
-			notice.setNoticeImage(m.getFilesystemName("file"));	
+			notice.setNoticeImage(m.getFilesystemName("notice_image"));	
 		}
 
 		
 		
 		notiService.insert(notice);
 
-	   return new ModelAndView("front", true);//key=elec&methodName=select 기본으로 설정된다.	
+	   return new ModelAndView("admin", true);//key=elec&methodName=select 기본으로 설정된다.	
 	}
 	
 	/**
@@ -157,7 +157,7 @@ public class NoticeController implements Controller {
 		
 		String saveDir = request.getServletContext().getRealPath("/save");
 		notiService.delete(Integer.parseInt(noticeCode), saveDir);
-		 return new ModelAndView("front",true);
+		 return new ModelAndView("admin",true);
 	
 	}
 	

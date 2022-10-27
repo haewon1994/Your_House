@@ -31,7 +31,7 @@ function checkValid() {
 </HEAD>
 <BODY>
 
-<form name="writeForm" method="post" action="${path}/front?key=notice&methodName=insert" 
+<form name="writeForm" method="post" action="${path}/admin?key=notice&methodName=insert" 
 
   onSubmit='return checkValid()' enctype="multipart/form-data">
 <!-- 
