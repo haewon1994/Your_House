@@ -82,6 +82,30 @@ private Properties proFile = new Properties();
 		}
 		return result;
 	}
+	
+	@Override
+	public int update(UserDTO user) throws SQLException {
+		Connection con=null;
+		PreparedStatement ps=null;
+		int result=0;
+		String sql=
+			"update USER_S set password=?, nickname=?, adress=?, category_code=? where user_code=?";
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, user.getPassword());
+			ps.setString(2, user.getNickname());
+			ps.setString(3, user.getAdress());
+			ps.setInt(4, user.getCategoryCode());
+			ps.setInt(5, user.getUserCode());
+
+			result = ps.executeUpdate();
+			
+		}finally {
+			DBUtil.dbClose(con, ps);
+		}
+		return result;
+	}
 
 	@Override
 	public boolean duplicateCheckByEmail(String email)throws SQLException {
@@ -229,6 +253,7 @@ private Properties proFile = new Properties();
 		}
 		return user;
 	}
+	
 
 }
 	

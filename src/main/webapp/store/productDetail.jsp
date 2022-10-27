@@ -122,7 +122,7 @@
 						<!--  -->
 						
 
-							<div class="flex-w flex-r-m p-b-10">
+						<div class="flex-w flex-r-m p-b-10">
 								<div class="size-203 flex-c-m respon6">
 									Color
 								</div>
@@ -148,24 +148,20 @@
 										<input class="numberProduct" type="number" min="1" max="100" value="1">
 									</div>
 								</div>
-									<div class="btn_productSelect">
-										<div calss="pcart"style="display:block; margin-right: 10px;"><button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart">
-										장바구니
-										</button></div>
-										<div calss="pbuy"><button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 poductbuy">
-										<span>구매하기</span>
-										</button></div>
+								<div class="btn_productSelect">
+									<div class="pcart" style="display:block; margin-right: 10px;"><button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart">
+									장바구니
+									</button>
 									</div>
-								
+									<div class="pbuy"><button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 poductbuy">
+									<span>구매하기</span>
+									</button></div>
+								</div>							
 							</div>	
-						</div>
-
-						<!--  -->
-						
+						</div>							
 					</div>
 				</div>
 			</div>
-
 			<div class="bor10 m-t-50 p-t-43 p-b-40">
 				<!-- Tab01 -->
 				<div class="tab01">
@@ -326,8 +322,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
-
+	
 	</section>
 
 <!--===============================================================================================-->	
