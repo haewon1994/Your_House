@@ -9,6 +9,7 @@ import mvc.dto.notice.Notice;
 public interface NoticeDAO {
 
 	
+	
 	//등록
 	int insert(Notice notice) throws SQLException;
 
@@ -47,6 +48,11 @@ public interface NoticeDAO {
 	 
 
 	List<Notice> selectAll() throws SQLException;
+
+	 /**
+	  * 레코드 전체 검색(페이지처리)
+	  * */
+  List<Notice> getBoardList(int pageNo) throws SQLException;
 
 
 	  

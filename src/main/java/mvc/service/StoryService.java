@@ -18,7 +18,7 @@ public interface StoryService {
 	/**
 	 * paging처리
 	 * */
-	// List<Story> selectAll(int storyCode) throws SQLException;
+	List<Story> selectAll(int pageNo) throws SQLException;
 
 	/**
 	 * StoryDAOImpl의 레코드 삽입하는 메소드 호출

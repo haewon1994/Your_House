@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import mvc.paging.PageCnt;
 import mvc.dto.story.Story;
 import mvc.util.DBUtil;
 
@@ -16,43 +17,6 @@ public class StoryDAOImpl implements StoryDAO {
 	private Properties proFile = new Properties();
 
 
-	
-	
-	@Override
-	public List<Story> selectAll() throws SQLException {
-		Connection con=null;
-		PreparedStatement ps=null;
-		ResultSet rs=null;
-		List<Story> list = new ArrayList<Story>();
-
-		//String sql= proFile.getProperty("Story.select");//select * from Electronics  order by writeday desc
-		try {
-			con = DBUtil.getConnection();
-			ps = con.prepareStatement("select * from Story  order by noticeReg desc");
-			rs = ps.executeQuery();
-			while(rs.next()) {
-				Story story = 
-						new Story(rs.getInt(1), rs.getInt(2), rs.getString(3),
-								rs.getString(4), rs.getString(5));
-
-				list.add(story);
-			}
-		}finally {
-			DBUtil.dbClose(con, ps, rs);
-		}
-		return list;
-	}
-
-
-/*
-   //페이징 처리
-  	@Override 
-	public List<Story> getBoardList(int storyCode) throws SQLException {
-		
-		return null;
-	}
-
-*/
 
 	public StoryDAOImpl() {
 		try {
@@ -70,16 +34,44 @@ public class StoryDAOImpl implements StoryDAO {
 	}
 
 
+	
+	
+	
+	@Override
+	public List<Story> selectAll() throws SQLException {
+		Connection con=null;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		List<Story> list = new ArrayList<Story>();
+
+		//String sql= proFile.getProperty("Story.selectAll");
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement("select * from Story  order by CREATED_REG desc");
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				Story story = 
+						new Story(rs.getInt(1), rs.getInt(2), rs.getString(3),
+								rs.getString(4), rs.getString(5));
+
+				list.add(story);
+			}
+		}finally {
+			DBUtil.dbClose(con, ps, rs);
+		}
+		return list;
+	}
+
 	@Override
 	public int insert(Story story) throws SQLException {
 
 		Connection con=null;
 		PreparedStatement ps=null;
 		int result=0;
-		//String sql= proFile.getProperty("story.insert");//insert into Electronics values(?,?,?,?,?,sysdate,0,?,?)
+		//String sql= proFile.getProperty("Story.insert");//insert into Electronics values(?,?,?,?,?,sysdate,0,?,?)
 		try {
 			con = DBUtil.getConnection();
-			ps = con.prepareStatement("insert into notice values(NOTICE_SEQ.NEXTVAL, ?,?,?,?,sysdate+9/24,?)");
+			ps = con.prepareStatement("insert into notice values(STORY_SEQ.NEXTVAL, ?,?,?,sysdate+9/24,?)");
 			ps.setInt(1, story.getStoryCode());
 			ps.setInt(2, story.getUserCode());
 			ps.setString(3, story.getStoryImage());
@@ -102,7 +94,7 @@ public class StoryDAOImpl implements StoryDAO {
 		//String sql= proFile.getProperty("story.update");//update Electronics set model_name=?,price=?,description=? where model_num=? and password=?
 		try {
 			con = DBUtil.getConnection();
-			ps = con.prepareStatement("update STORY set STORY_LITER=? where STORY_CODE=?");
+			ps = con.prepareStatement("Story.updaet=update STORY set STORY_LITER=? where STORY_CODE=?");
 			ps.setString(1, story.getStoryLiter());
 			ps.setInt(2, story.getStoryCode());
 
@@ -119,7 +111,7 @@ public class StoryDAOImpl implements StoryDAO {
 		Connection con=null;
 		PreparedStatement ps=null;
 		int result=0;
-		//String sql= proFile.getProperty("query.delete");
+		//String sql= proFile.getProperty("Story.delete");
 		try {
 			con = DBUtil.getConnection();
 			ps = con.prepareStatement("delete from Story where STORY_CODE = ?");
@@ -214,6 +206,69 @@ public class StoryDAOImpl implements StoryDAO {
 			result = ps.executeUpdate();
 		}finally {
 			DBUtil.dbClose(con, ps);
+		}
+		return result;
+	}
+
+
+	@Override
+	public List<Story> getBoardList(int pageNo) throws SQLException {
+		Connection con=null;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		List<Story> list = new ArrayList<Story>();
+		
+		//String sql= proFile.getProperty("Story.pagingSelect");//select * from  (SELECT a.*, ROWNUM rnum FROM (SELECT * FROM Electronics ORDER BY writeday desc) a) where  rnum>=? and rnum <=? 
+		try {
+			
+			
+			con = DBUtil.getConnection();
+			con.setAutoCommit(false);
+			
+			//전체레코드수를 구한다.
+			int totalCount = this.getTotalCount(con);
+			int totalPage = totalCount%PageCnt.pagesize==0 ? totalCount/PageCnt.pagesize : (totalCount/PageCnt.pagesize)+1;
+			
+			PageCnt pageCnt = new PageCnt();
+			pageCnt.setPageCnt(totalPage);
+			pageCnt.setPageNo(pageNo);
+			
+			ps = con.prepareStatement("select * from  (SELECT a.*, ROWNUM rnum FROM (SELECT * FROM STORY ORDER BY CREATED_REG desc) a) where  rnum>=? and rnum <=?");
+			//? 2개에 set설정
+			ps.setInt(1, (pageNo-1) * pageCnt.pagesize +1); //시작
+			ps.setInt(2, pageNo * pageCnt.pagesize);//끝
+			
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				Story story = 
+				new Story(rs.getInt(1), rs.getInt(2), rs.getString(3),
+						rs.getString(4), rs.getString(5));
+				
+			   list.add(story);
+			}
+		}finally {
+			DBUtil.dbClose(con, ps, rs);
+		}
+		return list;
+	}
+	
+	
+	/**
+	 * 전체레코드 수 검색하기
+	 * */
+	private int getTotalCount(Connection con) throws SQLException{
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		int result=0;
+		//String sql= proFile.getProperty("Story.totalCount");//select count(*) from Electronics
+		try {
+			ps = con.prepareStatement("select count(*) from STORY");
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+		}finally {
+			DBUtil.dbClose(null, ps, rs);
 		}
 		return result;
 	}

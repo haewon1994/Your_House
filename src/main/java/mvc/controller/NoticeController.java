@@ -32,10 +32,15 @@ public class NoticeController implements Controller {
 	 * */
 	public ModelAndView select(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		//String noticeCode=request.getParameter("noticeCode");
+		String pageNo =request.getParameter("noticeCode");
+		if(pageNo==null || pageNo.equals("")) {
+			  pageNo="1";
+		  }
+		
 	
 		List<Notice> list = notiService.selectAll();
 		request.setAttribute("noticeList", list);//뷰에서 ${list}
+		request.setAttribute("pageNo", pageNo); //뷰에서 ${pageNo}
 		System.out.println(list);
 		return new ModelAndView("notice/list.jsp"); //forward방식으로 이동
 		
@@ -58,27 +63,24 @@ public class NoticeController implements Controller {
 		 new MultipartRequest(request,saveDir, maxSize, encoding, new DefaultFileRenamePolicy());
 		
 		//전송된 데이터 받기 
-		String noticeCode = m.getParameter("notice_code");
 		String noticeCategory = m.getParameter("notice_category");
 		String isPrivate = m.getParameter("isPrivate"); //베너
-		String noticeImage = m.getParameter("notice_image");
+		if(isPrivate==null) {
+			isPrivate="0";
+			
+		}
 		String subject = m.getParameter("subject");
-		String noticeReg = m.getParameter("notice_reg");
-		String noticContent = m.getParameter("notic_content");
+		String noticContent = m.getParameter("noticContent");
 		
 		Notice notice = 
-			new Notice(Integer.parseInt(noticeCode),noticeCategory, isPrivate, noticeImage, subject, noticeReg, noticContent);
+			new Notice(0,noticeCategory, isPrivate, null, subject, null, noticContent);
 		
 		//만약, 파일첨부가 되었다면....
 		if(m.getFilesystemName("file") != null) {
 			//파일이름저장
 			notice.setNoticeImage(m.getFilesystemName("file"));	
 		}
-		if(isPrivate.equals("baner")) {
-	
-			
-			
-		}
+
 		
 		
 		notiService.insert(notice);

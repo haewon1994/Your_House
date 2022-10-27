@@ -23,10 +23,10 @@ public class ReplyDAOImpl implements ReplyDAO {
 		List<Reply> list = new ArrayList<Reply>();
 
 		
-		String sql= proFile.getProperty("query.select");//select * from Electronics  order by writeday desc
+		String sql= proFile.getProperty("Reply.selectAll");//select * from Electronics  order by writeday desc
 		try {
 			con = DBUtil.getConnection();
-			ps = con.prepareStatement("select * from reply where story_code=? order by reply_code desc");
+			ps = con.prepareStatement("select * from reply where reply_code=? order by created_Reg desc");
 			ps.setInt(1, storyCode);
 			rs = ps.executeQuery();
 			while(rs.next()) {
@@ -92,7 +92,7 @@ public class ReplyDAOImpl implements ReplyDAO {
 		ResultSet rs=null;
 		Reply reply = null;
 
-		//String sql= proFile.getProperty("query.selectBymodelNum");//select * from Electronics where model_num=?
+		//String sql= proFile.getProperty("Reply.selectByReplyCode");//select * from Electronics where model_num=?
 		try {
 			con = DBUtil.getConnection();
 			ps = con.prepareStatement("select * from reply where reply _CODE=?");
