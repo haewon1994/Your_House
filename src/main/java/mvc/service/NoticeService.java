@@ -18,7 +18,7 @@ public interface NoticeService {
     /**
 	 * paging처리
 	 * */
-    List<Notice> selectAll(int noticeCode) throws SQLException;
+    List<Notice> selectAll(int pageNo) throws SQLException;
 	  
 	
 	

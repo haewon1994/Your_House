@@ -3,7 +3,6 @@ package mvc.service;
 import java.io.File;
 import java.sql.SQLException;
 import java.util.List;
-
 import mvc.dao.reply.ReplyDAO;
 import mvc.dao.reply.ReplyDAOImpl;
 import mvc.dao.story.StoryDAO;
@@ -91,6 +90,14 @@ public class StoryServiceImpl implements StoryService {
 		
 		
 		return story;
+	}
+
+	@Override
+	public List<Story> selectAll(int pageNo) throws SQLException {
+		List<Story>  list = storyDAO.getBoardList(pageNo);//페이징처리하는 dao호출
+
+		
+		return null;
 	}
 
 	

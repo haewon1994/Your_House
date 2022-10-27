@@ -63,7 +63,7 @@ public class LikedDAOImpl implements LikedDAO {
 		ResultSet rs=null;
 		Liked liked = null;
 		
-		//String sql= proFile.getProperty("query.selectBymodelNum");//select * from Electronics where model_num=?
+		//String sql= proFile.getProperty("liked.isLiked");//select * from Electronics where model_num=?
 		try {
 			con = DBUtil.getConnection();
 			ps = con.prepareStatement(" select * from liked where USER_CODE=?  and STORY_CODE=?");
@@ -88,6 +88,7 @@ public class LikedDAOImpl implements LikedDAO {
 		ResultSet rs=null;
 		List<Story> list = new ArrayList<Story>();
 		
+		//String sql= proFile.getProperty("liked.selectByUserCode");//select * from Electronics where model_num=?
 		try {
 			con = DBUtil.getConnection();
 			ps = con.prepareStatement("select * from user_s where user_code = ?");
