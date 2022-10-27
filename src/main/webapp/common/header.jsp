@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>네가 사는 그 집</title>
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/icons/favicon.png"/>
+	<link rel="icon" type="image/svc" href="${pageContext.request.contextPath}/images/icons/favicon.png"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -42,7 +42,7 @@
 
 
 <body class="animsition">
-	
+<!-- Title page -->	
 <!-- 			Header 				-->
 	<header class="header-v2">
 		<!-- Header desktop -->
@@ -283,7 +283,7 @@
 <!--===============================================================================================-->
 	<script src="${pageContext.request.contextPath}/js/main.js"></script>
 <!--===============================================================================================-->
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-2.1.1.js"> </script>  
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"> </script>  
 	<script type="text/javascript">
 	
 		/*MAIN slid*/
