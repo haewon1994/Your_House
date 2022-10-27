@@ -219,6 +219,7 @@ input#search-bar{
 /*//////////////////////////////////////////////////////////////////
 [ Header ]*/
 
+
 /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 [ Header Desktop ]*/
 
@@ -3050,8 +3051,8 @@ input.numberProduct {
 
 /*---------------------------------------------*/
 .hov-btn3:hover {
-  border-color: #717fe0;
-  background-color: #717fe0;
+  border-color: #043794;
+  background-color: #043794;
   color: #fff;
 }
 

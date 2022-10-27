@@ -9,32 +9,33 @@
 <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/icons/favicon.png"/>
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/material-design-iconic-font.min.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/fonts/iconic/css/material-design-iconic-font.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/icon-font.min.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/fonts/linearicons-v1.0.0/icon-font.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/animate.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/vendor/animate/animate.css">
 <!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/animsition.min.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/vendor/animsition/css/animsition.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/vendor/select2/select2.min.css">
 <!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/daterangepicker.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/vendor/daterangepicker/daterangepicker.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/slick.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/vendor/slick/slick.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/magnific-popup.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/vendor/MagnificPopup/magnific-popup.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/perfect-scrollbar.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/vendor/perfect-scrollbar/perfect-scrollbar.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/util.css">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">	
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
+	
 <!--===============================================================================================-->
 
 </head>
@@ -48,7 +49,7 @@
 				<nav class="limiter-menu-desktop">
 					<!-- Logo desktop -->		
 					<a href="#" class="logo">
-						<img src="${pageContext.request.contextPath}/images/IKEA_logo.svg" style="width: 250px;" alt="IMG-LOGO">
+						<img src="${pageContext.request.contextPath}/images/icons/NIZIP_logo.svg" style="width: 250px;" alt="IMG-LOGO">
 					</a>
 									
 					  <div class="menu-desktop">
@@ -57,8 +58,7 @@
 								<a href="blog.html"><b style="font-size: 22px;">게시글</b></a>
 								<ul class="sub-menu">
 									<li><a href="blog.html">목록</a></li>
-									<li><a href="blog.html">등록</a></li>
-									<li><a href="blog-detail.html">수정</a></li>
+									<li><a href="blog.html">등록</a></li>						
 								</ul>
 							</li>
 							<li class="active-menu"  style="margin-left: 50px"  >
@@ -95,7 +95,7 @@
 					<div class="wrap-icon-header flex-w flex-r-m h-full">
 						<ul class="main-menu">
 							<li>
-								<a href="user.html"><img src="${pageContext.request.contextPath}/images/user.png" style=""></a>
+								<a href="user.html"><img src="${pageContext.request.contextPath}/images/icons/user.png" style=""></a>
 							</li>
 							<li>    
 						     <c:choose>    								
@@ -191,15 +191,17 @@
 			</ul>
 		</div>
 </header>
+<!--*********************************** MobileEnd ******************************************-->
+
 <!--===============================================================================================-->	
-	<script src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
-	<script src="${pageContext.request.contextPath}/js/animsition.min.js"></script>
+	<script src="${pageContext.request.contextPath}/vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
-	<script src="${pageContext.request.contextPath}/js/popper.js"></script>
-	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/vendor/bootstrap/js/popper.js"></script>
+	<script src="${pageContext.request.contextPath}/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
-	<script src="${pageContext.request.contextPath}/js/select2.min.js"></script>
+	<script src="${pageContext.request.contextPath}/vendor/select2/select2.min.js"></script>
 	<script>
 		$(".js-select2").each(function(){
 			$(this).select2({
@@ -209,18 +211,18 @@
 		})
 	</script>
 <!--===============================================================================================-->
-	<script src="${pageContext.request.contextPath}/js/moment.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/daterangepicker.js"></script>
+	<script src="${pageContext.request.contextPath}/vendor/daterangepicker/moment.min.js"></script>
+	<script src="${pageContext.request.contextPath}/vendor/daterangepicker/daterangepicker.js"></script>
 <!--===============================================================================================-->
-	<script src="${pageContext.request.contextPath}/js/slick.min.js"></script>
+	<script src="${pageContext.request.contextPath}/vendor/slick/slick.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/slick-custom.js"></script>
 <!--===============================================================================================-->
-	<script src="${pageContext.request.contextPath}/js/parallax100.js"></script>
+	<script src="${pageContext.request.contextPath}/vendor/parallax100/parallax100.js"></script>
 	<script>
         $('.parallax100').parallax100();
 	</script>
 <!--===============================================================================================-->
-	<script src="${pageContext.request.contextPath}/js/jquery.magnific-popup.min.js"></script>
+	<script src="${pageContext.request.contextPath}/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
 	<script>
 		$('.gallery-lb').each(function() { // the containers for all your galleries
 			$(this).magnificPopup({
@@ -234,9 +236,9 @@
 		});
 	</script>
 <!--===============================================================================================-->
-	<script src="${pageContext.request.contextPath}/js/isotope.pkgd.min.js"></script>
+	<script src="${pageContext.request.contextPath}/vendor/isotope/isotope.pkgd.min.js"></script>
 <!--===============================================================================================-->
-	<script src="${pageContext.request.contextPath}/js/sweetalert.min.js"></script>
+	<script src="${pageContext.request.contextPath}/vendor/sweetalert/sweetalert.min.js"></script>
 	<script>
 		$('.js-addwish-b2').on('click', function(e){
 			e.preventDefault();
@@ -273,7 +275,7 @@
 		});
 	</script>
 <!--===============================================================================================-->
-	<script src="${pageContext.request.contextPath}/js/perfect-scrollbar.min.js"></script>
+	<script src="${pageContext.request.contextPath}/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 	<script>
 		$('.js-pscroll').each(function(){
 			$(this).css('position','relative');
@@ -325,7 +327,9 @@
 		});
 
 
-</script>		
-		
+	</script>
+
+<!--===============================================================================================-->
+
 </body>
 </html>
