@@ -155,7 +155,7 @@ public class UserController implements Controller {
 		session.setAttribute("loginUser", user);
 
 		//index.jsp이동 - redirect방식
-		return new ModelAndView("store/storeHome.jsp", true);
+		return new ModelAndView("front?key=store&methodName=storeHome", true);
 	}
 
 	/**

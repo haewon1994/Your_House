@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
 <jsp:include page="../common/header.jsp"/>
 <!DOCTYPE html>
 <html>
@@ -36,9 +38,10 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/util.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
 <!--===============================================================================================-->
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-2.1.1.js"></script>
 </head>
-
 <body>
+	<input type="hidden" id="productCode" value="${prodocut.productCode}">
 	
 	<!-- breadcrumb -->
 	<div class="container">
@@ -108,63 +111,55 @@
 				<div class="col-md-6 col-lg-5 p-b-30">
 					<div class="p-r-50 p-t-5 p-lr-0-lg">
 						<h4 class="mtext-105 cl2 js-name-detail p-b-14">
-							ANGERSBY 앙에르스뷔
+							${prodocut.productName}
 						</h4>
-
 						<span class="mtext-106 cl2">
-							￦229,000
+							<fmt:formatNumber value="${prodocut.price }" type="currency"/>
 						</span>
-
-						<p class="stext-102 cl3 p-t-23">
-							2인용소파
-						</p>
 						
 						<!--  -->
-						
-
-							<div class="flex-w flex-r-m p-b-10">
-								<div class="size-203 flex-c-m respon6">
-									Color
-								</div>
-
-								<div class="size-204 respon6-next">
-									<div class="rs1-select2 bor8 bg0">
-										<select class="js-select2" name="time">
-											<option>색상 선택 옵션</option>
-											<option>Red</option>
-											<option>Blue</option>
-											<option>White</option>
-											<option>Grey</option>
-										</select>
-										<div class="dropDownSelect2"></div>
-									</div>
+						<div class="flex-w flex-r-m p-b-10">
+							<div class="size-203 flex-c-m respon6">
+								Color
+							</div>
+							<div class="size-204 respon6-next">
+								<div class="rs1-select2 bor8 bg0">
+									<select class="js-select2" name="time" id="time">
+										<option value="0">색상 선택 옵션</option>
+										<c:forEach items="${prodocut.colorList }" var="color">
+											<option value="${color.colorName }">${color.colorName }</option>
+										</c:forEach>
+									</select>
+									<div class="dropDownSelect2"></div>
 								</div>
 							</div>
-
-							<div class="flex-w flex-r-m p-b-10">
-
-								<div class="size-204 flex-w flex-m respon6-next">
-									<div class="wrap-number-product flex-w m-r-20 m-tb-10">
-										<input class="numberProduct" type="number" min="1" max="100" value="1">
-									</div>
-								</div>
-									<div class="btn_productSelect">
-										<div calss="pcart"style="display:block; margin-right: 10px;"><button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart">
-										장바구니
-										</button></div>
-										<div calss="pbuy"><button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 poductbuy">
-										<span>구매하기</span>
-										</button></div>
-									</div>
-								
-							</div>	
 						</div>
 
-						<!--  -->
-						
+						<div class="flex-w flex-r-m p-b-10">
+							<div class="size-204 flex-w flex-m respon6-next">
+								<div class="wrap-number-product flex-w m-r-20 m-tb-10">
+									<input class="numberProduct" type="number" min="1" max="100" value="1" id="odrerQty">
+								</div>
+							</div>
+							<div class="btn_productSelect">
+								<div calss="pcart"style="display:block; margin-right: 10px;">
+									<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart" id="basket">
+										장바구니
+									</button>
+								</div>
+								<div calss="pbuy">
+									<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 poductbuy">
+										<span>구매하기</span>
+									</button>
+								</div>
+							</div>	
+						</div>	
 					</div>
+
+						<!--  -->	
 				</div>
 			</div>
+		</div>
 
 			<div class="bor10 m-t-50 p-t-43 p-b-40">
 				<!-- Tab01 -->
@@ -376,15 +371,45 @@
 	<script src="${pageContext.request.contextPath}/vendor/isotope/isotope.pkgd.min.js"></script>
 <!--===============================================================================================-->
 	<script src="${pageContext.request.contextPath}/vendor/sweetalert/sweetalert.min.js"></script>
-	<script language=javascript>		
+	<script type="text/javascript" >		
 		/*장바구니*/
 		$('.js-addcart').each(function(){
 			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
 			$(this).on('click', function(){
-				swal(nameProduct, "장바구니에 담았습니다.", "success");
+				let code=$("#productCode").val();
+				let color=$("#time").val();
+				
+				if(color=="0") {
+					alert("색상을 선택하세요");
+					return;
+				}
+				
+				let num=$("#odrerQty").val();
+				let reurl = confirm("장바구니로 가시겠습니까");
+				
+				$.ajax({
+					url : "ajax",	// 서버의 주소
+					type : "post",	// 요청방식(method방식 = post, get, put, delete 등등)
+					dataType : "text",	// 서버가 보내온 데이터타입(디폴트 text, html, xml, json)
+					data : {
+						key : "basket",
+						methodName : "insert",
+						productCode : code,
+						odrerQty : num,
+						colorName : color
+					},	// 서버에게 보낼 parameter 정보
+					success : function(result) {
+						swal(nameProduct, "장바구니에 담았습니다.", "success");
+						if(reurl) {
+							location.href="${pageContext.request.contextPath}/store/cart.jsp";
+						}
+					},
+					error : function(err) {
+						
+					}
+				});	
 			});
 		});
-		
 		/*---------------------------------------------*/
 		/*구매하기*/
 	
