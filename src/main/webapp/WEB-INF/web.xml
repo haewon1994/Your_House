@@ -37,7 +37,6 @@
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-
 	<!-- 세션필터 : user,admin 경로: /front -->
 	<filter>
 		<filter-name>userSessionCheckFilter</filter-name>

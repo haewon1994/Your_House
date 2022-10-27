@@ -21,7 +21,7 @@ public interface FollowDAO {
 
 	
 	
-	//파로잉한 사람목록 전체보기
+	//내가 파로잉한 사람목록 전체보기
 	List<Integer> selectByUserCode(int userCode)throws SQLException;
 	
 	
