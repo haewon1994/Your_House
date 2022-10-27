@@ -54,7 +54,7 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>adminSessionCheckFilter</filter-name>
-		<url-pattern>/front</url-pattern>
+		<url-pattern>/admin</url-pattern>
 	</filter-mapping>
 
 </web-app>
