@@ -47,7 +47,7 @@ public class AdminController implements Controller {
 
 		//index.jsp이동 - redirect방식
 		
-		return new ModelAndView("admin/adminindex.jsp", true);
+		return new ModelAndView("notice/write.jsp", true);
 	}
 
 	/**

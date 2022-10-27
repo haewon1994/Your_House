@@ -113,6 +113,7 @@ public class UserController implements Controller {
 				if(dao.duplicateCheckByNickname(nickname)) {
 					errMsg = nickname+"는 사용중인 닉네임입니다.";
 					request.setAttribute("errMsg", errMsg);
+					request.setAttribute("aa", "user");
 				}else {
 					UserDTO user1 = (UserDTO) request.getSession().getAttribute("loginUser");
 					int userCode = user1.getUserCode();

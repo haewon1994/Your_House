@@ -72,20 +72,22 @@ public class NoticeController implements Controller {
 		String subject = m.getParameter("subject");
 		String noticContent = m.getParameter("noticContent");
 		
+		
+		
 		Notice notice = 
 			new Notice(0,noticeCategory, isPrivate, null, subject, null, noticContent);
 		
 		//만약, 파일첨부가 되었다면....
-		if(m.getFilesystemName("file") != null) {
+		if(m.getFilesystemName("notice_image") != null) {
 			//파일이름저장
-			notice.setNoticeImage(m.getFilesystemName("file"));	
+			notice.setNoticeImage(m.getFilesystemName("notice_image"));	
 		}
 
 		
 		
 		notiService.insert(notice);
 
-	   return new ModelAndView("front", true);//key=elec&methodName=select 기본으로 설정된다.	
+	   return new ModelAndView("admin", true);//key=elec&methodName=select 기본으로 설정된다.	
 	}
 	
 	/**
@@ -118,7 +120,7 @@ public class NoticeController implements Controller {
 
 		request.setAttribute("notice", notice);
 		
-		return new ModelAndView("elec/update.jsp");//forward방식
+		return new ModelAndView("notice/update.jsp");//forward방식
 	}
 	
 	/**
@@ -136,7 +138,7 @@ public class NoticeController implements Controller {
 		
 		//수정이 완료가 된후....
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("front?key=elec&methodName=selectBynoticeCode&noticeCode="+noticeCode);
+		mv.setViewName("admin?key=elec&methodName=selectBynoticeCode&noticeCode="+noticeCode);
 	    mv.setRedirect(true);
 		return mv;
 	}
@@ -155,7 +157,7 @@ public class NoticeController implements Controller {
 		
 		String saveDir = request.getServletContext().getRealPath("/save");
 		notiService.delete(Integer.parseInt(noticeCode), saveDir);
-		 return new ModelAndView("front",true);
+		 return new ModelAndView("admin",true);
 	
 	}
 	

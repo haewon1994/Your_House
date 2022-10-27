@@ -118,6 +118,7 @@
 						</span>
 						
 						<!--  -->
+<<<<<<< HEAD
 						<div class="flex-w flex-r-m p-b-10">
 							<div class="size-203 flex-c-m respon6">
 								Color
@@ -159,8 +160,6 @@
 						<!--  -->	
 				</div>
 			</div>
-		</div>
-
 			<div class="bor10 m-t-50 p-t-43 p-b-40">
 				<!-- Tab01 -->
 				<div class="tab01">
@@ -321,8 +320,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
-
+	
 	</section>
 
 <!--===============================================================================================-->	

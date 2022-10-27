@@ -23,7 +23,6 @@ function checkValid() {
 		f.price.focus();
 		return false;
     }
-	
     return true;
 }
 </SCRIPT>
@@ -32,7 +31,8 @@ function checkValid() {
 </HEAD>
 <BODY>
 
-<form name="writeForm" method="post" action="${path}/front?key=notice&methodName=insert" 
+<form name="writeForm" method="post" action="${path}/admin?key=notice&methodName=insert" 
+
   onSubmit='return checkValid()' enctype="multipart/form-data">
 <!-- 
      아래 문장으로 전송하면 post방식으로 전송이되고 현재 파일업로드때문에 enctype="multipart/form-data" 설정되어 있기때문에 
@@ -41,6 +41,7 @@ function checkValid() {
      
 	<input type="hidden" name="key" value = "elec" />
 	<input type="hidden" name="methodName" value = "insert" />  
+
 
  -->
 <table align="center" cellpadding="5" cellspacing="2" width="600" border="1" >
@@ -61,7 +62,6 @@ function checkValid() {
        <option value="0">--공지 종류 --</option>
 	   <option value="공지">공지</option>
 	   <option value="이벤트">이벤트 </option>
-	   
    </select>
    <tr>
         <td width="150" height="20">
@@ -108,5 +108,4 @@ function checkValid() {
 
 <hr>
 <div align=right><span style="font-size:9pt;">&lt;<a href="../notic?command=list">리스트로 돌아가기</a>&gt;</span></div>
-
 <jsp:include page="../common/footer.jsp"/>

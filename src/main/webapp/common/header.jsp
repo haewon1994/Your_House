@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>네가 사는 그 집</title>
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/icons/favicon.png"/>
+	<link rel="icon" type="image/svc" href="${pageContext.request.contextPath}/images/icons/favicon.png"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -42,7 +42,7 @@
 
 
 <body class="animsition">
-	
+<!-- Title page -->	
 <!-- 			Header 				-->
 	<header class="header-v2">
 		<!-- Header desktop -->
@@ -51,7 +51,7 @@
 				<nav class="limiter-menu-desktop p-l-45">
 					
 					<!-- Logo desktop -->		
-					<a href="#" class="logo">
+					<a href="${pageContext.request.contextPath}/store/storeHome.jsp" class="logo">
 						<img src="${pageContext.request.contextPath}/images/icons/NIZIP_logo.svg" style="width: 250px;" alt="IMG-LOGO">
 					</a>
 
@@ -90,15 +90,22 @@
 					<div class="wrap-icon-header flex-w flex-r-m h-full">
 						<ul class="main-menu">
 							<li>
-								<a href="user.html"><img src="${pageContext.request.contextPath}/images/icons/user.png" style=""></a>
+								<a href="../mypage/myProfile.jsp"><img src="${pageContext.request.contextPath}/images/icons/user.png" style=""></a>
 							</li>
 
 							<li>
-								<a href="login.html">로그인</a>
+								<c:choose>
+									<c:when test="${empty loginUser}">
+										<a href="../index.jsp">로그인</a>
+									</c:when>
+									<c:otherwise>
+										<a href="${pageContext.request.contextPath}/mypage/myProfile.jsp">${loginUser.nickname}</a>
+									</c:otherwise>
+								</c:choose>
 							</li>
 
 							<li>
-								<a href="about.html">회원가입</a>
+								<a href="../reg.html">회원가입</a>
 							</li>
 
 							<li>
@@ -108,7 +115,7 @@
 							
 						<div class="shopingCart">
 							
-								<a href="shoping-cart.html"><img src="${pageContext.request.contextPath}/images/icons/shopping-cart.png" style="width: 30%;"></a>
+								<a href="../store/cart.jsp"><img src="${pageContext.request.contextPath}/images/icons/shopping-cart.png" style="width: 30%;"></a>
 							</div>
 				
 						</div>
@@ -283,7 +290,7 @@
 <!--===============================================================================================-->
 	<script src="${pageContext.request.contextPath}/js/main.js"></script>
 <!--===============================================================================================-->
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-2.1.1.js"> </script>  
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"> </script>  
 	<script type="text/javascript">
 	
 		/*MAIN slid*/
