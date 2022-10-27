@@ -78,9 +78,9 @@ public class NoticeController implements Controller {
 			new Notice(0,noticeCategory, isPrivate, null, subject, null, noticContent);
 		
 		//만약, 파일첨부가 되었다면....
-		if(m.getFilesystemName("file") != null) {
+		if(m.getFilesystemName("notice_image") != null) {
 			//파일이름저장
-			notice.setNoticeImage(m.getFilesystemName("file"));	
+			notice.setNoticeImage(m.getFilesystemName("notice_image"));	
 		}
 
 		

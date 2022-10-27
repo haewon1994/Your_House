@@ -45,35 +45,36 @@
 <body>
   <jsp:include page="header.jsp"/>   
     
-    <form class="container" name="updateForm" style="border-radius: 4px ;margin-top:50px; height:400px; margin-bottom:270px" onsubmit="return check()" >
+    <form class="container"   name="updateForm" style="border-radius: 4px ;margin-top:50px; height:400px; margin-bottom:270px" onsubmit="return check()" >
      <h1 style="font-family: Verdana, Geneva, Arial, sans-serif; margin-top:30px; margin-bottom:40px ;font-size-adjust: 50px; ">상품 상세</h1>
      <div style="display:flex; text-align:center; margin-top:8px"> 
        <label class="label_d">카테고리:</label>
-       <input class="form-control update_value" type="text"  aria-label="default input example" style="width:190px;" disabled>  
+       <input class="form-control update_value"    type="text"  aria-label="default input example" style="width:190px;" disabled>  
        <label class="label_d">상품명:</label>
        <input class="form-control update_value"    type="text" aria-label="default input example" style="width:190px;" disabled     >
        <label class="label_d">가격:</label>
-       <input class="form-control update_value" type="text"  aria-label="default input example" style="width:190px;" disabled value="1000원" > 
+       <input class="form-control update_value"   type="text"  aria-label="default input example" style="width:190px;" disabled value="1000원" > 
        <label class="label_d">재고량:</label>
-       <input class="form-control update_value" type="text"  aria-label="default input example" style="width:190px;" disabled>  
+       <input class="form-control update_value"    type="text"  aria-label="default input example" style="width:190px;" disabled>  
         <label class="label_d">색상:</label>
           <div class="form-floating">  
-            <select class="form-select update_value" id="colorChoose" aria-label="Floating label select example" style="height:40px; width:160px;">
+             <select class="form-select update_value" id="colorChoose" aria-label="Floating label select example" style="height:40px; width:160px;">
                  <option selected>Open this select menu</option>
                  <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-          </select> 
-        </div> 
-       </div>
-      
+                 <option value="2">Two</option>
+                 <option value="3">Three</option>
+          </select>  
+        </div>
+       </div> 
+       
+       
     <div class="mb-3" style="margin-left:5px" >
           <label for="formFileMultiple" class="form-label" style="font-size:18px; margin-top:5px;  ">대표 이미지</label>
           <input class="form-control update_value" style="border:1px solid black;"  type="file" id="formFileMultiple" disabled>
    </div>
    <div class="mb-3" style="margin-left:5px; margin-bottom: 5px">
           <label for="formFileMultiple" class="form-label" style="font-size:18px; margin-top:5px">추가 이미지</label>
-          <input class="form-control update_value" style="border:1px solid black;" type="file" id="formFileMultiple" disabled>
+          <input class="form-control update_value"  style="border:1px solid black;" type="file" id="formFileMultiple" disabled name="ddddd">
    </div>
    <div class="mb-5" style="margin-left:5px; margin-bottom:3px ">
      <label for="exampleFormControlTextarea1" class="form-label" style="font-size:18px">상품 상세설명</label>
@@ -82,11 +83,12 @@
     <button type="button" id="ableBtn" class="btn btn-outline-success" style="margin-top:0px  ;height:50px; width:100px;  text-align: center; display:block"  >수정하기</button>
     <button type="submit" id="updateBtn" class="btn btn-outline-primary" style="display:none; height:50px; width:100px">수정완료</button>
     </form>
+
  
- 
-   
- 
-   
+    <div class="input-group">
+   <input type="file" class="form-control" id="inputGroupFile04"  value=""   aria-label="Upload">
+   <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button>
+  </div>
  
  
  
@@ -100,19 +102,15 @@
        $("h1").html("상품 수정"); 
        $("h1").css("color","blue")
        $(this).hide();
+       $("#colorChoose").css("display","block");
        $("#updateBtn").css("display", "block");   
-    
+       $("label_d").eq(5).css("display","block");   
+     
    
    
    })
    
-   function validCheck(){
-	   
-	   
-	   
-	   
-   }
-   
+ 
    
    
    
