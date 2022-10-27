@@ -72,6 +72,8 @@ public class NoticeController implements Controller {
 		String subject = m.getParameter("subject");
 		String noticContent = m.getParameter("noticContent");
 		
+		
+		
 		Notice notice = 
 			new Notice(0,noticeCategory, isPrivate, null, subject, null, noticContent);
 		

@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-<script type="text/javascript" src="js/jquery-2.1.1.js"></script>
+<script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
 <title>니가 사는그집 로그인</title>
 <style type="text/css">
 
@@ -30,34 +30,38 @@
         loginForm.
         addEventListener("submit", function(e) {
             
-           if($("#mail").val() == "")
-        	               state=true;
-          if($("#pwd").val() == "")
-         	               state=true;
+           if($("#mail").val() == "") {
+        	   state=true;
+           }
+          if($("#pwd").val() == "")	{
+        	  state=true;
+          }
           
             if(state){
         	   
             	alert("이메일,비밀번호 입력되었는지 확인 해주새요");
-        	    e.preventDefault()
+        	    e.preventDefault();
         		 
              }else{
     
             	let sessType  = $('input:radio[name="sess"]:checked').val();	 
         	    let keyV="";
-        	    let methodNameV="";		
-        	    alert(sessType);
+        	    let methodNameV="";
+        	    alert(sessType); 
         	    		
         	    if(sessType=="0"){ 
         		      keyV="admin";
         		      methodNameV="adminLogin";  
+        		      
         	    }else{  
         		    keyV="user";
          		    methodNameV="login"; 
          		  		  
-        	     }
+        	    }
         	   
-        	    $('input[name="key"]').val();
-                $('input[name="methodName"]').val(); 
+        	    $('input[name="key"]').val(keyV);
+                $('input[name="methodName"]').val(methodNameV);
+
                 e.target.submit();
           }
              
@@ -92,8 +96,8 @@
        <div class="d-grid gap-2" style="margin-top: 10px ">
            <button class="btn btn-primary btn-lg mt-3" style="height:70px" type="submit" id="login" >로그인</button>  
         </div>
-   <input type="hidden" name="key" value="user">
-   <input type="hidden" name="methodName" value="login">
+   <input type="hidden" name="key" value="">
+   <input type="hidden" name="methodName" value="">
   
   </form>
     <section style="margin-top: 60px;">
