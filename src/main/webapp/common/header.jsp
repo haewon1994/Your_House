@@ -105,7 +105,14 @@
 							</li>
 
 							<li>
-								<a href="../register/reg.html">회원가입</a>
+								<c:choose>
+									<c:when test="${empty loginUser}">
+										<a href="../register/reg.html">회원가입</a>
+									</c:when>
+									<c:otherwise>
+										<a href="${pageContext.request.contextPath}/front?key=user&methodName=logout">로그아웃</a>
+									</c:otherwise>
+								</c:choose>
 							</li>
 
 							<li>

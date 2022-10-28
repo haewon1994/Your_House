@@ -167,7 +167,7 @@ public class UserController implements Controller {
 		//모든 세션의정보를 삭제한다.
 		request.getSession().invalidate();
 
-		return new ModelAndView("user/logoutpage.jsp", true);
+		return new ModelAndView("index.jsp", true);
 
 
 	}
