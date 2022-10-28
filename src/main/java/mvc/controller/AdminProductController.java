@@ -77,10 +77,10 @@ public class AdminProductController implements Controller {
 	 */
 	public ModelAndView insertTotalProduct(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		
+		System.out.println("AdminProductController insertTotal확인용");
 		//폼에서 파일업로드를 위해 enctype="multipart/form-data" 설정이 되어 있기때문에 
 		//request아닌 MultipartRequest로 처리한다. - cos.jar
-		String saveDir = request.getServletContext().getRealPath("/productImages");
+		String saveDir = request.getServletContext().getRealPath("productImages");
 		int maxSize=1024*1024*100; //100MB
 		String encoding="UTF-8";
 		
@@ -162,7 +162,7 @@ public class AdminProductController implements Controller {
 	 * ->product, colorList, productImageList,categoryList
 	 * 
 	 * 완료후 연결 뷰 : 상품 수정 페이지
-	 * -> admin/prodetail.jsp
+	 * -> admin/prowrite.jsp
 	 */
 	
 	public ModelAndView selectDetailTotalProductByProductCode(HttpServletRequest request, HttpServletResponse response)
@@ -179,7 +179,7 @@ public class AdminProductController implements Controller {
 		request.setAttribute("productImageList", productImageList);//뷰에서 ${productImageList}
 		request.setAttribute("categoryList", categoryList);//뷰에서 ${categoryList}
 
-		return new ModelAndView("admin/prodetail.jsp"); //forward방식으로 이동
+		return new ModelAndView("admin/prowrite.jsp"); //forward방식으로 이동
 	}
 ////////////////////////////////////////////////////////////////////////
 	
@@ -231,7 +231,7 @@ public class AdminProductController implements Controller {
 		
 		//폼에서 파일업로드를 위해 enctype="multipart/form-data" 설정이 되어 있기때문에 
 		//request아닌 MultipartRequest로 처리한다. - cos.jar
-		String saveDir = request.getServletContext().getRealPath("/productImages");
+		String saveDir = request.getServletContext().getRealPath("productImages");
 		int maxSize=1024*1024*100; //100MB
 		String encoding="UTF-8";
 		
@@ -455,7 +455,7 @@ public class AdminProductController implements Controller {
 	 * 카테고리 전체 조회(List)
 	 *
 	 * 완료후 연결뷰 : 카테고리 관리 메인페이지
-	 * -> admin/categoryList.jsp
+	 * -> admin/prowrite.jsp
 	 */
 	public ModelAndView selectAllProductCategory(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
@@ -465,7 +465,7 @@ public class AdminProductController implements Controller {
 		//뷰에서 ${categoryList}
 		request.setAttribute("categoryList", categoryList);
 		
-		return new ModelAndView("admin/categoryList.jsp"); //forward방식으로 이동
+		return new ModelAndView("admin/prowrite.jsp"); //forward방식으로 이동
 	}
 
 	/**

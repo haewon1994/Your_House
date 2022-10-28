@@ -36,6 +36,16 @@ public class AdminTongyeController implements Controller {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	/**
+	 * 관리자 메인 인덱스 접속용 메소드
+	 */
+	public ModelAndView mainMove(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		
+		return new ModelAndView("admin/adminIndex.jsp"); //forward방식으로 이동
+	
+	}
 
 	/**
 	 * 통계만 리턴하는 메소드

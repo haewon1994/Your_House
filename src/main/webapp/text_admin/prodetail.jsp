@@ -23,10 +23,15 @@
 	
 	<p/>
 	카테고리 리스트 출력<br>
-	<c:forEach items="${categoryList }" var="clist">
+	<c:forEach items="//${categoryList }" var="clist">
 	${clist.categoryCode }//${clist.categoryName }<br>
 	</c:forEach>
 	
+	<a href="${pageContext.request.contextPath }/front?key=adminProduct&methodName=selectMainTotalProduct">
+	카테고리 </a><br>
+	<c:forEach items="${productList }" var="plist">
+	${plist.productCode }///${plist.categoryCode}///${plist.productName }///${plist.image}///${plist.createdReg }///${plist.productDetail }///${plist.stock }///${plist.price }<br>
+	</c:forEach>
 	<tr>
 	<p/>
 	
@@ -35,7 +40,7 @@
 	${product.productCode }///${product.categoryCode}///${product.productName }///${product.image }//${product.createdReg }//${product.productDetail }//${product.stock }//${product.price }<br>
 	<p/>
 	카테고리 전체 리스트 출력<br>
-	<c:forEach items="${categoryList }" var="clist2">
+	<c:forEach items="//${categoryList }" var="clist2">
 	${clist2.categoryCode }//${clist2.categoryName }<br>
 	</c:forEach>
 	<p/>

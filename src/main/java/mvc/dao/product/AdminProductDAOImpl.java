@@ -264,7 +264,7 @@ public class AdminProductDAOImpl implements AdminProductDAO {
 		List<ProductCategoryDTO> productCategoryList = new ArrayList<ProductCategoryDTO>();
 		
 		String sql= proFile.getProperty("productCategory.selectAll");
-		//select * from product_category order by category_code desc
+		//select * from product_category order by category_code
 		try {
 			con = DBUtil.getConnection();
 			ps = con.prepareStatement(sql);
