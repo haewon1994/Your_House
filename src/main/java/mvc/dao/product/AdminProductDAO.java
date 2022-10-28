@@ -3,6 +3,7 @@ package mvc.dao.product;
 import java.sql.SQLException;
 import java.util.List;
 
+import mvc.dto.product.AdminTongyeDTO;
 import mvc.dto.product.ColorDTO;
 import mvc.dto.product.ProductCategoryDTO;
 import mvc.dto.product.ProductDTO;
@@ -28,19 +29,19 @@ public interface AdminProductDAO {
 	 * @return : 1 = 등록성공 / 0 = 등록실패
 	 * @throws SQLException
 	 */
-	public int insertTotalProduct(ProductDTO product, ColorDTO color, ProductImageDTO productImage) throws SQLException;
+	public int insertTotalProduct(AdminTongyeDTO product, ColorDTO color, ProductImageDTO productImage) throws SQLException;
 	
 	/**
 	 * 상품만 등록
 	 * @return : 1 = 등록성공 / 0 = 등록실패
 	 */
-	int insertProduct(ProductDTO product) throws SQLException;
+	int insertProduct(AdminTongyeDTO product) throws SQLException;
 	
 	/**
 	 * 상품코드에 해당하는 상품 수정
 	 * @return : 1 = 수정성공 / 0 = 수정실패
 	 */
-	int updateProductByProductCode(ProductDTO product) throws SQLException;
+	int updateProductByProductCode(AdminTongyeDTO product) throws SQLException;
 	
 	/**
 	 * 상품코드에 해당하는 상품의 재고량 수정 
@@ -51,14 +52,16 @@ public interface AdminProductDAO {
 	
 	/**
 	 * 상품코드에 해당하는 상품 조회 (수정페이지 등에 출력용)
+	 * categoryName 도 뽑아올수있게 join 사용
 	 */
-	ProductDTO selectProductByProductCode(int productCode) throws SQLException;
+	AdminTongyeDTO selectProductByProductCode(int productCode) throws SQLException;
 	
 	/**
 	 * 상품리스트 출력 : 최근 생성일 맨 앞으로
 	 * 등록,수정등 성공후 연결 페이지
+	 * categoryName 도 뽑아올수있게 join 사용
 	 */
-	List<ProductDTO> selectAllProduct() throws SQLException;
+	List<AdminTongyeDTO> selectAllProduct() throws SQLException;
 	
 	/////////////////////////////////
 	
