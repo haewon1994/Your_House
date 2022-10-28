@@ -13,12 +13,12 @@ public interface StoryService {
 	/**
 	 * StoryDAOImpl의 모든레코드 검색하는 메소드 호출
 	 * */
-	List<Story> selectAll() throws SQLException;
+	List<Story> selectAll(int user_code) throws SQLException;
 
 	/**
 	 * paging처리
 	 * */
-	// List<Story> selectAll(int storyCode) throws SQLException;
+	//List<Story> selectAll(int pageNo) throws SQLException;
 
 	/**
 	 * StoryDAOImpl의 레코드 삽입하는 메소드 호출

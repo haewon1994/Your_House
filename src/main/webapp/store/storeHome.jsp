@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <jsp:include page="../common/header.jsp"/>
 <!DOCTYPE html>
 <html>
@@ -11,21 +12,14 @@
 	<!-- Slider -->
 	<section class="section-slide">
 		<div class="wrap-slick1 rs1-slick1">
-			
 			<div class="view_visual">
-						
-						<img src="${pageContext.request.contextPath}/images/main-top1.jpg" alt="" style="display:none"/>
-					
-						<img src="${pageContext.request.contextPath}/images/main-top2.jpg" alt="" style="display:none"/>
-						
-						<img src="${pageContext.request.contextPath}/images/main-top3.jpg" alt="" style="display:none"/>
-						
-						<img src="${pageContext.request.contextPath}/images/main-top4.jpg" alt="" style="display:none"/>
+				<img src="${pageContext.request.contextPath}/images/main-top1.jpg" alt="" style="display:none"/>
+				<img src="${pageContext.request.contextPath}/images/main-top2.jpg" alt="" style="display:none"/>
+				<img src="${pageContext.request.contextPath}/images/main-top3.jpg" alt="" style="display:none"/>
+				<img src="${pageContext.request.contextPath}/images/main-top4.jpg" alt="" style="display:none"/>
 			</div>
-
 		</div>
 	</section>
-
 
 	<!-- Banner -->
 	<div class="main_banner">
@@ -34,7 +28,6 @@
 				<!-- Block1 -->
 				<div class="block1 wrap-pic-w">
 					<img src="${pageContext.request.contextPath}/images/banner-01.jpg" alt="IMG-BANNER">
-
 					<a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
 						<div class="block1-txt-child1 flex-col-l">
 							<span class="block1-name ltext-102 trans-04 p-b-8">
@@ -45,7 +38,6 @@
 								Fall 2022
 							</span>
 						</div>
-
 						<div class="block1-txt-child2 p-b-4 trans-05">
 							<div class="block1-link stext-101 cl0 trans-09">
 								Shop Now
@@ -128,188 +120,33 @@
 						<!-- Slide2 -->
 						<div class="wrap-slick2">
 							<div class="slick2">
-								<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-									<!-- Best product-01 -->
-									<div class="block2">
-										<div class="block2-pic hov-img0">
-											<img src="${pageContext.request.contextPath}/images/product-01.jpg" alt="IMG-PRODUCT">
-
-										</div>
-
-										<div class="block2-txt flex-w flex-t p-t-14">
-											<div class="block2-txt-child1 flex-col-l ">
-												<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-													피엘라르니카 150x200 cm
-												</a>
-
-												<span class="stext-105 cl3">
-													￦79,900
-												</span>
+							
+								<c:forEach items="${bestList}" var="product">
+									<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+										<!-- Best product-01 -->
+										<div class="block2">
+											<div class="block2-pic hov-img0">
+												<img src="${pageContext.request.contextPath}/images/product-01.jpg" alt="IMG-PRODUCT">
 											</div>
-
-										</div>
-									</div>
-								</div>
-
-								<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-									<!-- Best product-02 -->
-									<div class="block2">
-										<div class="block2-pic hov-img0">
-											<img src="${pageContext.request.contextPath}/images/product-02.jpg" alt="IMG-PRODUCT">
-
-										</div>
-
-										<div class="block2-txt flex-w flex-t p-t-14">
-											<div class="block2-txt-child1 flex-col-l ">
-												<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-													바게보 50x25x160 cm
-												</a>
-
-												<span class="stext-105 cl3">
-													￦32,000
-												</span>
+											<div class="block2-txt flex-w flex-t p-t-14">
+												<div class="block2-txt-child1 flex-col-l ">
+													<a href="front?key=store&methodName=productDetail&productCode=${product.productCode}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+														${product.productName}
+													</a>
+													<span class="stext-105 cl3">
+														￦${product.price}
+													</span>
+												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-
-								<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-									<!-- Best product-03 -->
-									<div class="block2">
-										<div class="block2-pic hov-img0">
-											<img src="${pageContext.request.contextPath}/images/product-03.jpg" alt="IMG-PRODUCT">
-										</div>
-
-										<div class="block2-txt flex-w flex-t p-t-14">
-											<div class="block2-txt-child1 flex-col-l ">
-												<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-													스코디스 76x56 cm
-												</a>
-
-												<span class="stext-105 cl3">
-													￦29,900
-												</span>
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-									<!-- Best product-04 -->
-									<div class="block2">
-										<div class="block2-pic hov-img0">
-											<img src="${pageContext.request.contextPath}/images/product-04.jpg" alt="IMG-PRODUCT">
-										</div>
-
-										<div class="block2-txt flex-w flex-t p-t-14">
-											<div class="block2-txt-child1 flex-col-l ">
-												<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-													앙에르스뷔, 2인용소파
-												</a>
-
-												<span class="stext-105 cl3">
-													￦229,000
-												</span>
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-									<!-- Best product-05 -->
-									<div class="block2">
-										<div class="block2-pic hov-img0">
-											<img src="${pageContext.request.contextPath}/images/product-05.jpg" alt="IMG-PRODUCT">
-										</div>
-
-										<div class="block2-txt flex-w flex-t p-t-14">
-											<div class="block2-txt-child1 flex-col-l ">
-												<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-													데이사, 탁상스탠드
-												</a>
-
-												<span class="stext-105 cl3">
-													￦49,900
-												</span>
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-									<!-- Best product-06 -->
-									<div class="block2">
-										<div class="block2-pic hov-img0">
-											<img src="${pageContext.request.contextPath}/images/product-06.jpg" alt="IMG-PRODUCT">
-
-										</div>
-
-										<div class="block2-txt flex-w flex-t p-t-14">
-											<div class="block2-txt-child1 flex-col-l ">
-												<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-													 말름, 4칸서랍장 
-												</a>
-
-												<span class="stext-105 cl3">
-													￦169,000
-												</span>
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-									<!-- Best product-07 -->
-									<div class="block2">
-										<div class="block2-pic hov-img0">
-											<img src="${pageContext.request.contextPath}/images/product-07.jpg" alt="IMG-PRODUCT">
-										</div>
-
-										<div class="block2-txt flex-w flex-t p-t-14">
-											<div class="block2-txt-child1 flex-col-l ">
-												<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-													발레보그, 포켓스프링매트리스
-												</a>
-
-												<span class="stext-105 cl3">
-													￦269,000
-												</span>
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-									<!-- Block2 -->
-									<div class="block2">
-										<div class="block2-pic hov-img0">
-											<img src="${pageContext.request.contextPath}/images/product-08.jpg" alt="IMG-PRODUCT">
-
-										</div>
-
-										<div class="block2-txt flex-w flex-t p-t-14">
-											<div class="block2-txt-child1 flex-col-l ">
-												<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-													엘로벤, 모니터스탠드+서랍
-												</a>
-
-												<span class="stext-105 cl3">
-													￦29,900
-												</span>
-											</div>
-										</div>
-									</div>
-								</div>
+								</c:forEach>
+								
 							</div>
 						</div>
 					</div>
-
-					
-					</div>
 				</div>
-			</div>
-		</div>
-	</section>
+			</section>
 
 
 	<!-- Blog 커뮤니티 -->

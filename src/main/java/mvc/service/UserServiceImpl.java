@@ -1,7 +1,6 @@
 package mvc.service;
 
 import java.sql.SQLException;
-import java.util.List;
 
 import mvc.dao.user.UserDAO;
 import mvc.dao.user.UserDAOImpl;
@@ -29,11 +28,12 @@ public class UserServiceImpl implements UserService {
 		if(result==0)throw new SQLException("회원가입 실패");
 		
 	}
-
+	
 	@Override
-	public List<UserDTO> searchUser() throws SQLException {
-		List<UserDTO> list = userDAO.searchUser();
-		return list;
+	public void update(UserDTO userDTO) throws SQLException {
+		int result = userDAO.update(userDTO);
+		if(result==0)throw new SQLException("회원정보 수정 실패");
+		
 	}
 
 	@Override
@@ -41,6 +41,14 @@ public class UserServiceImpl implements UserService {
 		UserDTO user = userDAO.selectByUserCode(email);
 		return user;
 	}
+
+	@Override
+	public UserDTO selectByUserCode(int userCode) throws SQLException {
+		UserDTO user = userDAO.searchByUserCode(userCode);
+		return user;
+	}
+
+
 	
 	
 }

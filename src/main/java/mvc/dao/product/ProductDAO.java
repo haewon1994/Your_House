@@ -51,4 +51,6 @@ public interface ProductDAO {
 	 * @return : 1 = 삭제성공 / 0 = 삭제실패
 	 */
 	int delete(int productCode) throws SQLException;
+	
+	List<ProductDTO> bestProduct() throws SQLException;
 }

@@ -20,9 +20,9 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public List<Notice> selectAll(int noticeCode) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Notice> selectAll(int pageNo) throws SQLException {
+		List<Notice>  list =notDAO.getBoardList(pageNo);//페이징처리하는 dao호출
+				return null;
 	}
 
 

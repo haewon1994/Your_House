@@ -32,10 +32,15 @@ public class NoticeController implements Controller {
 	 * */
 	public ModelAndView select(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		//String noticeCode=request.getParameter("noticeCode");
+		String pageNo =request.getParameter("noticeCode");
+		if(pageNo==null || pageNo.equals("")) {
+			  pageNo="1";
+		  }
+		
 	
 		List<Notice> list = notiService.selectAll();
 		request.setAttribute("noticeList", list);//뷰에서 ${list}
+		request.setAttribute("pageNo", pageNo); //뷰에서 ${pageNo}
 		System.out.println(list);
 		return new ModelAndView("notice/list.jsp"); //forward방식으로 이동
 		
@@ -58,32 +63,31 @@ public class NoticeController implements Controller {
 		 new MultipartRequest(request,saveDir, maxSize, encoding, new DefaultFileRenamePolicy());
 		
 		//전송된 데이터 받기 
-		String noticeCode = m.getParameter("notice_code");
 		String noticeCategory = m.getParameter("notice_category");
 		String isPrivate = m.getParameter("isPrivate"); //베너
-		String noticeImage = m.getParameter("notice_image");
+		if(isPrivate==null) {
+			isPrivate="0";
+			
+		}
 		String subject = m.getParameter("subject");
-		String noticeReg = m.getParameter("notice_reg");
-		String noticContent = m.getParameter("notic_content");
+		String noticContent = m.getParameter("noticContent");
+		
+		
 		
 		Notice notice = 
-			new Notice(Integer.parseInt(noticeCode),noticeCategory, isPrivate, noticeImage, subject, noticeReg, noticContent);
+			new Notice(0,noticeCategory, isPrivate, null, subject, null, noticContent);
 		
 		//만약, 파일첨부가 되었다면....
-		if(m.getFilesystemName("file") != null) {
+		if(m.getFilesystemName("notice_image") != null) {
 			//파일이름저장
-			notice.setNoticeImage(m.getFilesystemName("file"));	
+			notice.setNoticeImage(m.getFilesystemName("notice_image"));	
 		}
-		if(isPrivate.equals("baner")) {
-	
-			
-			
-		}
+
 		
 		
 		notiService.insert(notice);
 
-	   return new ModelAndView("front", true);//key=elec&methodName=select 기본으로 설정된다.	
+	   return new ModelAndView("admin", true);//key=elec&methodName=select 기본으로 설정된다.	
 	}
 	
 	/**
@@ -116,7 +120,7 @@ public class NoticeController implements Controller {
 
 		request.setAttribute("notice", notice);
 		
-		return new ModelAndView("elec/update.jsp");//forward방식
+		return new ModelAndView("notice/update.jsp");//forward방식
 	}
 	
 	/**
@@ -134,7 +138,7 @@ public class NoticeController implements Controller {
 		
 		//수정이 완료가 된후....
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("front?key=elec&methodName=selectBynoticeCode&noticeCode="+noticeCode);
+		mv.setViewName("admin?key=elec&methodName=selectBynoticeCode&noticeCode="+noticeCode);
 	    mv.setRedirect(true);
 		return mv;
 	}
@@ -153,7 +157,7 @@ public class NoticeController implements Controller {
 		
 		String saveDir = request.getServletContext().getRealPath("/save");
 		notiService.delete(Integer.parseInt(noticeCode), saveDir);
-		 return new ModelAndView("front",true);
+		 return new ModelAndView("admin",true);
 	
 	}
 	
