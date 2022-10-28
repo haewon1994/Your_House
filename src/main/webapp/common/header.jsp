@@ -59,19 +59,19 @@
 					<div class="menu-desktop">
 						<ul class="main-menu">
 							<li class="label1" data-label1="hot">
-								<a href="blog.html"><b style="font-size: 16px;">커뮤니티</b></a>
+								<a href="../community/storyHome.jsp"><b style="font-size: 16px;">커뮤니티</b></a>
 								<ul class="sub-menu">
-									<li><a href="blog.html">홈</a></li>
+									<li><a href="../community/storyHome.jsp">홈</a></li>
 									<li><a href="blog-detail.html">스토리</a></li>
 								</ul>
 							</li>
 
 							<li class="active-menu">
-								<a href="index.html"><b style="font-size: 16px;">스토어</b></a>
+								<a href="../store/storeHome.jsp"><b style="font-size: 16px;">스토어</b></a>
 								<ul class="sub-menu">
-									<li><a href="index.html">홈</a></li>
-									<li><a href="product.html">카테고리</a></li>
-									<li><a href="home-03.html">베스트</a></li>
+									<li><a href="../store/storeHome.jsp">홈</a></li>
+									<li><a href="../store/storeCategory.jsp">카테고리</a></li>
+									<li><a href="../store/storeBest.jsp">베스트</a></li>
 								</ul>
 							</li>
 
@@ -105,7 +105,7 @@
 							</li>
 
 							<li>
-								<a href="../reg.html">회원가입</a>
+								<a href="../register/reg.html">회원가입</a>
 							</li>
 
 							<li>

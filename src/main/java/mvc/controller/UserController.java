@@ -48,7 +48,6 @@ public class UserController implements Controller {
 		String gender = request.getParameter("gender");
 		String categoryCode = request.getParameter("categoryCode");
 
-
 		if(email==null || email.equals("") || password==null || password.equals("") || pwdCheck==null || pwdCheck.equals("") || 
 				birth==null || birth.equals("") || nickname==null || nickname.equals("") ||
 				phone==null || phone.equals("") ||  adress==null  || adress.equals("") ||  
