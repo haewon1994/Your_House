@@ -71,7 +71,7 @@ public class StoryDAOImpl implements StoryDAO {
 		//String sql= proFile.getProperty("Story.insert");//insert into Electronics values(?,?,?,?,?,sysdate,0,?,?)
 		try {
 			con = DBUtil.getConnection();
-			ps = con.prepareStatement("insert into notice values(STORY_SEQ.NEXTVAL, ?,?,?,sysdate+9/24)");
+			ps = con.prepareStatement("insert into Story values(STORY_SEQ.NEXTVAL, ?,?,?,sysdate+9/24)");
 			ps.setInt(1, story.getUserCode());
 			ps.setString(2, story.getStoryImage());
 			ps.setString(3, story.getStoryLiter());
@@ -134,7 +134,7 @@ public class StoryDAOImpl implements StoryDAO {
 		//String sql= proFile.getProperty("Story.selectBynoticeCode");//select * from Electronics where model_num=?
 		try {
 			con = DBUtil.getConnection();
-			ps = con.prepareStatement("select * from notice where Story_CODE=?");
+			ps = con.prepareStatement("select * from Story where Story_CODE=?");
 			ps.setInt(1, storyCode);
 
 			rs = ps.executeQuery();
