@@ -48,7 +48,6 @@ public class UserController implements Controller {
 		String gender = request.getParameter("gender");
 		String categoryCode = request.getParameter("categoryCode");
 
-
 		if(email==null || email.equals("") || password==null || password.equals("") || pwdCheck==null || pwdCheck.equals("") || 
 				birth==null || birth.equals("") || nickname==null || nickname.equals("") ||
 				phone==null || phone.equals("") ||  adress==null  || adress.equals("") ||  
@@ -156,7 +155,7 @@ public class UserController implements Controller {
 		session.setAttribute("loginUser", user);
 
 		//index.jsp이동 - redirect방식
-		return new ModelAndView("store/storeHome.jsp", true);
+		return new ModelAndView("front?key=store&methodName=storeHome", true);
 	}
 
 	/**
@@ -168,7 +167,7 @@ public class UserController implements Controller {
 		//모든 세션의정보를 삭제한다.
 		request.getSession().invalidate();
 
-		return new ModelAndView("user/logoutpage.jsp", true);
+		return new ModelAndView("index.jsp", true);
 
 
 	}

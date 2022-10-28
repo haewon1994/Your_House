@@ -7,12 +7,14 @@ import mvc.dto.product.ProductDTO;
 
 public interface ProductService {
 
-	ProductDTO selectByProductCode(int parseInt);
+	ProductDTO selectByProductCode(int prodcutCode) throws SQLException;
 
 	void insert(ProductDTO product);
 
 	List<ProductDTO> selectAll() throws SQLException;
 
 	boolean duplicateCheckByProductName(String productName);
+	
+	List<ProductDTO> bestProdcut() throws SQLException;
 
 }

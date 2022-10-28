@@ -3,28 +3,58 @@ package mvc.service;
 import java.io.File;
 import java.sql.SQLException;
 import java.util.List;
+
+import mvc.dao.follow.FollowDAO;
+import mvc.dao.follow.FollowDAOImpl;
+import mvc.dao.liked.LikedDAO;
+import mvc.dao.liked.LikedDAOImpl;
 import mvc.dao.reply.ReplyDAO;
 import mvc.dao.reply.ReplyDAOImpl;
 import mvc.dao.story.StoryDAO;
 import mvc.dao.story.StoryDAOImpl;
+import mvc.dao.user.UserDAO;
+import mvc.dao.user.UserDAOImpl;
+import mvc.dto.follow.Follow;
+import mvc.dto.liked.Liked;
 import mvc.dto.reply.Reply;
 import mvc.dto.story.Story;
+import mvc.dto.user.UserDTO;
 
 public class StoryServiceImpl implements StoryService {
 
 
+	private LikedDAO likedDAO = new LikedDAOImpl();
+	private FollowDAO followDAO = new FollowDAOImpl();
+	private UserDAO userDAO = new UserDAOImpl();
 	private ReplyDAO replyDAO = new ReplyDAOImpl();
 	private StoryDAO storyDAO = new StoryDAOImpl();
-	
-	
+
+
 	@Override
 	public List<Story> list(String keyword) {
 		return storyDAO.list(keyword);
 	}
 
 	@Override
-	public List<Story> selectAll() throws SQLException {
+	public List<Story> selectAll(int user_code) throws SQLException {
 		List<Story>  list = storyDAO.selectAll();
+
+		for(Story story : list) {
+			//팔로우 정보
+			Follow fo = followDAO.isFollow(user_code, story.getUserCode());
+			if(fo!=null) {
+				story.setFollow(true);
+			}
+
+			//좋아요 정보
+			Liked Li = likedDAO.isLiked(user_code, story.getStoryCode());
+			if(Li!=null) {
+				story.setLike(true);
+			}
+			
+			UserDTO user = userDAO.searchByUserCode(story.getUserCode());
+			story.setUser(user);
+		}
 		return list;
 	}
 
@@ -86,19 +116,19 @@ public class StoryServiceImpl implements StoryService {
 			throw new SQLException("상세보기에 오류가 발생했습니다.");
 		List<Reply> replylist = replyDAO.selectAll(storyCode);
 		story.setReplyList(replylist);
-		
-		
-		
+
+
+
 		return story;
 	}
 
-	@Override
-	public List<Story> selectAll(int pageNo) throws SQLException {
-		List<Story>  list = storyDAO.getBoardList(pageNo);//페이징처리하는 dao호출
+	/*
+	 * @Override public List<Story> selectAll(int pageNo) throws SQLException {
+	 * List<Story> list = storyDAO.getBoardList(pageNo);//페이징처리하는 dao호출
+	 * 
+	 * 
+	 * return null; }
+	 */
 
-		
-		return null;
-	}
 
-	
 }

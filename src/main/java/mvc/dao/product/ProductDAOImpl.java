@@ -202,4 +202,35 @@ public class ProductDAOImpl implements ProductDAO {
 		return result;
 	}
 
+	@Override
+	public List<ProductDTO> bestProduct() throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<ProductDTO> list = new ArrayList<ProductDTO>();
+		String sql = "select * from (select rownum, product.* from product) where rownum BETWEEN 1 and 8";
+		
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				list.add(new ProductDTO(
+						rs.getInt(2),
+						rs.getInt(3),
+						rs.getString(4), 
+						rs.getString(5), 
+						rs.getString(6), 
+						rs.getString(7), 
+						rs.getInt(8),
+						rs.getInt(9)
+					));
+			}
+		} finally {
+			DBUtil.dbClose(con, ps, rs);
+		}
+		return list;
+	}
+
 }

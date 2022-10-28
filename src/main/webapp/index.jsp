@@ -43,8 +43,7 @@
     
             	let sessType  = $('input:radio[name="sess"]:checked').val();	 
         	    let keyV="";
-        	    let methodNameV="";
-        	    alert(sessType); 
+        	    let methodNameV=""; 
         	    		
         	    if(sessType=="0"){ 
         		      keyV="admin";

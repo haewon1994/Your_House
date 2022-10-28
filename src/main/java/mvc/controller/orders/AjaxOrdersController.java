@@ -34,7 +34,7 @@ public class AjaxOrdersController implements AjaxController {
 	public void insert(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
 		response.setContentType("text/html;charset=UTF-8");
-		
+		System.out.println("넘어옴");
 		PrintWriter out = response.getWriter();
 		
 		//넘오는 파라미터 값 받기

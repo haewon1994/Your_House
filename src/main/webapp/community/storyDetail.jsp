@@ -55,11 +55,38 @@
 .w-full
 {padding-top: 60px;}
 </style>
-
+<script type="text/javascript" src="../js/jquery-3.6.1.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#replyInsert").click(function() {
+			let storyCode = $("#story_code").val();
+			let replyContent = $("#reply_content").val();
+			
+			$.ajax({
+				url : "../ajax",
+				type : "post",
+				dataType : "text",
+				data : {
+					key:'reply',
+					methodName :'insert',
+					story_code : storyCode,
+					reply_content : replyContent
+				},
+				success : function(result) {
+					alert(result);
+					
+				},
+				error : function() {
+					
+				}
+			});
+		});
+	});
+</script>
 </head>
 <body>	
 
-
+<input type="hidden"id="story_code" value="${requestScope.story.storyCode}">
 <section id="container">
 
   <div id="main_container">
@@ -74,6 +101,7 @@
       
          <!-- 댓글 -->
 	<div class="flex-w flex-t p-b-68">
+	<div>
 	    <div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
 	        <img src="${pageContext.request.contextPath}/images/profile001.jpg" alt="USER001">
 	    </div>
@@ -88,6 +116,7 @@
 	        <p class="stext-102 cl6">
 	            댓글내용입니다.
 	        </p>
+	    </div>
 	    </div>
 	</div>
 	
@@ -115,12 +144,12 @@
 	
 	    <div class="row p-b-25">
 	        <div class="col-12 p-b-5">
-	            <input class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10" id="review" name="review" 
+	            <input class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10" id="reply_content" name="reply_content" 
 	            placeholder="칭찬과 격려의 댓글은 작성자에게 큰 힘이 됩니다 :)" style="font-size: 12px;"></input>
 	        </div>	
 	    </div>
 	
-	        <button class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10" >
+	        <button class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10" id="replyInsert">
 	            등록
 	        </button>
 	    </form>
