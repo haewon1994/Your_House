@@ -33,7 +33,7 @@ public class AjaxBasketController implements AjaxController {
 	public void insert(HttpServletRequest request, HttpServletResponse response)
 			throws NumberFormatException, Exception {
 		response.setContentType("text/html;charset=UTF-8");
-		
+		System.out.println(11);
 		Map<String, BasketDTO> basketMap = new HashMap<String, BasketDTO>();
 		
 		if(request.getSession().getAttribute("basketMap")!=null) {
@@ -47,6 +47,10 @@ public class AjaxBasketController implements AjaxController {
 		String productCode = request.getParameter("productCode");
 		String odrerQty = request.getParameter("odrerQty");
 		String colorName = request.getParameter("colorName");
+		
+		System.out.println("productCode : " + productCode);
+		System.out.println("odrerQty : " + odrerQty);
+		System.out.println("colorName : " + colorName);
 		
 		if(productCode==null || productCode.equals("") ||
 			odrerQty==null || odrerQty.equals("") ||

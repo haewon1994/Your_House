@@ -70,7 +70,7 @@ public class StoryController implements Controller {
 		
 		
 		Story story = 
-			new Story(Integer.parseInt(storyCode),Integer.parseInt(userCode), storyImage, storyLiter, storyReg);
+			new Story(0,Integer.parseInt(userCode), storyImage, storyLiter,null);
 		
 		//만약, 파일첨부가 되었다면....
 		if(m.getFilesystemName("file") != null) {

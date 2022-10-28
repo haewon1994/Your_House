@@ -71,12 +71,10 @@ public class StoryDAOImpl implements StoryDAO {
 		//String sql= proFile.getProperty("Story.insert");//insert into Electronics values(?,?,?,?,?,sysdate,0,?,?)
 		try {
 			con = DBUtil.getConnection();
-			ps = con.prepareStatement("insert into notice values(STORY_SEQ.NEXTVAL, ?,?,?,sysdate+9/24,?)");
-			ps.setInt(1, story.getStoryCode());
-			ps.setInt(2, story.getUserCode());
-			ps.setString(3, story.getStoryImage());
-			ps.setString(4, story.getStoryLiter());
-			ps.setString(5, story.getStoryReg());
+			ps = con.prepareStatement("insert into notice values(STORY_SEQ.NEXTVAL, ?,?,?,sysdate+9/24)");
+			ps.setInt(1, story.getUserCode());
+			ps.setString(2, story.getStoryImage());
+			ps.setString(3, story.getStoryLiter());
 
 			result = ps.executeUpdate();
 		}finally {

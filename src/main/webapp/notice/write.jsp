@@ -39,13 +39,9 @@ function checkValid() {
      request로 값을 받을수가 없다. ( MulitpartRequest로 받아야한다.) 그런데 Controller로 가기전에 Controller를 찾기위해서 
      DispatherServlet에서 request로 두개의 값을 받고 있기때문에 key, methodName은 get방식으로 별도로 전송해야한다.
      
-<<<<<<< HEAD
 	<input type="hidden" name="key" value = "elec" />
 	<input type="hidden" name="methodName" value = "insert" />  
-=======
-   <input type="hidden" name="key" value = "elec" />
-   <input type="hidden" name="methodName" value = "insert" />  
->>>>>>> huijin
+
 
  -->
 <table align="center" cellpadding="5" cellspacing="2" width="600" border="1" >
