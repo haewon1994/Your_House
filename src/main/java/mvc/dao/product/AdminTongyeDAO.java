@@ -25,7 +25,7 @@ public interface AdminTongyeDAO {
 	/**
 	 * 1. 기본 : 상품전체 / 매출통계만
 	 */
-	AdminTongyeDTO selectTongyePrAllSum(String startDate, String lastDate) throws SQLException;
+	List<AdminTongyeDTO> selectTongyePrAllSum(String startDate, String lastDate) throws SQLException;
 	
 	/**
 	 * 2. 상품전체 / 상품정보
@@ -35,7 +35,7 @@ public interface AdminTongyeDAO {
 	/**
 	 * 3. 특정 카테고리 / 매출통계만
 	 */
-	AdminTongyeDTO selectTongyeCaAllSum(int categoryCode, String startDate, String lastDate) throws SQLException;
+	List<AdminTongyeDTO> selectTongyeCaAllSum(int categoryCode, String startDate, String lastDate) throws SQLException;
 	
 	/**
 	 * 4. 특정 카테고리 / 상품정보
@@ -45,7 +45,7 @@ public interface AdminTongyeDAO {
 	/**
 	 * 5. 특정 상품 / 매출통계만
 	 */
-	AdminTongyeDTO selectTongyeProdSum(int productCode, String startDate, String lastDate) throws SQLException;
+	List<AdminTongyeDTO> selectTongyeProdSum(int productCode, String startDate, String lastDate) throws SQLException;
 	
 	/**
 	 * 6. 특정 상품 / 상품정보

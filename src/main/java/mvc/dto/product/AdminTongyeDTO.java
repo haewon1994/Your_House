@@ -129,6 +129,53 @@ public class AdminTongyeDTO {
 		this.categoryName = categoryName;
 	}
 
+	public AdminTongyeDTO(int productCode, int categoryCode, String productName, String image, String createdReg,
+			String productDetail, int stock, int price, String categoryName) {
+		super();
+		this.productCode = productCode;
+		this.categoryCode = categoryCode;
+		this.productName = productName;
+		this.image = image;
+		this.createdReg = createdReg;
+		this.productDetail = productDetail;
+		this.stock = stock;
+		this.price = price;
+		this.categoryName = categoryName;
+	}
+
+	public AdminTongyeDTO(int productCode, int categoryCode, String productName, String image, String createdReg,
+			String productDetail, int stock, int price) {
+		super();
+		this.productCode = productCode;
+		this.categoryCode = categoryCode;
+		this.productName = productName;
+		this.image = image;
+		this.createdReg = createdReg;
+		this.productDetail = productDetail;
+		this.stock = stock;
+		this.price = price;
+	}
+
+	public AdminTongyeDTO(int categoryCode, String productName, String productDetail, int stock, int price) {
+		super();
+		this.categoryCode = categoryCode;
+		this.productName = productName;
+		this.productDetail = productDetail;
+		this.stock = stock;
+		this.price = price;
+	}
+
+	public AdminTongyeDTO(int productCode, int categoryCode, String productName, String productDetail, int stock,
+			int price) {
+		super();
+		this.productCode = productCode;
+		this.categoryCode = categoryCode;
+		this.productName = productName;
+		this.productDetail = productDetail;
+		this.stock = stock;
+		this.price = price;
+	}
+
 	public int getSumPrice() {
 		return sumPrice;
 	}

@@ -35,11 +35,11 @@ public class AdminTongyeDAOImpl implements AdminTongyeDAO {
 	}
 
 	@Override
-	public AdminTongyeDTO selectTongyePrAllSum(String startDate, String lastDate) throws SQLException {
+	public List<AdminTongyeDTO> selectTongyePrAllSum(String startDate, String lastDate) throws SQLException {
 		Connection con=null;
 		PreparedStatement ps=null;
 		ResultSet rs=null;
-		AdminTongyeDTO adminTongye = null;
+		List<AdminTongyeDTO> tongyeList = new ArrayList<AdminTongyeDTO>();
 		
 		String sql= proFile.getProperty("selectTongyePrAllSum");//total col : 2, 11 / int : 1, 2, 3, 4, 9, 10
 		//select sum(unit_price*order_qty) sum_price, sum(order_qty) sum_qty from product a full join product_category b using(category_code) full join orders_detail c using(product_code) full join orders c using(orders_code) where orders_reg >= to_date(?, 'yyyymmdd') and orders_reg < to_date(?+1, 'yyyymmdd')
@@ -51,12 +51,14 @@ public class AdminTongyeDAOImpl implements AdminTongyeDAO {
 			
 			rs = ps.executeQuery();
 			while(rs.next()) {
-				adminTongye = new AdminTongyeDTO(rs.getInt(1), rs.getInt(2));
+				AdminTongyeDTO tongye = new AdminTongyeDTO(rs.getInt(1), rs.getInt(2));
+				
+				tongyeList.add(tongye);
 			}
 		}finally {
 			DBUtil.dbClose(con, ps, rs);
 		}
-		return adminTongye;
+		return tongyeList;
 	}
 
 	@Override
@@ -89,12 +91,12 @@ public class AdminTongyeDAOImpl implements AdminTongyeDAO {
 	}
 
 	@Override
-	public AdminTongyeDTO selectTongyeCaAllSum(int categoryCode, String startDate, String lastDate)
+	public List<AdminTongyeDTO> selectTongyeCaAllSum(int categoryCode, String startDate, String lastDate)
 			throws SQLException {
 		Connection con=null;
 		PreparedStatement ps=null;
 		ResultSet rs=null;
-		AdminTongyeDTO adminTongye = null;
+		List<AdminTongyeDTO> tongyeList = new ArrayList<AdminTongyeDTO>();
 		
 		String sql= proFile.getProperty("selectTongyeCaAllSum");//total col : 2, 11 / int : 1, 2, 3, 4, 9, 10
 		//select sum(unit_price*order_qty) sum_price, sum(order_qty) sum_qty from product a full join product_category b using(category_code) full join orders_detail c using(product_code) full join orders c using(orders_code) where orders_reg >= to_date(?, 'yyyymmdd') and orders_reg < to_date(?+1, 'yyyymmdd') and category_code = ?
@@ -103,15 +105,18 @@ public class AdminTongyeDAOImpl implements AdminTongyeDAO {
 			ps = con.prepareStatement(sql);
 			ps.setString(1, startDate);
 			ps.setString(2, lastDate);
+			ps.setInt(3, categoryCode);
 			
 			rs = ps.executeQuery();
 			while(rs.next()) {
-				adminTongye = new AdminTongyeDTO(rs.getInt(1), rs.getInt(2));
+				AdminTongyeDTO tongye = new AdminTongyeDTO(rs.getInt(1), rs.getInt(2));
+				
+				tongyeList.add(tongye);
 			}
 		}finally {
 			DBUtil.dbClose(con, ps, rs);
 		}
-		return adminTongye;
+		return tongyeList;
 	}
 
 	@Override
@@ -146,12 +151,12 @@ public class AdminTongyeDAOImpl implements AdminTongyeDAO {
 	}
 
 	@Override
-	public AdminTongyeDTO selectTongyeProdSum(int productCode, String startDate, String lastDate)
+	public List<AdminTongyeDTO> selectTongyeProdSum(int productCode, String startDate, String lastDate)
 			throws SQLException {
 		Connection con=null;
 		PreparedStatement ps=null;
 		ResultSet rs=null;
-		AdminTongyeDTO adminTongye = null;
+		List<AdminTongyeDTO> tongyeList = new ArrayList<AdminTongyeDTO>();
 		
 		String sql= proFile.getProperty("selectTongyeProdSum");//total col : 2, 11 / int : 1, 2, 3, 4, 9, 10
 		//select sum(unit_price*order_qty) sum_price, sum(order_qty) sum_qty from product a full join product_category b using(category_code) full join orders_detail c using(product_code) full join orders c using(orders_code) where orders_reg >= to_date(?, 'yyyymmdd') and orders_reg < to_date(?+1, 'yyyymmdd') and product_code = ?
@@ -160,15 +165,18 @@ public class AdminTongyeDAOImpl implements AdminTongyeDAO {
 			ps = con.prepareStatement(sql);
 			ps.setString(1, startDate);
 			ps.setString(2, lastDate);
+			ps.setInt(3, productCode);
 			
 			rs = ps.executeQuery();
 			while(rs.next()) {
-				adminTongye = new AdminTongyeDTO(rs.getInt(1), rs.getInt(2));
+				AdminTongyeDTO tongye = new AdminTongyeDTO(rs.getInt(1), rs.getInt(2));
+				
+				tongyeList.add(tongye);
 			}
 		}finally {
 			DBUtil.dbClose(con, ps, rs);
 		}
-		return adminTongye;
+		return tongyeList;
 	}
 
 	@Override

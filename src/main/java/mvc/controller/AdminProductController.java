@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import mvc.dto.product.AdminTongyeDTO;
 import mvc.dto.product.ColorDTO;
 import mvc.dto.product.ProductCategoryDTO;
 import mvc.dto.product.ProductDTO;
@@ -99,8 +100,8 @@ public class AdminProductController implements Controller {
 		String stock = m.getParameter("stock");
 		String price = m.getParameter("price");
 		
-		ProductDTO product = 
-			new ProductDTO(Integer.parseInt(categoryCode), productName, productDetail, 
+		AdminTongyeDTO product = 
+			new AdminTongyeDTO(Integer.parseInt(categoryCode), productName, productDetail, 
 					Integer.parseInt(stock), Integer.parseInt(price));
 
 		//상품-대표이미지(썸네일) 첨부됐을때 파일명 변경하여 저장->if문 조건식은 업그레이드 대비
@@ -144,7 +145,7 @@ public class AdminProductController implements Controller {
 	 */
 	public ModelAndView selectMainTotalProduct(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		List<ProductDTO> productList=adminProductService.selectAllProduct();
+		List<AdminTongyeDTO> productList=adminProductService.selectAllProduct();
 		List<ProductCategoryDTO> categoryList=adminProductService.selectAllProductCategory();
 		
 		request.setAttribute("productList", productList);//뷰에서 ${productList}
@@ -168,7 +169,7 @@ public class AdminProductController implements Controller {
 			throws Exception {
 		String productCode=request.getParameter("productCode");
 			
-		ProductDTO product=adminProductService.selectProductByProductCode(Integer.parseInt(productCode));
+		AdminTongyeDTO product=adminProductService.selectProductByProductCode(Integer.parseInt(productCode));
 		List<ColorDTO> colorList=adminProductService.selectAllColorByProductCode(Integer.parseInt(productCode));
 		List<ProductImageDTO> productImageList=adminProductService.selectAllProductImageByProductCode(Integer.parseInt(productCode));
 		List<ProductCategoryDTO> categoryList=adminProductService.selectAllProductCategory();
@@ -318,8 +319,8 @@ public class AdminProductController implements Controller {
 		String stock = m.getParameter("stock");
 		String price = m.getParameter("price");
 		
-		ProductDTO product = 
-			new ProductDTO(Integer.parseInt(productCode), Integer.parseInt(categoryCode), productName, productDetail, 
+		AdminTongyeDTO product = 
+			new AdminTongyeDTO(Integer.parseInt(productCode), Integer.parseInt(categoryCode), productName, productDetail, 
 					Integer.parseInt(stock), Integer.parseInt(price));
 
 		//상품-대표이미지(썸네일) 첨부됐을때 파일명 변경하여 저장->if문 조건식은 업그레이드 대비

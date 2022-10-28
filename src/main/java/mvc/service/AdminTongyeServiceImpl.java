@@ -12,13 +12,13 @@ public class AdminTongyeServiceImpl implements AdminTongyeService {
 	private AdminTongyeDAO adminTongyeDAO=new AdminTongyeDAOImpl();
 	
 	@Override
-	public AdminTongyeDTO selectTongyePrAllSum(String startDate, String lastDate) throws SQLException {
-		AdminTongyeDTO adminTongye=adminTongyeDAO.selectTongyePrAllSum(startDate, lastDate);
+	public List<AdminTongyeDTO> selectTongyePrAllSum(String startDate, String lastDate) throws SQLException {
+		List<AdminTongyeDTO> adminTongyeList=adminTongyeDAO.selectTongyePrAllPro(startDate, lastDate);
 		
-		if(adminTongye==null) throw new SQLException("정보가 없습니다");
-		if(startDate==null||lastDate==null) throw new SQLException("날짜입력 형식을 확인해주세요 : ex)20221027 ");
+		if(adminTongyeList==null) throw new SQLException("정보가 없습니다");
+		if(startDate==null||lastDate==null) throw new SQLException("날짜를 입력해주세요");
 		
-		return adminTongye;
+		return adminTongyeList;
 	}
 
 	@Override
@@ -26,50 +26,50 @@ public class AdminTongyeServiceImpl implements AdminTongyeService {
 		List<AdminTongyeDTO> adminTongyeList=adminTongyeDAO.selectTongyePrAllPro(startDate, lastDate);
 		
 		if(adminTongyeList==null) throw new SQLException("정보가 없습니다");
-		if(startDate==null||lastDate==null) throw new SQLException("날짜입력 형식을 확인해주세요 : ex)20221027 ");
+		if(startDate==null||lastDate==null) throw new SQLException("날짜를 입력해주세요");
 		
 		return adminTongyeList;
 	}
 
 	@Override
-	public AdminTongyeDTO selectTongyeCaAllSum(int categoryCode, String startDate, String lastDate)
+	public List<AdminTongyeDTO> selectTongyeCaAllSum(int categoryCode, String startDate, String lastDate)
 			throws SQLException {
-		AdminTongyeDTO adminTongye=adminTongyeDAO.selectTongyeCaAllSum(categoryCode, startDate, lastDate);
+		List<AdminTongyeDTO> adminTongyeList=adminTongyeDAO.selectTongyePrAllPro(startDate, lastDate);
 		
-		if(adminTongye==null) throw new SQLException("정보가 없습니다");
-		if(startDate==null||lastDate==null) throw new SQLException("날짜입력 형식을 확인해주세요 : ex)20221027 ");
+		if(adminTongyeList==null) throw new SQLException("정보가 없습니다");
+		if(startDate==null||lastDate==null) throw new SQLException("날짜를 입력해주세요");
 		
-		return adminTongye;
+		return adminTongyeList;
 	}
 
 	@Override
 	public List<AdminTongyeDTO> selectTongyeCaAllPro(int categoryCode, String startDate, String lastDate)
 			throws SQLException {
-		List<AdminTongyeDTO> adminTongyeList=adminTongyeDAO.selectTongyeCaAllPro(categoryCode, startDate, lastDate);
+		List<AdminTongyeDTO> adminTongyeList=adminTongyeDAO.selectTongyePrAllPro(startDate, lastDate);
 		
 		if(adminTongyeList==null) throw new SQLException("정보가 없습니다");
-		if(startDate==null||lastDate==null) throw new SQLException("날짜입력 형식을 확인해주세요 : ex)20221027 ");
+		if(startDate==null||lastDate==null) throw new SQLException("날짜를 입력해주세요");
 		
 		return adminTongyeList;
 	}
 
 	@Override
-	public AdminTongyeDTO selectTongyeProdSum(int productCode, String startDate, String lastDate) throws SQLException {
-		AdminTongyeDTO adminTongye=adminTongyeDAO.selectTongyeProdSum(productCode, startDate, lastDate);
+	public List<AdminTongyeDTO> selectTongyeProdSum(int productCode, String startDate, String lastDate) throws SQLException {
+		List<AdminTongyeDTO> adminTongyeList=adminTongyeDAO.selectTongyePrAllPro(startDate, lastDate);
 		
-		if(adminTongye==null) throw new SQLException("정보가 없습니다");
-		if(startDate==null||lastDate==null) throw new SQLException("날짜입력 형식을 확인해주세요 : ex)20221027 ");
+		if(adminTongyeList==null) throw new SQLException("정보가 없습니다");
+		if(startDate==null||lastDate==null) throw new SQLException("날짜를 입력해주세요");
 		
-		return adminTongye;
+		return adminTongyeList;
 	}
 
 	@Override
 	public List<AdminTongyeDTO> selectTongyeProdPro(int productCode, String startDate, String lastDate)
 			throws SQLException {
-		List<AdminTongyeDTO> adminTongyeList=adminTongyeDAO.selectTongyeProdPro(productCode, startDate, lastDate);
+		List<AdminTongyeDTO> adminTongyeList=adminTongyeDAO.selectTongyePrAllPro(startDate, lastDate);
 		
 		if(adminTongyeList==null) throw new SQLException("정보가 없습니다");
-		if(startDate==null||lastDate==null) throw new SQLException("날짜입력 형식을 확인해주세요 : ex)20221027 ");
+		if(startDate==null||lastDate==null) throw new SQLException("날짜를 입력해주세요");
 		
 		return adminTongyeList;
 	}
