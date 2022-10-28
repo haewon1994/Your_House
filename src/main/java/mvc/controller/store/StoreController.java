@@ -3,6 +3,7 @@ package mvc.controller.store;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -22,13 +23,6 @@ public class StoreController implements Controller{
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	public ModelAndView reUserProduct(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		UserDTO user = (UserDTO) request.getSession().getAttribute("loginUser");
-		int userCode = user.getUserCode();
 		return null;
 	}
 	
@@ -67,6 +61,45 @@ public class StoreController implements Controller{
 		}
 		
 		return new ModelAndView(url);
+	}
+	
+	/**
+	 * 카테고리 페이지
+	 */
+	public ModelAndView storeCategory(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException, SQLException {
+		
+		// 카테고리 전체 정보
+		Map<String, List<ProductDTO>> totalCategory = proService.totalCategory();
+		
+		List<ProductDTO> category1 = totalCategory.get("1");
+		List<ProductDTO> category2 = totalCategory.get("2");
+		List<ProductDTO> category3 = totalCategory.get("3");
+		List<ProductDTO> category4 = totalCategory.get("4");
+		List<ProductDTO> category5 = totalCategory.get("5");
+		
+		
+		request.setAttribute("category1", category1);
+		request.setAttribute("category2", category2);
+		request.setAttribute("category3", category3);
+		request.setAttribute("category4", category4);
+		request.setAttribute("category5", category5);
+	
+		return new ModelAndView("store/storeCategory.jsp");
+	}
+	
+	/**
+	 * 베스트페이지
+	 * @throws SQLException 
+	 */
+	public ModelAndView storeBest(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException, SQLException {
+
+		// 베스트에 대한 전체 정보
+		Map<String, List<ProductDTO>> totalbest = proService.totalbest();
+		
+		
+		return null;
 	}
 
 }
