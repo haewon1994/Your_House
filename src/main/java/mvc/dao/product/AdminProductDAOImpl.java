@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Properties;
 
 import mvc.util.DBUtil;
+import mvc.dto.product.AdminTongyeDTO;
 import mvc.dto.product.ColorDTO;
 import mvc.dto.product.ProductCategoryDTO;
 import mvc.dto.product.ProductDTO;
@@ -51,7 +52,7 @@ public class AdminProductDAOImpl implements AdminProductDAO {
 	}
 	
 	@Override
-	public int insertTotalProduct(ProductDTO product, ColorDTO color, ProductImageDTO productImage) throws SQLException {
+	public int insertTotalProduct(AdminTongyeDTO product, ColorDTO color, ProductImageDTO productImage) throws SQLException {
 		Connection con=null;
 		PreparedStatement ps=null;
 		int result=0;
@@ -135,7 +136,7 @@ public class AdminProductDAOImpl implements AdminProductDAO {
 	}
 
 	@Override
-	public int insertProduct(ProductDTO product) throws SQLException {
+	public int insertProduct(AdminTongyeDTO product) throws SQLException {
 		Connection con=null;
 		PreparedStatement ps=null;
 		int result=0;
@@ -159,7 +160,7 @@ public class AdminProductDAOImpl implements AdminProductDAO {
 	}
 
 	@Override
-	public int updateProductByProductCode(ProductDTO product) throws SQLException {
+	public int updateProductByProductCode(AdminTongyeDTO product) throws SQLException {
 		Connection con=null;
 		PreparedStatement ps=null;
 		int result=0;
@@ -203,14 +204,14 @@ public class AdminProductDAOImpl implements AdminProductDAO {
 	}
 
 	@Override
-	public ProductDTO selectProductByProductCode(int productCode) throws SQLException {
+	public AdminTongyeDTO selectProductByProductCode(int productCode) throws SQLException {
 		Connection con=null;
 		PreparedStatement ps=null;
 		ResultSet rs=null;
-		ProductDTO product = null;
+		AdminTongyeDTO product = null;
 		
-		String sql= proFile.getProperty("product.selectByProductCode");
-		//select * from product where product_code = ?
+		String sql= proFile.getProperty("product.selectByProductCode");//카테고리 이름도 나오게 join사용
+		//product_code, category_code, product_name, image, created_reg, product_detail, stock, price, category_name from product join product_category using(category_code) where product_code = ?
 		try {
 			con = DBUtil.getConnection();
 			ps = con.prepareStatement(sql);
@@ -218,9 +219,9 @@ public class AdminProductDAOImpl implements AdminProductDAO {
 			
 			rs = ps.executeQuery();
 			if(rs.next()) {
-				product = new ProductDTO(rs.getInt(1), rs.getInt(2), rs.getString(3),
+				product = new AdminTongyeDTO(rs.getInt(1), rs.getInt(2), rs.getString(3),
 						rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7),
-						rs.getInt(8));
+						rs.getInt(8), rs.getString(9));
 
 			}
 		}finally {
@@ -230,22 +231,22 @@ public class AdminProductDAOImpl implements AdminProductDAO {
 	}
 
 	@Override
-	public List<ProductDTO> selectAllProduct() throws SQLException {
+	public List<AdminTongyeDTO> selectAllProduct() throws SQLException {
 		Connection con=null;
 		PreparedStatement ps=null;
 		ResultSet rs=null;
-		List<ProductDTO> productList = new ArrayList<ProductDTO>();
+		List<AdminTongyeDTO> productList = new ArrayList<AdminTongyeDTO>();
 		
-		String sql= proFile.getProperty("product.selectAll");
-		//select * from product order by category_code
+		String sql= proFile.getProperty("product.selectAll");//카테고리 이름도 나오게 join사용
+		//select product_code, category_code, product_name, image, created_reg, product_detail, stock, price, category_name from product join product_category using(category_code) order by created_reg desc
 		try {
 			con = DBUtil.getConnection();
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while(rs.next()) {
-				ProductDTO product = new ProductDTO(rs.getInt(1), rs.getInt(2), rs.getString(3),
+				AdminTongyeDTO product = new AdminTongyeDTO(rs.getInt(1), rs.getInt(2), rs.getString(3),
 						rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7),
-						rs.getInt(8));
+						rs.getInt(8), rs.getString(9));
 				
 				productList.add(product);
 			}

@@ -6,9 +6,9 @@ import java.util.List;
 
 import mvc.dao.product.AdminProductDAO;
 import mvc.dao.product.AdminProductDAOImpl;
+import mvc.dto.product.AdminTongyeDTO;
 import mvc.dto.product.ColorDTO;
 import mvc.dto.product.ProductCategoryDTO;
-import mvc.dto.product.ProductDTO;
 import mvc.dto.product.ProductImageDTO;
 
 public class AdminProductServiceImpl implements AdminProductService {
@@ -16,7 +16,7 @@ public class AdminProductServiceImpl implements AdminProductService {
 	private AdminProductDAO adminProductDAO = new AdminProductDAOImpl();
 	
 	@Override
-	public void insertTotalProduct(ProductDTO product, ColorDTO color, ProductImageDTO productImage) throws SQLException {
+	public void insertTotalProduct(AdminTongyeDTO product, ColorDTO color, ProductImageDTO productImage) throws SQLException {
 		int result = adminProductDAO.insertTotalProduct(product, color, productImage);
 		
 		if(result==0)throw new SQLException("등록에 실패했습니다");
@@ -24,7 +24,7 @@ public class AdminProductServiceImpl implements AdminProductService {
 	}
 	
 	@Override
-	public void insertProduct(ProductDTO product) throws SQLException {
+	public void insertProduct(AdminTongyeDTO product) throws SQLException {
 		int result = adminProductDAO.insertProduct(product);
 		
 		if(result==0)throw new SQLException("등록에 실패했습니다");
@@ -52,8 +52,8 @@ public class AdminProductServiceImpl implements AdminProductService {
 	}
 
 	@Override
-	public void updateProductByProductCode(ProductDTO product, String saveDir) throws SQLException {
-		ProductDTO dbProduct=adminProductDAO.selectProductByProductCode(product.getProductCode());
+	public void updateProductByProductCode(AdminTongyeDTO product, String saveDir) throws SQLException {
+		AdminTongyeDTO dbProduct=adminProductDAO.selectProductByProductCode(product.getProductCode());
 		
 		if(dbProduct==null) throw new SQLException("상품을 찾을수 없습니다");
 		
@@ -70,7 +70,7 @@ public class AdminProductServiceImpl implements AdminProductService {
 
 	@Override
 	public void updateProductStockByProductCode(int productCode, int stock) throws SQLException {
-		ProductDTO dbProduct=adminProductDAO.selectProductByProductCode(productCode);
+		AdminTongyeDTO dbProduct=adminProductDAO.selectProductByProductCode(productCode);
 		
 		if(dbProduct==null) throw new SQLException("상품을 찾을수 없습니다");
 		
@@ -114,8 +114,8 @@ public class AdminProductServiceImpl implements AdminProductService {
 	}
 
 	@Override
-	public List<ProductDTO> selectAllProduct() throws SQLException {
-		List<ProductDTO> productList=adminProductDAO.selectAllProduct();
+	public List<AdminTongyeDTO> selectAllProduct() throws SQLException {
+		List<AdminTongyeDTO> productList=adminProductDAO.selectAllProduct();
 		
 		if(productList==null) throw new SQLException("상품정보를 찾을수 없습니다");
 		
@@ -123,8 +123,8 @@ public class AdminProductServiceImpl implements AdminProductService {
 	}
 
 	@Override
-	public ProductDTO selectProductByProductCode(int productCode) throws SQLException {
-		ProductDTO product=adminProductDAO.selectProductByProductCode(productCode);
+	public AdminTongyeDTO selectProductByProductCode(int productCode) throws SQLException {
+		AdminTongyeDTO product=adminProductDAO.selectProductByProductCode(productCode);
 		
 		if(product==null) throw new SQLException("상품정보를 찾을수 없습니다");
 		
