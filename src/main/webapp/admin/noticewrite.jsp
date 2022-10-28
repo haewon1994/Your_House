@@ -56,7 +56,11 @@
       <script type="text/javascript">
     
     
-       
+        
+      
+      
+      
+      
        
    function checkValid(){
 		
@@ -96,7 +100,7 @@
        
        
        
-       
+       document.getElementById("dd").
        
     
    
@@ -150,7 +154,7 @@
     <div style="display:flex;">       
       <h5 >배너 설정</h5>
        <div class="form-check"> 
-         <input class="form-check-input"  name="isPrivate"  type="checkbox" value="" id="defaultCheck1"  > 
+         <input class="form-check-input" id="dd" name="isPrivate"  type="checkbox" value="" id="defaultCheck1"  > 
        </div> 
      </div>
     <div class="mb-1 mt-3" style="margin-bottom:3px">
