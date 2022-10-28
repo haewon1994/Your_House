@@ -38,7 +38,7 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/util.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
 <!--===============================================================================================-->
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-2.1.1.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.1.js"></script>
 </head>
 <body>
 	<input type="hidden" id="productCode" value="${prodocut.productCode}">
@@ -118,7 +118,6 @@
 						</span>
 						
 						<!--  -->
-<<<<<<< HEAD
 						<div class="flex-w flex-r-m p-b-10">
 							<div class="size-203 flex-c-m respon6">
 								Color
@@ -184,7 +183,7 @@
 						<div class="tab-pane fade show active" id="description" role="tabpanel">
 							<div class="how-pos2 p-lr-15-md">
 								<p class="stext-102 cl6">
-									마음에 드신다면 지금 바로 구매해서 집으로 가져가세요. ANGERSBY 앙에르스뷔 소파는 차에 실어서 집까지 편하게 운반할 수 있도록 만들어졌습니다. 측면에 수납할 수 있는 포켓이 있어 더욱 편리합니다.
+									${prodocut.productDetail}
 								</p>
 							</div>
 						</div>
