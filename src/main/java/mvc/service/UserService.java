@@ -13,6 +13,8 @@ public interface UserService {
    
    UserDTO select(String email) throws SQLException;
    
+   UserDTO selectByUserCode(int userCode) throws SQLException;
+   
    void insert(UserDTO userDTO)throws SQLException;
    
    void update(UserDTO userDTO)throws SQLException;

@@ -37,6 +37,14 @@ body {
     height: 22px;
 }
 
+.sprite_heart_icon_outline_red {
+    display: inline-block;
+    background: url('../images/background01.png') no-repeat -26px -261px;
+    width: 24px;
+    height: 22px;
+}
+
+
 .sprite_small_search_icon {
     display: inline-block;
     background: url('../images/background01.png') no-repeat -337px -246px;
