@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>네가 사는 그 집</title>
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/svc" href="${pageContext.request.contextPath}/images/icons/favicon.png"/>
+	<link rel="icon" type="image/svc" href="${pageContext.request.contextPath}/images/icons/logo_thumb.svg"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -34,8 +34,7 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/vendor/perfect-scrollbar/perfect-scrollbar.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/util.css">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
-	
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">	
 <!--===============================================================================================-->
 
 </head>
@@ -59,19 +58,20 @@
 					<div class="menu-desktop">
 						<ul class="main-menu">
 							<li class="label1" data-label1="hot">
-								<a href="blog.html"><b style="font-size: 16px;">커뮤니티</b></a>
+								<a href="../mypage/storyHome.jsp"><b style="font-size: 16px;">커뮤니티</b></a>
 								<ul class="sub-menu">
-									<li><a href="blog.html">홈</a></li>
-									<li><a href="blog-detail.html">스토리</a></li>
+									<li><a href="${pageContext.request.contextPath}/mypage/storyHome.jsp">홈</a></li>
+									<li><a href="${pageContext.request.contextPath}/mypage/following.jsp">팔로잉</a></li>
+									<li><a href="${pageContext.request.contextPath}/mypage/storyWriter.jsp">글쓰기</a></li>
 								</ul>
 							</li>
 
 							<li class="active-menu">
 								<a href="index.html"><b style="font-size: 16px;">스토어</b></a>
 								<ul class="sub-menu">
-									<li><a href="index.html">홈</a></li>
-									<li><a href="product.html">카테고리</a></li>
-									<li><a href="home-03.html">베스트</a></li>
+									<li><a href="${pageContext.request.contextPath}/mypage/storeHome.jsp">홈</a></li>
+									<li><a href="${pageContext.request.contextPath}/mypage/storeCategory.jsp">카테고리</a></li>
+									<li><a href="${pageContext.request.contextPath}/mypage/storeBest.jsp">베스트</a></li>
 								</ul>
 							</li>
 
@@ -89,8 +89,12 @@
 					<!-- Icon header -->
 					<div class="wrap-icon-header flex-w flex-r-m h-full">
 						<ul class="main-menu">
-							<li>
+							<li class="active-menu">
 								<a href="../mypage/myProfile.jsp"><img src="${pageContext.request.contextPath}/images/icons/user.png" style=""></a>
+								<ul class="sub-menu">
+									<li><a href="${pageContext.request.contextPath}/mypage/myProfile.jsp">프로필</a></li>
+									<li><a href="${pageContext.request.contextPath}/mypage/myShopping.jsp">나의 쇼핑</a></li>
+								</ul>
 							</li>
 
 							<li>
@@ -160,7 +164,8 @@
 					<a href="index.html">커뮤니티</a>
 					<ul class="sub-menu-m">
 						<li><a href="index.html">홈</a></li>
-						<li><a href="home-02.html">스토리</a></li>
+						<li><a href="#">팔로잉</a></li>
+						<li><a href="#">글쓰기</a></li>
 					</ul>
 					<span class="arrow-main-menu-m">
 						<i class="fa fa-angle-right" aria-hidden="true"></i>

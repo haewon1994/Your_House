@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>프로필</title>
+<title>네가 사는 그 집</title>
 <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/icons/favicon.png"/>
 <!--===============================================================================================-->
@@ -36,10 +36,42 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/util.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/tab.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/profile.css">
 <!--===============================================================================================-->
+
+<style type="text/css">
+	#main_container .a_inner{
+	    width:900px;
+	    position: relative;
+	}
+
+    #main_container .a_inner{
+        width:initial !important;
+        max-width:935px;
+    }
+    
+    .a_inner .contents_box {
+        float: none;
+    }
+    
+    .detail .middle {
+    	padding: 48px 0;
+    }
+    
+    #main_container {
+    padding-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+    
+</style>
+
 </head>
 <body>
-<!-- breadcrumb -->
+<!-- crumb -->
 	<div class="container">
 		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
 			<a href="index.html" class="stext-109 cl8 hov-cl1 trans-04">
@@ -54,132 +86,120 @@
 		</div>
 	</div>
 
-<div class="cate_tab">
-   
-   <ul class="tab_menu">
-                 <!-- 이미지 이름: [비활성화 상태의 이미지는 _off] | [활성화 상태의 이미지는 _on]  -->
-       <li data-tab="tab-1" class="on">사진</li>
-       <li data-tab="tab-2">좋아요</li>
-       <li data-tab="tab-3">팔로워</li>
-   </ul>
-	<ul class="tab_content">
-	
-	    <li id="tab-1" class="on">
-		 <!-- Product -->
-		<div class="bg0 m-t-23 p-b-140">
-			<div class="container">
-				<div class="flex-w flex-sb-m p-b-52">
-					<div class="flex-w flex-l-m filter-tope-group m-tb-10">
-					사진
-					</div>				
-				</div>
-				<!-- Category Product Tab page -->
-				<div class="row isotope-grid">
-					<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
-					<!-- product-01 -->
-						<div class="block1">
-							<div class="block1-pic hov-img0">
-								<img src="${pageContext.request.contextPath}/images/product-01.jpg" alt="IMG-PRODUCT">
-							</div>
-	
-							<div class="block1-txt flex-w flex-t p-t-14">
-								<div class="block2-txt-child1 flex-col-l ">
-									<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-										Esprit Ruffle Shirt
-									</a>
-	
-									<span class="stext-105 cl3">
-										￦32,000
-									</span>
-								</div>	
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	    </li>
-	    
-	    <li id="tab-2">
-		 <!-- Product -->
-		<div class="bg0 m-t-23 p-b-140">
-			<div class="container">
-				<div class="flex-w flex-sb-m p-b-52">
-					<div class="flex-w flex-l-m filter-tope-group m-tb-10">
-					좋아요
-					</div>				
-				</div>
-				<!-- Category Product Tab page -->
-				<div class="row isotope-grid">
-					<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
-					<!-- product-02 -->
-						<div class="block1">
-							<div class="block1-pic hov-img0">
-								<img src="${pageContext.request.contextPath}/images/product-02.jpg" alt="IMG-PRODUCT">
-							</div>
-	
-							<div class="block1-txt flex-w flex-t p-t-14">
-								<div class="block2-txt-child1 flex-col-l ">
-									<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-										Esprit Ruffle Shirt
-									</a>
-	
-									<span class="stext-105 cl3">
-										￦32,000
-									</span>
-								</div>	
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>	
-		</li>
-		
-	    <li id="tab-3">
-	    <!-- Product -->
-		<div class="bg0 m-t-23 p-b-140">
-			<div class="container">
-				<div class="flex-w flex-sb-m p-b-52">
-					<div class="flex-w flex-l-m filter-tope-group m-tb-10">
-					팔로워
-					</div>				
-				</div>
-				<!-- Category Product Tab page -->
-				<div class="row isotope-grid">
-					<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
-					<!-- product-03 -->
-						<div class="block1">
-							<div class="block1-pic hov-img0">
-								<img src="${pageContext.request.contextPath}/images/product-03.jpg" alt="IMG-PRODUCT">
-							</div>
-	
-							<div class="block1-txt flex-w flex-t p-t-14">
-								<div class="block2-txt-child1 flex-col-l ">
-									<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-										Esprit Ruffle Shirt
-									</a>
-	
-									<span class="stext-105 cl3">
-										￦32,000
-									</span>
-								</div>	
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		</li>
-	    
-	</ul>
+<section id="my_container">
+
+    <div id="main_container">
+
+        <section class="a_inner">
+
+            <div class="prof_cont">
+                <div class="profile_wrap">
+                    <div class="profile_img">
+                        <img src="${pageContext.request.contextPath}/images/thumb001.jpg" alt="프로필사진">
+                    </div>
+                </div>
+
+                <div class="detail">
+                    <div class="top">
+                        <div class="user_name" style="font-family: SCDream4; color: #04348c;">닉네임</div>
+                        <a href="profile_edit.html" class="profile_edit">
+                        <img src="${pageContext.request.contextPath}/images/icons/gear_thin.svg" 
+                        alt="수정" style="width: 20px; padding-right: 5px;">
+                        프로필 편집</a>
+                        
+                    </div>
+
+                    <ul class="middle">
+                        <li>
+                            <span>사진</span>
+                            <span alt="내가 올린 사진 개수">22</span>
+                        </li>
+                        <li>
+                            <span>팔로워</span>
+                            <a class="follower" href="/follower">30</a>
+                        </li>
+                        <li>
+                            <span>팔로잉</span>
+                             <a class="followee" href="/followee">24</a>
+                        </li>
+                    </ul>                
+	                 <p class="about">
+	                  <span class="nick_name">사진</span>
+	                  <span class="book_mark">좋아요</span>
+	                 </p>
+                </div>
+
+            </div>
+
+            <div class="mylist_contents contents_container active">
+                <div class="pic">
+                    <a href="#" alt="storyDetail로 이동"><img src="${pageContext.request.contextPath}/images/img_section/img01.jpg" alt=""></a>
+                </div>
+                <div class="pic">
+                    <a href="#"><img src="${pageContext.request.contextPath}/images/img_section/img02.jpg" alt=""></a>
+                </div>
+                <div class="pic">
+                    <a href="#"> <img src="${pageContext.request.contextPath}/images/img_section/img03.jpg" alt=""></a>
+                </div>
+                <div class="pic">
+                    <a href="#"> <img src="${pageContext.request.contextPath}/images/img_section/img04.jpg" alt=""></a>
+                </div>
+                <div class="pic">
+                    <a href="#"> <img src="${pageContext.request.contextPath}/images/img_section/img05.jpg" alt=""></a>
+                </div>
+                <div class="pic">
+                    <a href="#"> <img src="${pageContext.request.contextPath}/images/img_section/img06.jpg" alt=""></a>
+                </div>
+                <div class="pic">
+                    <a href="#"> <img src="${pageContext.request.contextPath}/images/img_section/img02.jpg" alt=""></a>
+                </div>
+                <div class="pic">
+                    <a href="#"> <img src="${pageContext.request.contextPath}/images/img_section/img03.jpg" alt=""></a>
+                </div>
+                <div class="pic">
+                    <a href="#"> <img src="${pageContext.request.contextPath}/images/img_section/img01.jpg" alt=""></a>
+                </div>
+            </div>
+
+
+            <div class="bookmark_contents contents_container">
+                <div class="pic">
+                    <a href="#"><img src="${pageContext.request.contextPath}/images/img_section/img03.jpg" alt=""></a>
+                </div>
+                <div class="pic">
+                    <a href="#"><img src="${pageContext.request.contextPath}/images/img_section/img01.jpg" alt=""></a>
+                </div>
+                <div class="pic">
+                    <a href="#"> <img src="${pageContext.request.contextPath}/images/img_section/img02.jpg" alt=""></a>
+                </div>
+                <div class="pic">
+                    <a href="#"> <img src="${pageContext.request.contextPath}/images/img_section/img06.jpg" alt=""></a>
+                </div>
+                <div class="pic">
+                    <a href="#"> <img src="${pageContext.request.contextPath}/images/img_section/img05.jpg" alt=""></a>
+                </div>
+                <div class="pic">
+                    <a href="#"> <img src="${pageContext.request.contextPath}/images/img_section/img04.jpg" alt=""></a>
+                </div>
+                <div class="pic">
+                    <a href="#"> <img src="${pageContext.request.contextPath}/images/img_section/img01.jpg" alt=""></a>
+                </div>
+                <div class="pic">
+                    <a href="#"> <img src="${pageContext.request.contextPath}/images/img_section/img02.jpg" alt=""></a>
+                </div>
+                <div class="pic">
+                    <a href="#"> <img src="${pageContext.request.contextPath}/images/img_section/img05.jpg" alt=""></a>
+                </div>
+            </div>
+
+        </section>
+    </div>
+
+
+</section>
 	
 </div>
      
-    <section id="rauchbier" class="tab-panel">   
-    </section>
-    <section id="dunkles" class="tab-panel">    
-    </section>
     
 <!--===============================================================================================-->	
 	<script src="${pageContext.request.contextPath}/vendor/jquery/jquery-3.2.1.min.js"></script>
@@ -200,7 +220,7 @@
         $('.parallax100').parallax100();
 	</script>
 <!--===============================================================================================-->
-
+	<script src="${pageContext.request.contextPath}/js/profile.js"></script>
 <!--===============================================================================================-->
 	<script src="${pageContext.request.contextPath}/vendor/isotope/isotope.pkgd.min.js"></script>
 

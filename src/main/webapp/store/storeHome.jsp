@@ -458,17 +458,17 @@
 </section>
 	
 <!--===============================================================================================-->
-	<script language=javascript src="${pageContext.request.contextPath}/js/jquery-2.1.1.js"> </script>  
+	<script language=javascript src="${pageContext.request.contextPath}/js/jquery-3.6.1.min"> </script>  
 	<script language=javascript>
 	
 		/*MAIN slid*/
 		$(document).ready(function(){
 		var image = $('.view_visual img');
 		var numSlides=image.length;
-		var activeImage= 0;
-		var speed=2400;
-		var fade= 1400;	
-		var timer= setInterval(rotate, speed);
+		var activeImage=0;
+		var speed=5000;
+		var fade=3000;	
+		var timer=setInterval(rotate, speed);
 		image.eq(activeImage).show();
 		
 		$(".view_visual").hover(
@@ -481,7 +481,7 @@
 		function rotate(){
 			activeImage++; /* ++=+1 */
 			
-			if(activeImage== numSlides){
+			if(activeImage==numSlides){
 				activeImage= 0;
 			}
 			image.not(activeImage).fadeOut(fade);
