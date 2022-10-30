@@ -122,6 +122,13 @@ body {
     flex-direction: column;
 }
 
+#my_container {
+    background: #fafafa;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
 #header {
     width: 100%;
     position: absolute;
@@ -253,6 +260,10 @@ body {
     order: 1;
 }
 
+#main_container .a_inner{
+    width:400px;
+    position: relative;
+}
 
 #main_container .b_inner{
     width:335px;
@@ -279,6 +290,11 @@ body {
         max-width:935px;
     }
     
+    #main_container .a_inner{
+        width:initial !important;
+        max-width:935px;
+    }
+    
     #main_container .c_inner{
         width:initial !important;
         max-width:935px;
@@ -286,6 +302,10 @@ body {
 
     .side_box {
         display: none;
+    }
+    
+    .a_inner .contents_box {
+        float: none;
     }
 
     .b_inner .contents_box {

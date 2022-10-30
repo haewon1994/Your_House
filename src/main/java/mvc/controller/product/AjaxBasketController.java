@@ -35,39 +35,39 @@ public class AjaxBasketController implements AjaxController {
 		response.setContentType("text/html;charset=UTF-8");
 		System.out.println(11);
 		Map<String, BasketDTO> basketMap = new HashMap<String, BasketDTO>();
-		
+
 		if(request.getSession().getAttribute("basketMap")!=null) {
 			basketMap = (Map<String, BasketDTO>) request.getSession().getAttribute("basketMap");
 		}
-		
+
 		int totalprice = 0;
-		
+
 		PrintWriter out = response.getWriter();
-		
+
 		String productCode = request.getParameter("productCode");
 		String odrerQty = request.getParameter("odrerQty");
 		String colorName = request.getParameter("colorName");
-		
+
 		System.out.println("productCode : " + productCode);
 		System.out.println("odrerQty : " + odrerQty);
 		System.out.println("colorName : " + colorName);
-		
+
 		if(productCode==null || productCode.equals("") ||
-			odrerQty==null || odrerQty.equals("") ||
-			colorName==null || colorName.equals("")) {
-			
-			 out.print("정보를 모두 입력하셔야합니다");
+				odrerQty==null || odrerQty.equals("") ||
+				colorName==null || colorName.equals("")) {
+
+			out.print("정보를 모두 입력하셔야합니다");
 		} else {
 			BasketDTO basket = basketserivce.insert(Integer.parseInt(productCode), Integer.parseInt(odrerQty), colorName);
 			basketMap.put(productCode, basket);
 			System.out.println(basketMap);
-			
+
 			Set<String> keySet = basketMap.keySet();
 			for(String key : keySet) {
 				BasketDTO basketresult = basketMap.get(key);
 				totalprice += basketresult.getUnitPrice();
 			}
-			
+
 			HttpSession session = request.getSession();
 			session.setAttribute("basketMap", basketMap);
 			session.setAttribute("totalprice", totalprice);
@@ -80,26 +80,26 @@ public class AjaxBasketController implements AjaxController {
 	 */
 	public void delete(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		Map<String, BasketDTO> basketMap = new HashMap<String, BasketDTO>();
 		basketMap = (Map<String, BasketDTO>) request.getSession().getAttribute("basketMap");
-		
+
 		PrintWriter out = response.getWriter();
-		
+
 		int totalprice = 0;
-		
+
 		String productCode = request.getParameter("productCode");
 		if(productCode==null || productCode.equals("")) {
 			out.print("정보를 모두 입력하셔야합니다");
 		} else {
 			basketMap.remove(productCode);
-			
+
 			Set<String> keySet = basketMap.keySet();
 			for(String key : keySet) {
 				BasketDTO basketresult = basketMap.get(key);
 				totalprice += basketresult.getUnitPrice();
 			}
-			
+
 			System.out.println(basketMap.size());
 			if(basketMap.size()==0) {
 				request.getSession().removeAttribute("basketMap");
@@ -108,8 +108,50 @@ public class AjaxBasketController implements AjaxController {
 			} else {
 				request.getSession().setAttribute("basketMap", basketMap);
 				request.getSession().setAttribute("totalprice", totalprice);
-				out.print("1");
+				out.print(totalprice);
 			}
 		}
 	}
+
+	/**
+	 * 장바구니에 담겨진 상품 수량 수정하기
+	 */
+	public void update(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+
+		Map<String, BasketDTO> basketMap = new HashMap<String, BasketDTO>();
+		basketMap = (Map<String, BasketDTO>) request.getSession().getAttribute("basketMap");
+
+		String orderNumqty = request.getParameter("orderNumqty");
+
+		if(orderNumqty==null) {
+			out.print("아님");
+		} else {	
+			int totalprice = 0;
+
+			String productCode = request.getParameter("productCode");
+			BasketDTO basket = basketMap.get(productCode);
+
+			basket.setOdrerQty(Integer.parseInt(orderNumqty));
+
+			int uni = Integer.parseInt(orderNumqty) * basket.getProduct().getPrice();
+			basket.setUnitPrice(uni);
+			
+			basketMap.put(productCode, basket);
+
+			Set<String> keySet = basketMap.keySet();
+			for(String key : keySet) {
+				BasketDTO basketresult = basketMap.get(key);
+				totalprice += basketresult.getUnitPrice();
+			}
+
+			request.getSession().setAttribute("basketMap", basketMap);
+			request.getSession().setAttribute("totalprice", totalprice);
+			out.print(totalprice);
+		}
+	}
+
 }
+

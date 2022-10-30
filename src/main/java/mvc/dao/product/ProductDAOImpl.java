@@ -297,5 +297,20 @@ public class ProductDAOImpl implements ProductDAO {
 		}
 		return list;
 	}
+	/*
+	 * @Override public List<ProductDTO> totalBest(String keyword) throws
+	 * SQLException { //실시간/역대 누적판매 순위 상품 Connection con = null; PreparedStatement
+	 * ps = null; ResultSet rs = null; List<ProductDTO> list = new
+	 * ArrayList<ProductDTO>(); String sql =
+	 * "select * from product where CATEGORY_CODE=?";
+	 * 
+	 * try { con = DBUtil.getConnection(); ps = con.prepareStatement(sql);
+	 * ps.setInt(1, category); rs = ps.executeQuery();
+	 * 
+	 * while(rs.next()) { list.add(new ProductDTO( rs.getInt(1), rs.getInt(2),
+	 * rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6),
+	 * rs.getInt(7), rs.getInt(8) )); } } finally { DBUtil.dbClose(con, ps, rs); }
+	 * return list; }
+	 */
 
 }
