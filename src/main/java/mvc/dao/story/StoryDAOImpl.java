@@ -157,13 +157,13 @@ public class StoryDAOImpl implements StoryDAO {
 		ResultSet rs=null;
 		List<Story> list = new ArrayList<Story>();
 		
-		String sql="SELECT * FROM STOYR";
+		String sql="SELECT * FROM STORY";
 		
 		//sql ="SELECT * FROM MEMBER WHERE 1=1 -- like ?";   // keyField =  1=1 --
 		
 		try {
 			if(keyWord != null && !keyWord.isEmpty()) {
-				sql += " WHERE storLiter LIKE '%' || ? || '%'order by created_reg desc";
+				sql += " WHERE storyLiter LIKE '%' || ? || '%'order by created_reg desc";
 			}
 			
 			ps = con.prepareStatement(sql);
@@ -191,22 +191,15 @@ public class StoryDAOImpl implements StoryDAO {
 	}
 
 
-	@Override
-	public int increamentByReadnum(int storyCode) throws SQLException {
-		Connection con=null;
-		PreparedStatement ps=null;
-		int result=0;
-		//String sql= proFile.getProperty("Story.increamentByReadnum");//update Electronics set readnum=readnum+1 where model_num=?
-		try {
-			con = DBUtil.getConnection();
-			ps = con.prepareStatement("update Story set readnum=readnum+1 where STORY_CODE=?");
-			ps.setInt(1, storyCode);
-			result = ps.executeUpdate();
-		}finally {
-			DBUtil.dbClose(con, ps);
-		}
-		return result;
-	}
+	/*
+	 * @Override public int increamentByReadnum(int storyCode) throws SQLException {
+	 * Connection con=null; PreparedStatement ps=null; int result=0; //String sql=
+	 * proFile.getProperty("Story.increamentByReadnum");//update Electronics set
+	 * readnum=readnum+1 where model_num=? try { con = DBUtil.getConnection(); ps =
+	 * con.prepareStatement("update Story set readnum=readnum+1 where STORY_CODE=?"
+	 * ); ps.setInt(1, storyCode); result = ps.executeUpdate(); }finally {
+	 * DBUtil.dbClose(con, ps); } return result; }
+	 */
 
 
 	@Override

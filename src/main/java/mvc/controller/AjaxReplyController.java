@@ -11,6 +11,7 @@ import mvc.dto.reply.Reply;
 import mvc.dto.user.UserDTO;
 import mvc.service.ReplyService;
 import mvc.service.ReplyServiceImpl;
+import net.sf.json.JSONArray;
 
 
 public class AjaxReplyController implements AjaxController{
@@ -26,6 +27,7 @@ public class AjaxReplyController implements AjaxController{
 
 	public void insert(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
+		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		//전송된 데이터 받기 
 
@@ -34,14 +36,14 @@ public class AjaxReplyController implements AjaxController{
 		int userCode = user.getUserCode();
 		String replyContent = request.getParameter("reply_content");
 
-
-
 		Reply reply = 
 				new Reply(0,Integer.parseInt(storyCode), userCode, replyContent, null);
 
 
-		replyService.insert(reply);
-		 out.print("등록슺ㅂ니다");
+		Reply reply1 = replyService.insert(reply);
+
+		JSONArray json = JSONArray.fromObject(reply1);
+		out.print(json);
 
 	}
 

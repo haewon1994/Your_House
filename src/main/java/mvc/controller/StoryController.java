@@ -70,9 +70,12 @@ public class StoryController implements Controller {
 		int maxSize=1024*1024*100; //100M
 		String encoding="UTF-8";
 		
+		String userCode1=request.getParameter("user_code");
+		
+		
 		MultipartRequest m = 
 		 new MultipartRequest(request,saveDir, maxSize, encoding, new DefaultFileRenamePolicy());
-		
+		System.out.println(userCode1+"ffff");
 		//전송된 데이터 받기 
 		String storyCode = m.getParameter("story_code");
 		String userCode = m.getParameter("user_code");
@@ -80,7 +83,8 @@ public class StoryController implements Controller {
 		String storyLiter = m.getParameter("story_liter");
 		String storyReg = m.getParameter("story_reg");
 		
-		
+		System.out.println(userCode);
+		System.out.println(storyCode+"/"+userCode+"/"+storyCode+"/"+storyImage+"/"+storyLiter+"/"+storyReg);
 		Story story = 
 			new Story(0,Integer.parseInt(userCode), storyImage, storyLiter,null);
 		
@@ -100,21 +104,21 @@ public class StoryController implements Controller {
 	 * 상세보기 
 	 */
 
-	public ModelAndView selectBynoticeCode(HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView selectBystoryCode(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		
 		
 		String storyCode=request.getParameter("storyCode");
-		String flag = request.getParameter("flag");
+		/* String flag = request.getParameter("flag"); */
 		Story story=null;
-		if(flag.equals("")||flag==null) {
-			story = storyService.selectByStoryCode(Integer.parseInt(storyCode), false);
-		}
-		story = storyService.selectByStoryCode(Integer.parseInt(storyCode), true);
+		
+		System.out.println(storyCode);
+		story = storyService.selectByStoryCode(Integer.parseInt(storyCode));
 		request.setAttribute("story", story);
 		
-		return new ModelAndView("story/read.jsp"); //forward방식 
+		return new ModelAndView("community/storyDetail.jsp"); //forward방식 
 	}
+	
 	
 	
 	
@@ -125,7 +129,7 @@ public class StoryController implements Controller {
 	public ModelAndView updateForm(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		String storyCode=request.getParameter("storyCode");
-	Story story = storyService.selectByStoryCode(Integer.parseInt(storyCode),false);
+	Story story = storyService.selectByStoryCode(Integer.parseInt(storyCode));
 
 		request.setAttribute("story", story);
 		

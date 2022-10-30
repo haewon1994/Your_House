@@ -45,8 +45,7 @@ public interface ReplyDAO {
 
 
 
-	
-
+	Reply serchReplyCode(int userCode, int storyCode)throws SQLException;
 
 
 }

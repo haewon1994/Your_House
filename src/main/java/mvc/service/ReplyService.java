@@ -13,14 +13,14 @@ public interface ReplyService {
 	/**
 	 * NoticeDAOImpl의 모든레코드 검색하는 메소드 호출
 	 * */
-    List<Reply> selectAll() throws SQLException;
+    List<Reply> selectAll(int storyCode) throws SQLException;
     
     
     
 	/**
 	   * NoticeDAOImpl의 레코드 삽입하는 메소드 호출
 	   * */
-	  void insert(Reply reply) throws SQLException;
+    Reply insert(Reply reply) throws SQLException;
 	 
 	  
 	 

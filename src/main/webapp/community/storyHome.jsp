@@ -22,6 +22,37 @@
 }
 </style>
 
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/jquery-3.6.1.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$(".heart_btn").click(function() {
+			let storyCode = $("#story_code").val();
+			let replyContent = $("#reply_content").val();
+			
+			$.ajax({
+				url : "ajax",
+				type : "post",
+				dataType : "json",
+				data : {
+					key:'reply',
+					methodName :'insert',
+					story_code : storyCode,
+					reply_content : replyContent
+				},
+				success : function(result) {
+					alert(11);
+					
+					
+				},
+				error : function(err) {
+					alert(err+"에러 발생했어요.");
+				}//error
+			});//ajax
+		});
+
+</script>
+
 </head>
 <body class="animsition">	
 <section class="bg-img1 txt-center p-lr-15 p-tb-92" 
@@ -48,7 +79,7 @@ style="background-image: url('${pageContext.request.contextPath}/images/storyBG.
 			                                <img src="${pageContext.request.contextPath}/images/thumb001.jpg" alt="">
 			                            </div>
 			                            <div class="user_name">
-			                                <div class="nick_name">${story.user.nickname}</div> 
+			                                <div class="nick_name"><a href="front?key=user&methodName=selectByUserCode&userCode=${user.userCode}">${story.user.nickname}</a></div> 
 			                                <a href="" 
 			                                style="text-decoration: none; font-weight: bold; color:#2982ed">
 			                                <c:choose>
@@ -67,7 +98,8 @@ style="background-image: url('${pageContext.request.contextPath}/images/storyBG.
 
 			                    <div class="img_section">
 			                        <div class="trans_inner">
-			                            <div><img src="${pageContext.request.contextPath}/images/story001.jpg" alt=""></div>
+			                            <div><a href="front?key=story&methodName=selectBystoryCode&storyCode=${story.storyCode }">
+			                            <img src="${pageContext.request.contextPath}/images/story001.jpg" alt="" ></a></div>
 			                        </div>
 			                    </div>
 
