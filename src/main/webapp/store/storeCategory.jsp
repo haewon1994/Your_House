@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <jsp:include page="../common/header.jsp"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>카테고리</title>
+<script type="text/javascript" scr="${pageContext.request.contextPath }/js/jquery-3.6.1.js"></script>
 <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/icons/favicon.png"/>
 <!--===============================================================================================-->
@@ -77,7 +79,9 @@
 				</div>
 				<!-- Category Product Tab page -->
 				<div class="row isotope-grid">
-					<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+					<c:forEach items="${category1}" var="product1">
+					
+						<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
 					<!-- product-01 -->
 						<div class="block1">
 							<div class="block1-pic hov-img0">
@@ -86,17 +90,19 @@
 	
 							<div class="block1-txt flex-w flex-t p-t-14">
 								<div class="block2-txt-child1 flex-col-l ">
-									<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-										Esprit Ruffle Shirt
+									<a href="front?key=store&methodName=productDetail&productCode=${product1.productCode }" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+										${product1.productName }
 									</a>
 	
 									<span class="stext-105 cl3">
-										￦32,000
+										${product1.price }
 									</span>
 								</div>	
 							</div>
 						</div>
 					</div>
+					
+					</c:forEach>
 				</div>
 			</div>
 		</div>
@@ -113,26 +119,30 @@
 				</div>
 				<!-- Category Product Tab page -->
 				<div class="row isotope-grid">
-					<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
-					<!-- product-02 -->
+					<c:forEach items="${category2}" var="product1">
+					
+						<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+					<!-- product-01 -->
 						<div class="block1">
 							<div class="block1-pic hov-img0">
-								<img src="${pageContext.request.contextPath}/images/product-02.jpg" alt="IMG-PRODUCT">
+								<img src="${pageContext.request.contextPath}/images/product-01.jpg" alt="IMG-PRODUCT">
 							</div>
 	
 							<div class="block1-txt flex-w flex-t p-t-14">
 								<div class="block2-txt-child1 flex-col-l ">
-									<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-										Esprit Ruffle Shirt
+									<a href="front?key=store&methodName=productDetail&productCode=${product1.productCode }" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+										${product1.productName }
 									</a>
 	
 									<span class="stext-105 cl3">
-										￦32,000
+										${product1.price }
 									</span>
 								</div>	
 							</div>
 						</div>
 					</div>
+					
+					</c:forEach>
 				</div>
 			</div>
 		</div>	
@@ -149,26 +159,30 @@
 				</div>
 				<!-- Category Product Tab page -->
 				<div class="row isotope-grid">
-					<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
-					<!-- product-03 -->
+					<c:forEach items="${category3}" var="product1">
+					
+						<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+					<!-- product-01 -->
 						<div class="block1">
 							<div class="block1-pic hov-img0">
-								<img src="${pageContext.request.contextPath}/images/product-03.jpg" alt="IMG-PRODUCT">
+								<img src="${pageContext.request.contextPath}/images/product-01.jpg" alt="IMG-PRODUCT">
 							</div>
 	
 							<div class="block1-txt flex-w flex-t p-t-14">
 								<div class="block2-txt-child1 flex-col-l ">
-									<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-										Esprit Ruffle Shirt
+									<a href="front?key=store&methodName=productDetail&productCode=${product1.productCode }" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+										${product1.productName }
 									</a>
 	
 									<span class="stext-105 cl3">
-										￦32,000
+										${product1.price }
 									</span>
 								</div>	
 							</div>
 						</div>
 					</div>
+					
+					</c:forEach>
 				</div>
 			</div>
 		</div>
@@ -185,26 +199,30 @@
 				</div>
 				<!-- Category Product Tab page -->
 				<div class="row isotope-grid">
-					<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
-					<!-- product-04 -->
+					<c:forEach items="${category4}" var="product1">
+					
+						<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+					<!-- product-01 -->
 						<div class="block1">
 							<div class="block1-pic hov-img0">
-								<img src="${pageContext.request.contextPath}/images/product-04.jpg" alt="IMG-PRODUCT">
+								<img src="${pageContext.request.contextPath}/images/product-01.jpg" alt="IMG-PRODUCT">
 							</div>
 	
 							<div class="block1-txt flex-w flex-t p-t-14">
 								<div class="block2-txt-child1 flex-col-l ">
-									<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-										Esprit Ruffle Shirt
+									<a href="front?key=store&methodName=productDetail&productCode=${product1.productCode }" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+										${product1.productName }
 									</a>
 	
 									<span class="stext-105 cl3">
-										￦32,000
+										${product1.price }
 									</span>
 								</div>	
 							</div>
 						</div>
 					</div>
+					
+					</c:forEach>
 				</div>
 			</div>
 		</div>
@@ -221,26 +239,30 @@
 				</div>
 				<!-- Category Product Tab page -->
 				<div class="row isotope-grid">
-					<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
-					<!-- product-05 -->
+					<c:forEach items="${category5}" var="product1">
+					
+						<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+					<!-- product-01 -->
 						<div class="block1">
 							<div class="block1-pic hov-img0">
-								<img src="${pageContext.request.contextPath}/images/product-05.jpg" alt="IMG-PRODUCT">
+								<img src="${pageContext.request.contextPath}/images/product-01.jpg" alt="IMG-PRODUCT">
 							</div>
 	
 							<div class="block1-txt flex-w flex-t p-t-14">
 								<div class="block2-txt-child1 flex-col-l ">
-									<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-										Esprit Ruffle Shirt
+									<a href="front?key=store&methodName=productDetail&productCode=${product1.productCode }" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+										${product1.productName }
 									</a>
 	
 									<span class="stext-105 cl3">
-										￦32,000
+										${product1.price }
 									</span>
 								</div>	
 							</div>
 						</div>
 					</div>
+					
+					</c:forEach>
 				</div>
 			</div>
 		</div>

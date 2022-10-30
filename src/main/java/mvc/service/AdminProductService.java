@@ -3,9 +3,9 @@ package mvc.service;
 import java.sql.SQLException;
 import java.util.List;
 
+import mvc.dto.product.AdminTongyeDTO;
 import mvc.dto.product.ColorDTO;
 import mvc.dto.product.ProductCategoryDTO;
-import mvc.dto.product.ProductDTO;
 import mvc.dto.product.ProductImageDTO;
 
 
@@ -20,12 +20,12 @@ public interface AdminProductService {
 	/**
 	 * 상품 통합 등록
 	 */
-	void insertTotalProduct(ProductDTO product, ColorDTO color, ProductImageDTO productImage) throws SQLException;
+	void insertTotalProduct(AdminTongyeDTO product, ColorDTO color, ProductImageDTO productImage) throws SQLException;
 	
 	/**
 	 * 상품만 등록
 	 */
-	void insertProduct(ProductDTO product) throws SQLException;
+	void insertProduct(AdminTongyeDTO product) throws SQLException;
 	
 	/**
 	 * 상품사진 등록
@@ -47,7 +47,7 @@ public interface AdminProductService {
 	 * 상품코드에 해당하는 상품 수정(사진, 색상은 수정 없음)
 	 * 썸네일(대표이미지) 변경시 이전 파일은 삭제
 	 */
-	void updateProductByProductCode(ProductDTO product, String saveDir) throws SQLException;
+	void updateProductByProductCode(AdminTongyeDTO product, String saveDir) throws SQLException;
 	
 	/**
 	 * 상품코드에 해당하는 재고량 수정(상품정보만)
@@ -77,13 +77,14 @@ public interface AdminProductService {
 	/**
 	 * 상품리스트 출력 : 최근 생성일 맨 앞으로
 	 * 등록,수정등 성공후 연결 페이지
+	 * categoryName 도 뽑아올수있게 join 사용
 	 */
-	List<ProductDTO> selectAllProduct() throws SQLException;
+	List<AdminTongyeDTO> selectAllProduct() throws SQLException;
 	
 	/**
-	 * 상품코드에 해당하는 상품만 조회
+	 * 상품코드에 해당하는 상품만 조회+categoryName 도 뽑아올수있게 join 사용
 	 */
-	ProductDTO selectProductByProductCode(int productCode) throws SQLException;
+	AdminTongyeDTO selectProductByProductCode(int productCode) throws SQLException;
 	
 	/**
 	 * 사진코드로 사진 조회

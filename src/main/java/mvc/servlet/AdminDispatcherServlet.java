@@ -34,9 +34,9 @@ public class AdminDispatcherServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String key = request.getParameter("key");
 		String methodName = request.getParameter("methodName");
-		
-		if(key==null || key.equals("")) key="product";
-		if(methodName==null || methodName.equals("")) methodName="selectAll";
+		System.out.println("Dispatcher key+methodName="+key+methodName);
+		if(key==null || key.equals("")) key="adminTongye";
+		if(methodName==null || methodName.equals("")) methodName="mainMove";
 		
 		System.out.println(key+" , " + methodName);
 		
