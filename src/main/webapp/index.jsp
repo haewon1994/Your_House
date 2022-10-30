@@ -29,13 +29,10 @@
         document.
         loginForm.
         addEventListener("submit", function(e) {
-            
-           if($("#mail").val() == "") {
-        	   state=true;
-           }
-          if($("#pwd").val() == "")	{
-        	  state=true;
-          }
+           if($("#mail").val() == "")
+        	               state=true;
+           if($("#pwd").val() == "")
+         	               state=true;
           
             if(state){
         	   
@@ -46,8 +43,7 @@
     
             	let sessType  = $('input:radio[name="sess"]:checked').val();	 
         	    let keyV="";
-        	    let methodNameV="";
-        	    alert(sessType); 
+        	    let methodNameV=""; 
         	    		
         	    if(sessType=="0"){ 
         		      keyV="admin";
@@ -76,7 +72,7 @@
  <div class="text-center"style="margin-left:auto; margin-right:auto; margin-top:120px;">
    <div>
    <form style="max-width:480px; margin:auto;"name="loginForm" action="front" method="get">
-     <img class="mt-5 mb-4" src="yourhouse_logo.svg">
+     <img class="mt-5 mb-4" src="images/icons/NIZIP_logo.svg">
         <input type="email" id="mail" name="email" class="form-control mt-3" placeholder="이메일입력" required autofocus style="height:65px" > 
         <input type="password" id="pwd"  name="password" placeholder="비밀번호 입력"  class="form-control" required autofocus style="height:65px">    
        <div style="display:flex; margin-top:20px;">
@@ -101,14 +97,10 @@
   
   </form>
     <section style="margin-top: 60px;">
-     <a style="margin-left:-20px">비밀번호 재설정</a><a style="margin-left:40px">회원가입</a>  
+     <a href="register/updatePass.jsp" style="margin-left:-20px">비밀번호 재설정</a><a href="register/reg.html" style="margin-left:40px">회원가입</a>  
     </section> 
   </div>
-    <section style="margin-top:70px">
-     <div class="mt-10 f">sns계정으로 간편 로그인/회원 가입</div>
-     <a href="www.naver.com"><img src="kakao.png" style="height:50px; width:50px; margin-top:20px" /></a>    
-   </section> 
-  
+ 
  </div> 
 </body>
 </html>

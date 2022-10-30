@@ -26,7 +26,7 @@ public class ReplyDAOImpl implements ReplyDAO {
 		String sql= proFile.getProperty("Reply.selectAll");//select * from Electronics  order by writeday desc
 		try {
 			con = DBUtil.getConnection();
-			ps = con.prepareStatement("select * from reply where reply_code=? order by created_Reg desc");
+			ps = con.prepareStatement("select * from reply where story_code=? order by created_Reg desc");
 			ps.setInt(1, storyCode);
 			rs = ps.executeQuery();
 			while(rs.next()) {

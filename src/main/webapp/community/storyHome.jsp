@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../common/header.jsp"/> 
 <!DOCTYPE html>
 <html>
@@ -39,20 +40,28 @@ style="background-image: url('${pageContext.request.contextPath}/images/storyBG.
 					<div class="block2">
 						<section class="b_inner">
 			            <div class="contents_box">
-			                <article class="contents cont01">
+			               <c:forEach items="${storylist}" var="story">
+			               	 <article class="contents cont01">
 			                    <header class="top">
 			                        <div class="user_container">
 			                            <div class="profile_img">
 			                                <img src="${pageContext.request.contextPath}/images/thumb001.jpg" alt="">
 			                            </div>
 			                            <div class="user_name">
-			                                <div class="nick_name">닉네임1ww23</div> 
+			                                <div class="nick_name">${story.user.nickname}</div> 
 			                                <a href="" 
 			                                style="text-decoration: none; font-weight: bold; color:#2982ed">
-			                                팔로우</a>
+			                                <c:choose>
+			                                	<c:when test="${story.follow}">
+			                                		팔로잉
+			                                	</c:when>
+			                                	<c:otherwise>
+			                                		팔로우
+			                                	</c:otherwise>
+			                                </c:choose>
+			                                </a>
 			                            </div>
 			                        </div>
-			                       
 			                    </header>
 
 			                    <div class="img_section">
@@ -65,7 +74,14 @@ style="background-image: url('${pageContext.request.contextPath}/images/storyBG.
 			                    <div class="bottom_icons">
 			                        <div class="left_icons">
 			                            <div class="heart_btn">
-			                                <div class="sprite_heart_icon_outline" data-name="heartbeat"></div>
+			                            <c:choose>
+			                                	<c:when test="${story.like}">
+			                                		<div class="sprite_heart_icon_outline_red" data-name="heartbeat"></div>
+			                                	</c:when>
+			                                	<c:otherwise>
+			                                		<div class="sprite_heart_icon_outline" data-name="heartbeat"></div>
+			                                	</c:otherwise>
+			                                </c:choose>
 			                            </div>
 			                        </div>
 
@@ -74,24 +90,11 @@ style="background-image: url('${pageContext.request.contextPath}/images/storyBG.
 			                        </div>
 			                    </div>
 							<div class="commet_container">
-
-                        <div class="commet">
-                            <div class="nick_name">
-                                popo213
-                            </div>
-                             <div class="commet" style="margin: 0 10px;">
-                                네가 사는 그 집입니다.
-                                코멘트 넣어 주세요.
-                        	</div>
-                        </div>
-
                     </div>
-			             </article>
-
+			                </article>
+			               </c:forEach>
 			            </div>
-
 		        		</section>
-				
 				</div>
 			</div>
 				<!-- 게시물END -->

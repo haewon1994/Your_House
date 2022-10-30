@@ -50,7 +50,7 @@
 				<nav class="limiter-menu-desktop p-l-45">
 					
 					<!-- Logo desktop -->		
-					<a href="${pageContext.request.contextPath}/store/storeHome.jsp" class="logo">
+					<a href="${pageContext.request.contextPath }/front?key=store&methodName=storeHome" class="logo">
 						<img src="${pageContext.request.contextPath}/images/icons/NIZIP_logo.svg" style="width: 250px;" alt="IMG-LOGO">
 					</a>
 
@@ -58,20 +58,20 @@
 					<div class="menu-desktop">
 						<ul class="main-menu">
 							<li class="label1" data-label1="hot">
-								<a href="../mypage/storyHome.jsp"><b style="font-size: 16px;">커뮤니티</b></a>
+								<a href="${pageContext.request.contextPath}/community/storyHome.jsp"><b style="font-size: 16px;">커뮤니티</b></a>
 								<ul class="sub-menu">
-									<li><a href="${pageContext.request.contextPath}/mypage/storyHome.jsp">홈</a></li>
-									<li><a href="${pageContext.request.contextPath}/mypage/following.jsp">팔로잉</a></li>
+									<li><a href="front?key=story&methodName=select">홈</a></li>
+									<li><a href="blog-detail.html">팔로잉</a></li>
 									<li><a href="${pageContext.request.contextPath}/mypage/storyWriter.jsp">글쓰기</a></li>
 								</ul>
 							</li>
 
 							<li class="active-menu">
-								<a href="index.html"><b style="font-size: 16px;">스토어</b></a>
+								<a href="${pageContext.request.contextPath}/front?key=store&methodName=storeHome"><b style="font-size: 16px;">스토어</b></a>
 								<ul class="sub-menu">
-									<li><a href="${pageContext.request.contextPath}/mypage/storeHome.jsp">홈</a></li>
-									<li><a href="${pageContext.request.contextPath}/mypage/storeCategory.jsp">카테고리</a></li>
-									<li><a href="${pageContext.request.contextPath}/mypage/storeBest.jsp">베스트</a></li>
+									<li><a href="front?key=store&methodName=storeHome">홈</a></li>
+									<li><a href="../store/storeCategory.jsp">카테고리</a></li>
+									<li><a href="../store/storeBest.jsp">베스트</a></li>
 								</ul>
 							</li>
 
@@ -100,7 +100,7 @@
 							<li>
 								<c:choose>
 									<c:when test="${empty loginUser}">
-										<a href="../index.jsp">로그인</a>
+										<a href="${pageContext.request.contextPath}/index.jsp">로그인</a>
 									</c:when>
 									<c:otherwise>
 										<a href="${pageContext.request.contextPath}/mypage/myProfile.jsp">${loginUser.nickname}</a>
@@ -109,7 +109,14 @@
 							</li>
 
 							<li>
-								<a href="../reg.html">회원가입</a>
+								<c:choose>
+									<c:when test="${empty loginUser}">
+										<a href="../register/reg.html">회원가입</a>
+									</c:when>
+									<c:otherwise>
+										<a href="${pageContext.request.contextPath}/front?key=user&methodName=logout">로그아웃</a>
+									</c:otherwise>
+								</c:choose>
 							</li>
 
 							<li>
@@ -119,7 +126,7 @@
 							
 						<div class="shopingCart">
 							
-								<a href="../store/cart.jsp"><img src="${pageContext.request.contextPath}/images/icons/shopping-cart.png" style="width: 30%;"></a>
+								<a href="${pageContext.request.contextPath}/store/cart.jsp"><img src="${pageContext.request.contextPath}/images/icons/shopping-cart.png" style="width: 30%;"></a>
 							</div>
 				
 						</div>
@@ -295,7 +302,7 @@
 <!--===============================================================================================-->
 	<script src="${pageContext.request.contextPath}/js/main.js"></script>
 <!--===============================================================================================-->
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"> </script>  
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.1.js"> </script>  
 	<script type="text/javascript">
 	
 		/*MAIN slid*/

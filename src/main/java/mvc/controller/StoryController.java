@@ -1,7 +1,9 @@
 package mvc.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -12,14 +14,17 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 
 import mvc.dto.story.Story;
+import mvc.dto.user.UserDTO;
 import mvc.service.StoryService;
 import mvc.service.StoryServiceImpl;
+import mvc.service.UserService;
+import mvc.service.UserServiceImpl;
 
 public class StoryController implements Controller {
 	
 	private StoryService storyService = new StoryServiceImpl();
-
-
+	private UserService userService = new UserServiceImpl();
+	
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -33,16 +38,23 @@ public class StoryController implements Controller {
 	public ModelAndView select(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		
-		  String pageNo = request.getParameter("pageNo");
-		  if(pageNo==null || pageNo.equals("")) {
-			  pageNo="1";
-		  }
+		/*
+		 * String pageNo = request.getParameter("pageNo"); if(pageNo==null ||
+		 * pageNo.equals("")) { pageNo="1"; }
+		 */
+		System.out.println(request.getSession().getAttribute("loginUser"));
 		
-		List<Story> list = storyService.selectAll();
-		request.setAttribute("list", list);//뷰에서 ${list}
-		request.setAttribute("pageNo", pageNo); //뷰에서 ${pageNo}
-		System.out.println(list);
-		return new ModelAndView("story/list.jsp"); //forward방식으로 이동
+		UserDTO my = (UserDTO) request.getSession().getAttribute("loginUser");
+		int myCode = my.getUserCode();
+		
+		List<Story> storylist = storyService.selectAll(myCode);
+		
+		
+		request.setAttribute("storylist", storylist);//뷰에서 ${list}
+		/*
+		 * request.setAttribute("pageNo", pageNo); //뷰에서 ${pageNo}
+		 */		
+		return new ModelAndView("community/storyHome.jsp"); //forward방식으로 이동
 	}
 	
 	
@@ -70,7 +82,7 @@ public class StoryController implements Controller {
 		
 		
 		Story story = 
-			new Story(Integer.parseInt(storyCode),Integer.parseInt(userCode), storyImage, storyLiter, storyReg);
+			new Story(0,Integer.parseInt(userCode), storyImage, storyLiter,null);
 		
 		//만약, 파일첨부가 되었다면....
 		if(m.getFilesystemName("file") != null) {

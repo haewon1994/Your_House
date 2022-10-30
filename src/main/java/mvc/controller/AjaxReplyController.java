@@ -28,19 +28,20 @@ public class AjaxReplyController implements AjaxController{
 			throws Exception {
 		PrintWriter out = response.getWriter();
 		//전송된 데이터 받기 
-		String replyCode = request.getParameter("reply_code");
+
 		String storyCode = request.getParameter("story_code");
 		UserDTO user = (UserDTO) request.getSession().getAttribute("loginUser");
 		int userCode = user.getUserCode();
 		String replyContent = request.getParameter("reply_content");
-		String createdReg = request.getParameter("created_reg");
+
 
 
 		Reply reply = 
-				new Reply(Integer.parseInt(replyCode),Integer.parseInt(storyCode), userCode, replyContent, createdReg);
+				new Reply(0,Integer.parseInt(storyCode), userCode, replyContent, null);
 
 
 		replyService.insert(reply);
+		 out.print("등록슺ㅂ니다");
 
 	}
 
