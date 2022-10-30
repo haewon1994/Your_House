@@ -19,7 +19,6 @@ import mvc.service.StoryServiceImpl;
 import mvc.service.product.ProductService;
 import mvc.service.product.ProductServiceImpl;
 
-public class StoreController implements Controller{
 public class StoreController implements Controller {
 	private ProductService proService = new ProductServiceImpl();
 	private StoryService storyService = new StoryServiceImpl();
@@ -64,10 +63,6 @@ public class StoreController implements Controller {
 		
 		String url="error/signupError.jsp";
 		String errMsg="상품이 없습니다";
-		
-
-		String url = "error/signupError.jsp";
-		String errMsg = "상품이 없습니다";
 
 		// 넘어오는 값 받기
 		UserDTO user = (UserDTO) request.getSession().getAttribute("loginUser");
@@ -75,7 +70,7 @@ public class StoreController implements Controller {
 		
 		String productCode = request.getParameter("productCode");
 		
-		if(productCode.equals("") || productCode==null) {
+		if(productCode.equals("") || productCode==null) {}
 
 		if (productCode.equals("") || productCode == null) {
 			request.setAttribute("errMsg", errMsg);
@@ -136,9 +131,7 @@ public class StoreController implements Controller {
 		
 		return null;
 	}
-	 * 
-	 * @throws SQLException
-	 *//*
+	/*
 		 * public ModelAndView storeBest(HttpServletRequest request, HttpServletResponse
 		 * response) throws ServletException, IOException, SQLException {
 		 * 

@@ -264,7 +264,7 @@ public class ProductDAOImpl implements ProductDAO {
 		}
 		return list;
 	}
-
+/*
 	@Override
 	public List<ProductDTO> totalBest(String keyword) throws SQLException {
 		//실시간/역대 누적판매 순위 상품
@@ -297,6 +297,7 @@ public class ProductDAOImpl implements ProductDAO {
 		}
 		return list;
 	}
+*/
 	/*
 	 * @Override public List<ProductDTO> totalBest(String keyword) throws
 	 * SQLException { //실시간/역대 누적판매 순위 상품 Connection con = null; PreparedStatement

@@ -43,16 +43,18 @@ public class AdminTongyeController implements Controller {
 	
 	/**
 	 * 관리자 메인 인덱스 접속용 메소드
+	 * ->매출 누적순 한달기준
+	 * 인수 : ${adminTongyeList}
 	 * 
-	 * (예정 : 전날 베스트 상품 Top 10)
 	 * 연결 경로 : admin/adminIndex.jsp (최근생성순 상품리스트)
 	 */
 	public ModelAndView mainMove(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		List<ProductCategoryDTO> categoryList=adminProductService.selectAllProductCategory();
+		List<AdminTongyeDTO> adminTongyeList=new ArrayList<AdminTongyeDTO>();
+		adminTongyeList=adminTongyeService.selectTongyeMain();
 		
-		//뷰에서 ${categoryList}
-		request.setAttribute("categoryList", categoryList);
+		//뷰에서 ${adminTongyeList}
+		request.setAttribute("adminTongyeList", adminTongyeList);
 		
 		return new ModelAndView("admin/adminIndex.jsp"); //forward방식으로 이동
 	
