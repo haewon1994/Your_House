@@ -7,6 +7,17 @@ public class ProductImageDTO {
 	
 	public ProductImageDTO() {}
 	
+	public ProductImageDTO(int imageCode) {
+		super();
+		this.imageCode = imageCode;
+	}
+
+	public ProductImageDTO(int imageCode, int productCode) {
+		super();
+		this.imageCode = imageCode;
+		this.productCode = productCode;
+	}
+
 	public ProductImageDTO(String fileName) {
 		this.fileName = fileName;
 	}

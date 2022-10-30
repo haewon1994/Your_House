@@ -49,12 +49,15 @@ public class StoreController implements Controller{
 		String errMsg="상품이 없습니다";
 		
 		// 넘어오는 값 받기
+		UserDTO user = (UserDTO) request.getSession().getAttribute("loginUser");
+		int userCode = user.getUserCode();
+		
 		String productCode = request.getParameter("productCode");
 		
 		if(productCode.equals("") || productCode==null) {
 			request.setAttribute("errMsg", errMsg);
 		} else {
-			ProductDTO prdocut = proService.selectByProductCode(Integer.parseInt(productCode));
+			ProductDTO prdocut = proService.selectByProductCode(userCode, Integer.parseInt(productCode));
 			request.setAttribute("prodocut", prdocut);
 			
 			url="store/productDetail.jsp";
@@ -96,7 +99,7 @@ public class StoreController implements Controller{
 			throws ServletException, IOException, SQLException {
 
 		// 베스트에 대한 전체 정보
-		Map<String, List<ProductDTO>> totalbest = proService.totalbest();
+		//Map<String, List<ProductDTO>> totalbest = proService.totalbest();
 		
 		
 		return null;

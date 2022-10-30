@@ -277,7 +277,7 @@ public class ProductDAOImpl implements ProductDAO {
 		try {
 			con = DBUtil.getConnection();
 			ps = con.prepareStatement(sql);
-			ps.setInt(1, category);
+			//ps.setInt(1, category);
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {

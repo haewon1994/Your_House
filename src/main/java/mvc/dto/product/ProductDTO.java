@@ -18,7 +18,16 @@ public class ProductDTO {
 	
 	private List<ProductImageDTO> productImageList = new ArrayList<ProductImageDTO>();
 	private List<ColorDTO> colorList = new ArrayList<ColorDTO>();
+	private List<ReviewDTO> reviewList=new ArrayList<ReviewDTO>();
 	
+	public List<ReviewDTO> getReviewList() {
+		return reviewList;
+	}
+
+	public void setReviewList(List<ReviewDTO> reviewList) {
+		this.reviewList = reviewList;
+	}
+
 	public ProductDTO() {}
 	
 	public ProductDTO(int productCode, int stock) {

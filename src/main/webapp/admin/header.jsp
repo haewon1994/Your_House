@@ -66,7 +66,6 @@
 								<ul class="sub-menu">
 									<li><a href="${pageContext.request.contextPath}/admin?key=adminProduct&methodName=selectMainTotalProduct">목록</a></li>
 									<li><a href="${pageContext.request.contextPath}/admin?key=adminProduct&methodName=selectAllProductCategory">등록</a></li>
-									
 								</ul>
 							</li>
 							<li class="active-menu" style="margin-left: 50px">
@@ -103,7 +102,7 @@
 						        <a href="${pageContext.request.contextPath}/index.jsp">로그인</a>	
                                </c:when>
                                <c:otherwise>
-                                <p>{sessionScope.loginAdminId} </p>  
+                                <p>${sessionScope.loginAdminId} </p>  
                                </c:otherwise> 
                              </c:choose>		
                              </li>

@@ -20,25 +20,17 @@
           <tr>             
             <th>상품 카테고리</th>
             <th>상품코드</th>
-            <th>상품이름</th>
-            <th>등록일</th>
-            <th>가격</th>
-            <th>재고수량</th>
+            <th>상품명</th>
+            <th>등록일</th>
           </tr>
         </thead>
         <tbody>
-        <c:forEach items="${productList}" var="plist">
           <tr>
-            <td>${plist.categoryName}</td>
-            <td><a href="${pageContext.request.contextPath}/admin?key=adminProduct&methodName=selectDetailTotalProductByProductCode&productCode=${plist.productCode}">
-				${plist.productCode}</a></td>
-            <td><a href="${pageContext.request.contextPath}/admin?key=adminProduct&methodName=selectDetailTotalProductByProductCode&productCode=${plist.productCode}">
-            	${plist.productName}</a></td>
-            <td>${plist.createdReg}</td>
-            <td>${plist.price}</td>
-            <td>${plist.stock}</td>
+            <td>Rahul</td>
+            <td>Tyagi</td>
+            <td>rahul.1992.tyagi@gmail.com</td>
+            <td>70</td>
           </tr>
-        </c:forEach>
         </tbody>
       </table>
     </div>
