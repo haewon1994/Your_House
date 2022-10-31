@@ -152,11 +152,11 @@
 			</div>
 
 			<div class="row">
-				<c:forEach items="${storylist }" var="story">
+				<c:forEach items="${storylist }" var="story" end="5">
 					<div class="col-sm-6 col-md-4 p-b-40">
 						<div class="blog-item">
 							<div class="hov-img0">
-								<a href="blog-detail.html"> <img
+								<a href="${pageContext.request.contextPath}/front?key=story&methodName=selectBystoryCode&storyCode=${story.storyCode}"> <img
 									src="${pageContext.request.contextPath}/images/blog-03.jpg"
 									alt="IMG-BLOG">
 								</a>
