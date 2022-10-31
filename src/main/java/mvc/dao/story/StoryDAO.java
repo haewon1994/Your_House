@@ -70,7 +70,7 @@ public interface StoryDAO {
 	List<Story> list(String keyword);
 
 
-	Story selectByFollowingCode(int followCode) throws SQLException;
+	List<Story> selectByFollowingCode(int followCode) throws SQLException;
 	
 	  
 	}

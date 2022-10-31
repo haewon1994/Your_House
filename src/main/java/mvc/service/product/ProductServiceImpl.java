@@ -92,11 +92,11 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public Map<String, List<ProductDTO>> totalBest() throws SQLException {
+	public List<ProductDTO> totalBest() throws SQLException {
 		// 실시간/역대 베스트 상품을 출력
+		List<ProductDTO> list = proDAO.totalBest();
 		
-		
-		return null;
+		return list;
 	}
 
 }

@@ -120,10 +120,7 @@ public class StoryServiceImpl implements StoryService {
 
 	@Override
 	public List<Story> selectByFollowingCode(int user_code) throws SQLException {
-		List<Story>  list = new ArrayList<Story>();
-		
-		list.add(storyDAO.selectByFollowingCode(user_code));
-
+		List<Story>  list = storyDAO.selectByFollowingCode(user_code);
 		for(Story story : list) {
 			//팔로우 정보
 			Follow fo = followDAO.isFollow(user_code, story.getUserCode());

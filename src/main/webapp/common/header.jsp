@@ -58,10 +58,10 @@
 					<div class="menu-desktop">
 						<ul class="main-menu">
 							<li class="label1" data-label1="hot">
-								<a href="${pageContext.request.contextPath}/community/storyHome.jsp"><b style="font-size: 16px;">커뮤니티</b></a>
+								<a href="${pageContext.request.contextPath}/front?key=story&methodName=select"><b style="font-size: 16px;">커뮤니티</b></a>
 								<ul class="sub-menu">
 									<li><a href="${pageContext.request.contextPath}/front?key=story&methodName=select">홈</a></li>
-									<li><a href="${pageContext.request.contextPath}/community/following.jsp">>팔로잉</a></li>
+									<li><a href="${pageContext.request.contextPath}/front?key=follow&methodName=following">>팔로잉</a></li>
 								    <li><a href="${pageContext.request.contextPath}/community/write.jsp">글쓰기</a></li>
 								</ul>
 							</li>
@@ -69,9 +69,9 @@
 							<li class="active-menu">
 								<a href="${pageContext.request.contextPath}/front?key=store&methodName=storeHome"><b style="font-size: 16px;">스토어</b></a>
 								<ul class="sub-menu">
-									<li><a href="front?key=store&methodName=storeHome">홈</a></li>
-									<li><a href="../store/storeCategory.jsp">카테고리</a></li>
-									<li><a href="../store/storeBest.jsp">베스트</a></li>
+									<li><a href="${pageContext.request.contextPath}/front?key=store&methodName=storeHome">홈</a></li>
+									<li><a href="${pageContext.request.contextPath}/front?key=store&methodName=storeCategory">카테고리</a></li>
+									<li><a href="${pageContext.request.contextPath}/front?key=store&methodName=storeBest"">베스트</a></li>
 								</ul>
 							</li>
 
