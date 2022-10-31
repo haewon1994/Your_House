@@ -142,7 +142,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	</div>
 
 <!--===============================================================================================-->	
-	<script src="${pageContext.request.contextPath}/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery-3.6.1.js"></script>
 <!--===============================================================================================-->
 	<script src="${pageContext.request.contextPath}/vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->

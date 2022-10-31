@@ -182,7 +182,7 @@
 </section>
 	
 <!--===============================================================================================-->
-	<script language=javascript src="${pageContext.request.contextPath}/js/jquery-3.6.1.min"> </script>  
+	<script language=javascript src="${pageContext.request.contextPath}/js/jquery-3.6.1.js"> </script>  
 	<script language=javascript>
 	
 		/*MAIN slid*/

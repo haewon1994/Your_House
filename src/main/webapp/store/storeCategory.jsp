@@ -52,12 +52,10 @@
 			<a href="product.html" class="stext-109 cl8 hov-cl1 trans-04">
 				카테고리				
 			</a>
-
 		</div>
 	</div>
 
 <div class="cate_tab">
-   
    <ul class="tab_menu">
                  <!-- 이미지 이름: [비활성화 상태의 이미지는 _off] | [활성화 상태의 이미지는 _on]  -->
        <li data-tab="tab-1" class="on"><img src="${pageContext.request.contextPath}/images/category01.jpg" alt=""></li>
@@ -279,7 +277,6 @@
     </section>
     
 <!--===============================================================================================-->	
-	<script src="${pageContext.request.contextPath}/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
 	<script src="${pageContext.request.contextPath}/vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->

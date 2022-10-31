@@ -10,12 +10,12 @@ ul,li{list-style:none}
 .tab_content li{border-top:1px solid #ededed}
 
 /* 탭메뉴 버튼 */
-/* .tab_menu {display:table;table-layout:fixed}
+.tab_menu {display:table;table-layout:fixed}
 .tab_menu li{display:table-cell;cursor:pointer}
 .tab_menu li img{vertical-align:middle; width: 180px;}
 .tab_menu li{background:#ededed;}
 .tab_menu li.on{background:#1049af}
-.tab_menu li+li{border-left:none} */
+.tab_menu li+li{border-left:none}
 
 /* 탭메뉴 컨텐츠 */
 .tab_content li{display:none;min-height:300px}
