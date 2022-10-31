@@ -2,6 +2,7 @@ package mvc.service;
 
 import java.io.File;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import mvc.dao.follow.FollowDAO;
@@ -119,7 +120,9 @@ public class StoryServiceImpl implements StoryService {
 
 	@Override
 	public List<Story> selectByFollowingCode(int user_code) throws SQLException {
-		List<Story>  list = storyDAO.selectByFollowingCode();
+		List<Story>  list = new ArrayList<Story>();
+		
+		list.add(storyDAO.selectByFollowingCode(user_code));
 
 		for(Story story : list) {
 			//팔로우 정보
@@ -128,6 +131,29 @@ public class StoryServiceImpl implements StoryService {
 				story.setFollow(true);
 			}
 
+			
+			UserDTO user = userDAO.searchByUserCode(story.getUserCode());
+			story.setUser(user);
+		}
+		return list;
+	}
+
+	@Override
+	public List<Story> selectByUserCode(int userCode) throws SQLException {
+		List<Story>  list = storyDAO.selectAll(userCode);
+
+		for(Story story : list) {
+			//팔로우 정보
+			Follow fo = followDAO.isFollow(userCode, story.getUserCode());
+			if(fo!=null) {
+				story.setFollow(true);
+			}
+
+			//좋아요 정보
+			Liked Li = likedDAO.isLiked(userCode, story.getStoryCode());
+			if(Li!=null) {
+				story.setLike(true);
+			}
 			
 			UserDTO user = userDAO.searchByUserCode(story.getUserCode());
 			story.setUser(user);

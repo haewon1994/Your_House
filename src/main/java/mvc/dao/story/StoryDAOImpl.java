@@ -297,4 +297,34 @@ public class StoryDAOImpl implements StoryDAO {
 
 
 
+	@Override
+	public List<Story> selectAll(int userCode) throws SQLException {
+		Connection con=null;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		List<Story> list = new ArrayList<Story>();
+
+		//String sql= proFile.getProperty("Story.selectAll");
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement("select * from Story where user_code =? order by CREATED_REG desc");
+			ps.setInt(1, userCode);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				Story story = 
+						new Story(rs.getInt(1), rs.getInt(2), rs.getString(3),
+								rs.getString(4), rs.getString(5));
+
+				list.add(story);
+			}
+		}finally {
+			DBUtil.dbClose(con, ps, rs);
+		}
+		return list;
+	}
+
+
+
+
+
 }
