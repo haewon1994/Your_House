@@ -119,7 +119,7 @@ public class StoryServiceImpl implements StoryService {
 
 	@Override
 	public List<Story> selectByFollowingCode(int user_code) throws SQLException {
-		List<Story>  list = storyDAO.selectByFollowingCode();
+		List<Story>  list = storyDAO.selectByFollowingCode(user_code);
 
 		for(Story story : list) {
 			//팔로우 정보

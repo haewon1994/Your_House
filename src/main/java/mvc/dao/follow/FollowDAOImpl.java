@@ -23,7 +23,7 @@ public class FollowDAOImpl implements FollowDAO {
 		//String sql= proFile.getProperty("follow.insert");//insert into liked values(?,?,?)
 		try {
 			con = DBUtil.getConnection();
-			ps = con.prepareStatement("insert into notice values(FOLLOW_SEQ.NEXTVAL, ?,?)");
+			ps = con.prepareStatement("insert into follow values(FOLLOW_SEQ.NEXTVAL, ?,?)");
 			ps.setInt(1, followingCode);
 			ps.setInt(2, followerCode);
 			
@@ -115,7 +115,8 @@ public class FollowDAOImpl implements FollowDAO {
 		//String sql= proFile.getProperty("Follow.selectByFollowingCode");//select * from Electronics where model_num=?
 		try {
 			con = DBUtil.getConnection();
-			ps = con.prepareStatement("select * from FOLLOW where FOLLOWING_CODE=?");
+			ps = con.prepareStatement("select * from Story where user_CODE=?");
+			ps.setInt(1, followingCode);
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {

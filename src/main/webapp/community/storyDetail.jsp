@@ -256,7 +256,7 @@ hov-btn1:hover {
 						<img src="${pageContext.request.contextPath}/save/${requestScope.story.storyImage}"
 							alt="" style="width: 600px; height: 600px;">
 					</article>
-					<p>${rerestScope.story.storyLiter}</p>
+					<p>${story.storyLiter}</p>
 				</div>
 
 				<div class="flex-w flex-t p-b-68" >

@@ -270,11 +270,11 @@ public class StoryDAOImpl implements StoryDAO {
 	}
 
 	@Override
-	public Story selectByFollowingCode(int followCode) throws SQLException {
+	public List<Story> selectByFollowingCode(int followCode) throws SQLException {
 		Connection con=null;
 		PreparedStatement ps=null;
 		ResultSet rs=null;
-		Story story = null;
+		List<Story> list = null;
 
 		//String sql= proFile.getProperty("Story.selectBynoticeCode");//select * from Electronics where model_num=?
 		try {
@@ -283,14 +283,14 @@ public class StoryDAOImpl implements StoryDAO {
 			ps.setInt(1, followCode);
 
 			rs = ps.executeQuery();
-			if(rs.next()) {
-				story = new Story(rs.getInt(1), rs.getInt(2), rs.getString(3),
-						rs.getString(4), rs.getString(5));
+			while(rs.next()) {
+				list.add(new Story(rs.getInt(1), rs.getInt(2), rs.getString(3),
+						rs.getString(4), rs.getString(5)));
 			}
 		}finally {
 			DBUtil.dbClose(con, ps, rs);
 		}
-		return story;
+		return list;
 	}
 
 
