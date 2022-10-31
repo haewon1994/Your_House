@@ -104,15 +104,16 @@ public class StoreController implements Controller {
 	 * 베스트페이지
 	 * 
 	 * @throws SQLException
-	 *//*
-		 * public ModelAndView storeBest(HttpServletRequest request, HttpServletResponse
-		 * response) throws ServletException, IOException, SQLException {
-		 * 
-		 * // 베스트에 대한 전체 정보 Map<String, List<ProductDTO>> totalbest =
-		 * proService.totalbest();
-		 * 
-		 * 
-		 * return null; }
-		 */
+	 */
+	public ModelAndView storeBest(HttpServletRequest request, HttpServletResponse
+	response) throws ServletException, IOException, SQLException {
+		// 베스트에 대한 전체 정보
+		List<ProductDTO> addlist = proService.bestProdcut();
+		request.setAttribute("bestList", addlist);
+		
+		List<ProductDTO> list = proService.totalBest();
+		request.setAttribute("list", list);
+		return new ModelAndView("store/storeBest.jsp");
+	}
 
 }

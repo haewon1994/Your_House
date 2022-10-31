@@ -26,5 +26,5 @@ public interface ProductService {
 	/**
 	 * 실시간/역대 베스트 상품을 출력
 	 */
-	Map<String, List<ProductDTO>> totalBest() throws SQLException;
+	List<ProductDTO> totalBest() throws SQLException;
 }

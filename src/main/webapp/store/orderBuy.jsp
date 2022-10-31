@@ -145,7 +145,7 @@ form {
 							orderAdrss : adress
 						},
 						success : function(result) {
-							alert(result);
+							location.href="${pageContext.request.contextPath}/front?key=store&methodName=storeHome";
 						},
 						error : function(err) {
 							alert(err);
@@ -154,6 +154,7 @@ form {
 				} else {
 					var msg = '결제에 실패하였습니다.';
 					rsp.error_msg;
+					alert(msg);
 				}
 			});
 		});
