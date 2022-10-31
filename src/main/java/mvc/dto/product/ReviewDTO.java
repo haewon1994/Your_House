@@ -10,26 +10,100 @@ public class ReviewDTO {
 	private int reviewCode;
 	private int userCode;
 	private int productCode;
-	private int detailCode;
-	private int ordersCode;
 	private int rating;
 	private String reviewContent;
 	private String createdReg;
 	
-	private String avgRating;
+	private double avgRating;
 	
-	public ReviewDTO(int reviewCode, int userCode, int productCode, int detailCode, int ordersCode, int rating,
-			String reviewContent, String createdReg, String avgRating) {
+	private boolean possibleCheck;
+	
+	private int countOne;
+	private int countTwo;
+	
+	public ReviewDTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public ReviewDTO(int userCode, int productCode, int rating, String reviewContent) {
+		super();
+		this.userCode = userCode;
+		this.productCode = productCode;
+		this.rating = rating;
+		this.reviewContent = reviewContent;
+	}
+
+	public ReviewDTO(int reviewCode, int userCode, int productCode, int rating, String reviewContent, String createdReg,
+			double avgRating, boolean possibleCheck, int countOne, int countTwo) {
 		super();
 		this.reviewCode = reviewCode;
 		this.userCode = userCode;
 		this.productCode = productCode;
-		this.detailCode = detailCode;
-		this.ordersCode = ordersCode;
 		this.rating = rating;
 		this.reviewContent = reviewContent;
 		this.createdReg = createdReg;
 		this.avgRating = avgRating;
+		this.possibleCheck = possibleCheck;
+		this.countOne = countOne;
+		this.countTwo = countTwo;
+	}
+
+	public boolean isCheck() {
+		return possibleCheck;
+	}
+
+	public void setCheck(boolean possibleCheck) {
+		this.possibleCheck = possibleCheck;
+	}
+
+	public int getCountOne() {
+		return countOne;
+	}
+
+	public void setCountOne(int countOne) {
+		this.countOne = countOne;
+	}
+
+	public int getCountTwo() {
+		return countTwo;
+	}
+
+	public void setCountTwo(int countTwo) {
+		this.countTwo = countTwo;
+	}
+
+	public ReviewDTO(int userCode, int productCode, int rating, String reviewContent, String createdReg) {
+		super();
+		this.userCode = userCode;
+		this.productCode = productCode;
+		this.rating = rating;
+		this.reviewContent = reviewContent;
+		this.createdReg = createdReg;
+	}
+
+	public ReviewDTO(int userCode, int productCode, int rating, String reviewContent, String createdReg,
+			double avgRating, boolean possibleCheck) {
+		super();
+		this.userCode = userCode;
+		this.productCode = productCode;
+		this.rating = rating;
+		this.reviewContent = reviewContent;
+		this.createdReg = createdReg;
+		this.avgRating = avgRating;
+		this.possibleCheck = possibleCheck;
+	}
+
+	public ReviewDTO(int reviewCode, int userCode, int productCode, int rating, String reviewContent, String createdReg,
+			boolean possibleCheck) {
+		super();
+		this.reviewCode = reviewCode;
+		this.userCode = userCode;
+		this.productCode = productCode;
+		this.rating = rating;
+		this.reviewContent = reviewContent;
+		this.createdReg = createdReg;
+		this.possibleCheck = possibleCheck;
 	}
 
 	public ReviewDTO(int userCode, int productCode) {
@@ -37,39 +111,7 @@ public class ReviewDTO {
 		this.userCode = userCode;
 		this.productCode = productCode;
 	}
-
-	public ReviewDTO(int reviewCode, int userCode, int productCode, int detailCode, int ordersCode, int rating,
-			String reviewContent, String createdReg) {
-		super();
-		this.reviewCode = reviewCode;
-		this.userCode = userCode;
-		this.productCode = productCode;
-		this.detailCode = detailCode;
-		this.ordersCode = ordersCode;
-		this.rating = rating;
-		this.reviewContent = reviewContent;
-		this.createdReg = createdReg;
-	}
-
-	public ReviewDTO(int userCode, int productCode, int detailCode, int ordersCode, int rating, String reviewContent) {
-		super();
-		this.userCode = userCode;
-		this.productCode = productCode;
-		this.detailCode = detailCode;
-		this.ordersCode = ordersCode;
-		this.rating = rating;
-		this.reviewContent = reviewContent;
-	}
-
-	public ReviewDTO(int userCode, int productCode, int detailCode, int ordersCode, int rating) {
-		super();
-		this.userCode = userCode;
-		this.productCode = productCode;
-		this.detailCode = detailCode;
-		this.ordersCode = ordersCode;
-		this.rating = rating;
-	}
-
+	
 	public int getReviewCode() {
 		return reviewCode;
 	}
@@ -93,23 +135,7 @@ public class ReviewDTO {
 	public void setProductCode(int productCode) {
 		this.productCode = productCode;
 	}
-
-	public int getDetailCode() {
-		return detailCode;
-	}
-
-	public void setDetailCode(int detailCode) {
-		this.detailCode = detailCode;
-	}
-
-	public int getOrdersCode() {
-		return ordersCode;
-	}
-
-	public void setOrdersCode(int ordersCode) {
-		this.ordersCode = ordersCode;
-	}
-
+	
 	public int getRating() {
 		return rating;
 	}
@@ -134,11 +160,11 @@ public class ReviewDTO {
 		this.createdReg = createdReg;
 	}
 
-	public String getAvgRating() {
+	public double getAvgRating() {
 		return avgRating;
 	}
 
-	public void setAvgRating(String avgRating) {
+	public void setAvgRating(double avgRating) {
 		this.avgRating = avgRating;
 	}
 	
