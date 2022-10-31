@@ -52,6 +52,9 @@ public class ReviewAjaxController implements AjaxController {
 		
 		ReviewDTO review=new ReviewDTO(userCode, Integer.parseInt(productCode), Integer.parseInt(rating), reviewContent);
 		reviewService.insertReview(review);
+		
+		PrintWriter out = response.getWriter();
+		out.print("11");
 }
 	
 	/**

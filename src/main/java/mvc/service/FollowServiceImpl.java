@@ -38,12 +38,12 @@ public class FollowServiceImpl implements FollowService {
 
 	@Override
 	public List<UserDTO> selectByUserCode(int userCode) throws SQLException {
-		List<Integer> userCodeList = followDAO.selectByUserCode(userCode);
+		List<Story> userCodeList = followDAO.selectByUserCode(userCode);
 
 		List<UserDTO> followList = new ArrayList<UserDTO>();
 
-		for(int i : userCodeList) {
-			UserDTO user = userDAO.searchByUserCode(i);
+		for(Story i : userCodeList) {
+			UserDTO user = userDAO.searchByUserCode(i.getUserCode());
 			followList.add(user);
 		}
 		return followList;
@@ -52,12 +52,12 @@ public class FollowServiceImpl implements FollowService {
 
 	@Override
 	public List<UserDTO> searchFollower(int userCode) throws SQLException {
-		List<Integer> userCodeList = followDAO.selectByUserCode(userCode);
+		List<Story> userCodeList = followDAO.selectByUserCode(userCode);
 
 		List<UserDTO> followerList = new ArrayList<UserDTO>();
 
-		for(int i : userCodeList) {
-			UserDTO user = userDAO.searchByUserCode(i);
+		for(Story i : userCodeList) {
+			UserDTO user = userDAO.searchByUserCode(i.getUserCode());
 			followerList.add(user);
 		}
 		return followerList;
@@ -65,11 +65,7 @@ public class FollowServiceImpl implements FollowService {
 
 	@Override
 	public List<Story> following(int userCode) throws SQLException {
-		List<Integer> userCode1s = followDAO.selectByUserCode(userCode);
-		
-		
-		
-		List<Story> list = followDAO.selectByFollowingCode(userCode);
+		List<Story> list = followDAO.selectByUserCode(userCode);
 		
 		for(Story story : list) {
 			UserDTO user = userDAO.searchByUserCode(story.getUserCode());

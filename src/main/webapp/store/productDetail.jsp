@@ -58,6 +58,8 @@
 <script type="text/javascript">
 	$(function() {
 		$("#reviewBtn").on("click", function() {
+			let user = '${sessionScope.loginUser.nickname}';
+			
 			let proCode = $("#productCode").val();
 			let star = $("#star").val();
 			let content = $("#review").val();
@@ -74,18 +76,19 @@
 					reviewContent:content
 				},
 				success:function(result) {
-					let str="";
-					$.each(result, function(i, j) {
-						str+='<div class="flex-w flex-t p-b-68">';
-						str+='<div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6"></div>';
-						str+='<div class="size-207">';
-						str+='<div class="flex-w flex-sb-m p-b-17">';
-						str+='<span class="mtext-107 cl2 p-r-20">'+${j.user.nickname}+'</span> <span class="fs-18 cl11"> </span>';
-						str+='</div>';
-						str+='<p class="stext-102 cl6">'+${review.reviewContent}+'<p>';
-						str+='</div></div>';
-					});
-					$("#endendend").html(str);
+					let str = "";
+					
+					str+='<div class="flex-w flex-t p-b-68">';
+					str+='<div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6"></div>';
+					str+='<div class="size-207">';
+					str+='<div class="flex-w flex-sb-m p-b-17">';
+					str+='<span class="mtext-107 cl2 p-r-20">'+user+'</span> <span class="fs-18 cl11"> </span>';
+					str+='</div>';
+					str+='<p class="stext-102 cl6">'+content+'<p>';
+					str+='</div></div>';
+					
+					$("#endendend").prepend(str);
+					$(".w-full").remove(".w-full");
 				},
 				error : function(err) {
 					

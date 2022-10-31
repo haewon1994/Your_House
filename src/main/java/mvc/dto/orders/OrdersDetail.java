@@ -1,5 +1,7 @@
 package mvc.dto.orders;
 
+import mvc.dto.product.ProductDTO;
+
 public class OrdersDetail {
 	private int detailCode;
 	private int productCode;
@@ -7,6 +9,8 @@ public class OrdersDetail {
 	private int orderQty;
 	private String colorName;
 	private int unitPrice;
+	
+	private String productName;
 	
 	public OrdersDetail() {}
 
@@ -18,6 +22,19 @@ public class OrdersDetail {
 		this.orderQty = orderQty;
 		this.colorName = colorName;
 		this.unitPrice = unitPrice;
+	}
+
+	
+	
+	public OrdersDetail(int detailCode, int productCode, int ordedrsCode, int orderQty, String colorName, int unitPrice,
+			String productName) {
+		this.detailCode = detailCode;
+		this.productCode = productCode;
+		this.ordedrsCode = ordedrsCode;
+		this.orderQty = orderQty;
+		this.colorName = colorName;
+		this.unitPrice = unitPrice;
+		this.productName = productName;
 	}
 
 	public int getDetailCode() {
@@ -67,4 +84,15 @@ public class OrdersDetail {
 	public void setUnitPrice(int unitPrice) {
 		this.unitPrice = unitPrice;
 	}
+
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+
+	
+	
 }

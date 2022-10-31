@@ -80,23 +80,27 @@ public class FollowDAOImpl implements FollowDAO {
 
 	//내가 파로잉한 사람목록 전체보기
 	@Override
-	public List<Integer> selectByUserCode(int userCode) throws SQLException {
+	public List<Story> selectByUserCode(int userCode) throws SQLException {
 		Connection con=null;
 		PreparedStatement ps=null;
 		ResultSet rs=null;
-		List<Integer> list = new ArrayList<Integer>();
+		List<Story> list = new ArrayList<Story>();
 		
 		//String sql= proFile.getProperty("Follow.selectByUserCode");//select * from Electronics where model_num=?
 		try {
 			con = DBUtil.getConnection();
-			ps = con.prepareStatement("select FOLLOWER_CODE from FOLLOW where FOLLOWING_CODE=?");
+			ps = con.prepareStatement("select story_code, user_code, story_image, story_liter, created_reg, follow_code, follower_code from story a full join follow b using(user_code) where follower_code = ?");
 			ps.setInt(1, userCode);
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
-		
-				
-			   list.add(rs.getInt(1));
+			   list.add(new Story(
+					   rs.getInt(1),
+					   rs.getInt(2),
+					   rs.getString(3), 
+					   rs.getString(4), 
+					   rs.getString(5)
+				));
 			}
 			
 		}finally {

@@ -25,7 +25,7 @@
 						<li class="active-menu"><a href="#"><b
 								style="font-size: 16px;">나의 쇼핑</b></a>
 							<ul class="sub-menu">
-								<li><a href="#">주문배송내역 조회</a></li>
+								<li><a href="${pageContext.request.contextPath}/front?key=order&methodName=selectByUserCode">주문배송내역 조회</a></li>
 								<li><a href="#">고객센터</a></li>
 							</ul></li>
 

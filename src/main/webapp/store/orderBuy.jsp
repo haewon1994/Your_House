@@ -145,7 +145,7 @@ form {
 							orderAdrss : adress
 						},
 						success : function(result) {
-							location.href="${pageContext.request.contextPath}/front?key=store&methodName=storeHome";
+							location.href="${pageContext.request.contextPath}/front?key=order&methodName=selectByUserCode";
 						},
 						error : function(err) {
 							alert(err);

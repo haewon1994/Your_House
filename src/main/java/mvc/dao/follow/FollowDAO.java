@@ -22,7 +22,7 @@ public interface FollowDAO {
 	
 	
 	//내가 파로잉한 사람목록 전체보기
-	List<Integer> selectByUserCode(int userCode)throws SQLException;
+	List<Story> selectByUserCode(int userCode)throws SQLException;
 	
 	//팔로워 사람목록 전체보기
 	List<Integer> searchFollower(int userCode)throws SQLException;

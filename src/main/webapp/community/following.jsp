@@ -74,7 +74,7 @@
 									<!-- 팔로우 -->
 									<a href=""
 										style="text-decoration: none; font-weight: bold; color: #2982ed">
-										팔로우</a>
+										팔로잉</a>
 								</div>
 								
 							</div>

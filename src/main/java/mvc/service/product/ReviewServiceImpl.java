@@ -14,8 +14,9 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public void insertReview(ReviewDTO review) throws SQLException {
 		int result = reviewDAO.insertReview(review);
-		
 		if(result==0)throw new SQLException("등록에 실패했습니다");
+		
+		
 	}
 
 	@Override

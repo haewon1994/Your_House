@@ -18,7 +18,7 @@ public class OrdersDetailDAOImpl implements OrdersDetailDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		List<OrdersDetail> list = new ArrayList<OrdersDetail>();
-		String sql = "select * from ordersdetail where orders_code =?";
+		String sql = "select product_Name, a.* from orders_detail a join product b on (a.product_code=b.product_code) where orders_code = ?";
 		
 		try {
 			con = DBUtil.getConnection();
@@ -30,12 +30,13 @@ public class OrdersDetailDAOImpl implements OrdersDetailDAO {
 			
 			while(rs.next()) {
 				list.add(new OrdersDetail(
-						rs.getInt(1),
 						rs.getInt(2),
-						rs.getInt(3), 
+						rs.getInt(3),
 						rs.getInt(4), 
-						rs.getString(5), 
-						rs.getInt(6)
+						rs.getInt(5), 
+						rs.getString(6), 
+						rs.getInt(7),
+						rs.getString(1)
 					));
 			}
 		} finally {
@@ -50,7 +51,7 @@ public class OrdersDetailDAOImpl implements OrdersDetailDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		OrdersDetail orderDetail = null;
-		String sql = "select * from ordersdetail where detail_code = ?";
+		String sql = "select * from orders_detail where detail_code = ?";
 		
 		try {
 			con = DBUtil.getConnection();
