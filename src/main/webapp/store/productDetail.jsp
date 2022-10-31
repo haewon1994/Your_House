@@ -148,7 +148,7 @@
 									</button>
 								</div>
 								<div calss="pbuy">
-									<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 poductbuy">
+									<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 poductbuy" id="kakaodirect">
 										<span>구매하기</span>
 									</button>
 								</div>
@@ -409,7 +409,41 @@
 		});
 		/*---------------------------------------------*/
 		/*구매하기*/
-	
+		$('.poductbuy').each(function(){
+			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+			$(this).on('click', function(){
+				let code=$("#productCode").val();
+				let color=$("#time").val();
+				
+				if(color=="0") {
+					alert("색상을 선택하세요");
+					return;
+				}
+				
+				let num=$("#odrerQty").val();
+				
+				$.ajax({
+					url : "ajax",	// 서버의 주소
+					type : "post",	// 요청방식(method방식 = post, get, put, delete 등등)
+					dataType : "text",	// 서버가 보내온 데이터타입(디폴트 text, html, xml, json)
+					data : {
+						key : "basket",
+						methodName : "insert",
+						productCode : code,
+						odrerQty : num,
+						colorName : color
+					},	// 서버에게 보낼 parameter 정보
+					success : function(result) {
+						swal(nameProduct, "결제창으로 이동합니다", "success");
+						location.href="${pageContext.request.contextPath}/store/orderBuy.jsp";
+					},
+					error : function(err) {
+						
+					}
+				});	
+			});
+		});
+		
 	</script>
 <!--===============================================================================================-->
 	<script src="${pageContext.request.contextPath}/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
