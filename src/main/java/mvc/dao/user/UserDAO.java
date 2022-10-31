@@ -3,6 +3,7 @@ package mvc.dao.user;
 import java.sql.SQLException;
 import java.util.List;
 
+import mvc.dto.story.Story;
 import mvc.dto.user.UserDTO;
 
 
@@ -49,6 +50,13 @@ public interface UserDAO {
      * userCode로 회원정보 가져오기
      */
      UserDTO searchByUserCode(int userCode)throws SQLException;
+     
+     /**
+      * userCode로 story 가져오기
+      */
+      List<Story> myPage(int userCode)throws SQLException;
+     
+     
 }
 
 

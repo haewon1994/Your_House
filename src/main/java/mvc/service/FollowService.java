@@ -13,5 +13,6 @@ public interface FollowService {
 
 	List<UserDTO> selectByUserCode(int userCode)throws SQLException;
 	
+	List<UserDTO> searchFollower(int userCode)throws SQLException;
 	
 }

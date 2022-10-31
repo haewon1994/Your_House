@@ -1,9 +1,11 @@
 package mvc.service;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import mvc.dao.user.UserDAO;
 import mvc.dao.user.UserDAOImpl;
+import mvc.dto.story.Story;
 import mvc.dto.user.UserDTO;
 import mvc.exception.AuthenticationException;
 
@@ -46,6 +48,12 @@ public class UserServiceImpl implements UserService {
 	public UserDTO selectByUserCode(int userCode) throws SQLException {
 		UserDTO user = userDAO.searchByUserCode(userCode);
 		return user;
+	}
+
+	@Override
+	public List<Story> myPage(int user_code) throws SQLException {
+		
+		return null;
 	}
 
 

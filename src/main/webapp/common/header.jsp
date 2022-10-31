@@ -61,8 +61,8 @@
 								<a href="${pageContext.request.contextPath}/community/storyHome.jsp"><b style="font-size: 16px;">커뮤니티</b></a>
 								<ul class="sub-menu">
 									<li><a href="front?key=story&methodName=select">홈</a></li>
-									<li><a href="blog-detail.html">팔로잉</a></li>
-									<li><a href="${pageContext.request.contextPath}/mypage/storyWriter.jsp">글쓰기</a></li>
+									<li><a href="${pageContext.request.contextPath}/community/following.jsp">>팔로잉</a></li>
+								    <li><a href="${pageContext.request.contextPath}/community/write.jsp">글쓰기</a></li>
 								</ul>
 							</li>
 
@@ -103,7 +103,7 @@
 										<a href="${pageContext.request.contextPath}/index.jsp">로그인</a>
 									</c:when>
 									<c:otherwise>
-										<a href="${pageContext.request.contextPath}/mypage/myProfile.jsp">${loginUser.nickname}</a>
+										<a href="${pageContext.request.contextPath}/front?key=user&methodName=myPage">${loginUser.nickname}</a>
 									</c:otherwise>
 								</c:choose>
 							</li>

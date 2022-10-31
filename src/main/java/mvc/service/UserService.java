@@ -1,7 +1,9 @@
  package mvc.service;
 
 import java.sql.SQLException;
+import java.util.List;
 
+import mvc.dto.story.Story;
 import mvc.dto.user.UserDTO;
 import mvc.exception.AuthenticationException;
 
@@ -18,6 +20,8 @@ public interface UserService {
    void insert(UserDTO userDTO)throws SQLException;
    
    void update(UserDTO userDTO)throws SQLException;
+   
+   List<Story> myPage(int user_code) throws SQLException;
 }
 
 

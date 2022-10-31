@@ -1,5 +1,6 @@
 package mvc.dto.reply;
 
+import mvc.dto.user.UserDTO;
 
 public class Reply {
 
@@ -11,7 +12,7 @@ public class Reply {
 	private String replyContent;
 	private String createdReg;
 	
-
+	private UserDTO user;
 	
 	public Reply(){}
 	
@@ -61,6 +62,14 @@ public class Reply {
 
 	public void setCreatedReg(String createdReg) {
 		this.createdReg = createdReg;
+	}
+
+	public UserDTO getUser() {
+		return user;
+	}
+
+	public void setUser(UserDTO user) {
+		this.user = user;
 	}
 	
 	
