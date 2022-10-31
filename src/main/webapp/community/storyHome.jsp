@@ -61,7 +61,7 @@ style="background-image: url('${pageContext.request.contextPath}/images/storyBG.
 		그 집 Story
 	</div>
 </section>
-	<!-- Product -->
+	<!-- story -->
 	<div class="bg0 m-t-23 p-b-140" style="margin-top: 80px;">
 		<div class="container">
 			<div class="row isotope-grid">
@@ -93,7 +93,6 @@ style="background-image: url('${pageContext.request.contextPath}/images/storyBG.
 			                                </a>
 			                            </div>
 			                        </div>
-			                        
 			                    </header>
 
 			                    <div class="img_section">
@@ -127,13 +126,10 @@ alt="USER001"></a></div>
                     </div>
 			                </article>
 			               </c:forEach>
-
 			            </div>
-
 		        		</section>
-
-					</div>
 				</div>
+			</div>
 				<!-- 게시물END -->
 				
 				

@@ -190,17 +190,22 @@ public class StoryDAOImpl implements StoryDAO {
 		return list;
 	}
 
-
-	/*
-	 * @Override public int increamentByReadnum(int storyCode) throws SQLException {
-	 * Connection con=null; PreparedStatement ps=null; int result=0; //String sql=
-	 * proFile.getProperty("Story.increamentByReadnum");//update Electronics set
-	 * readnum=readnum+1 where model_num=? try { con = DBUtil.getConnection(); ps =
-	 * con.prepareStatement("update Story set readnum=readnum+1 where STORY_CODE=?"
-	 * ); ps.setInt(1, storyCode); result = ps.executeUpdate(); }finally {
-	 * DBUtil.dbClose(con, ps); } return result; }
-	 */
-
+	/*@Override
+	public int increamentByReadnum(int storyCode) throws SQLException {
+		Connection con=null;
+		PreparedStatement ps=null;
+		int result=0;
+		//String sql= proFile.getProperty("Story.increamentByReadnum");//update Electronics set readnum=readnum+1 where model_num=?
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement("update Story set readnum=readnum+1 where STORY_CODE=?");
+			ps.setInt(1, storyCode);
+			result = ps.executeUpdate();
+		}finally {
+			DBUtil.dbClose(con, ps);
+		}
+		return result;
+	}*/
 
 	@Override
 	public List<Story> getBoardList(int pageNo) throws SQLException {
@@ -264,10 +269,6 @@ public class StoryDAOImpl implements StoryDAO {
 		return result;
 	}
 
-
-
-
-
 	@Override
 	public Story selectByFollowingCode(int followCode) throws SQLException {
 		Connection con=null;
@@ -279,7 +280,7 @@ public class StoryDAOImpl implements StoryDAO {
 		try {
 			con = DBUtil.getConnection();
 			ps = con.prepareStatement("select * from Story where Story_CODE=?");
-			ps.setInt(1, storyCode);
+			ps.setInt(1, followCode);
 
 			rs = ps.executeQuery();
 			if(rs.next()) {

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import mvc.dto.story.Story;
 import mvc.dto.user.UserDTO;
 import mvc.util.DBUtil;
 
@@ -253,8 +254,31 @@ private Properties proFile = new Properties();
 		}
 		return user;
 	}
-	
 
-}
+	@Override
+	public List<Story> myPage(int userCode) throws SQLException {
+		Connection con=null;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		List<Story> list = new ArrayList<Story>();
+
+		//String sql= proFile.getProperty("Story.selectAll");
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement("select * from Story where user_code=${user}");
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				Story story = 
+						new Story(rs.getInt(1), rs.getInt(2), rs.getString(3),
+								rs.getString(4), rs.getString(5));
+
+				list.add(story);
+			}
+		}finally {
+			DBUtil.dbClose(con, ps, rs);
+		}
+		return list;
+	}
+	}
 	
 

@@ -34,12 +34,11 @@
 <!--==================================================================================-->
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/vendor/perfect-scrollbar/perfect-scrollbar.css">
 <!--=================================================================================-->
-<link rel="stylesheet"	href="${pageContext.request.contextPath}/css/util.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
-
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/util.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <!--================================================================================-->
 <style type="text/css">
 .zipfollowing {
@@ -239,6 +238,7 @@ hov-btn1:hover {
      <button class="css-18fcvol e1y3nubp7">
      <div class="userBox">
       <span class="userNic"><a href="front?key=user&methodName=selectByUserCode&userCode=${user.userCode}">${story.user.nickname}</a></span>
+
       <span class="dateRegi">1일전</span>
      </div>
      </button>
@@ -334,6 +334,7 @@ hov-btn1:hover {
 	<script
 		src="${pageContext.request.contextPath}/vendor/bootstrap/js/bootstrap.min.js"></script>
 	<!--===============================================================================================-->
+
 
 	<script language=javascript>
 		$(".js-select2").each(function(){

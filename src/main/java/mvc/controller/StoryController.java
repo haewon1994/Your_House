@@ -73,33 +73,31 @@ public class StoryController implements Controller {
 		//String userCode1=request.getParameter("user_code");
 		UserDTO user  =(UserDTO)request.getSession().getAttribute("loginUser");
 		
-	
 		MultipartRequest m = 
-				new MultipartRequest(request,saveDir, maxSize, encoding, new DefaultFileRenamePolicy());
-		String storyLiter = m.getParameter("storyLiter");
-		int userCode = user.getUserCode();
+		 new MultipartRequest(request,saveDir, maxSize, encoding, new DefaultFileRenamePolicy());
+		
 		//전송된 데이터 받기 
+		String storyCode = m.getParameter("story_code");
+		int userCode = user.getUserCode();
+		String storyImage = m.getParameter("story_image"); //베너
+		String storyLiter = m.getParameter("storyLiter");
+		String storyReg = m.getParameter("story_reg");
 		
-		
-		
-
+		System.out.println(storyImage);
 		System.out.println(userCode+storyLiter);
-	
-			Story story = 
-		new Story(0,userCode, null, storyLiter,null);
+		
+		Story story = 
+				new Story(0,userCode, null, storyLiter,null);
 
 		//만약, 파일첨부가 되었다면....
-			if(m.getFilesystemName("storyImage") != null) {
-		
-			story.setStoryImage(m.getFilesystemName("storyImage"))	;
-			
-			
-			}
-
+		if(m.getFilesystemName("storyImage") != null) {
+			story.setStoryImage(m.getFilesystemName("storyImage"));
+		}
 
 		storyService.insert(story);
 
-		return new ModelAndView("front?key=story&methodName=select", true);//key=elec&methodName=select 기본으로 설정된다.	
+		return new ModelAndView("front?key=story&methodName=select", true);
+		//key=elec&methodName=select 기본으로 설정된다.	
 	}
 
 	/**
@@ -117,16 +115,11 @@ public class StoryController implements Controller {
 		System.out.println(storyCode);
 		story = storyService.selectByStoryCode(Integer.parseInt(storyCode));
 		request.setAttribute("story", story);
-
 		return new ModelAndView("community/storyDetail.jsp"); //forward방식 
 	}
 	
-	
-	
 	public ModelAndView selectByFollowingCode(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-
-
 		String storyCode=request.getParameter("storyCode");
 		/* String flag = request.getParameter("flag"); */
 		Story story=null;
@@ -137,10 +130,6 @@ public class StoryController implements Controller {
 
 		return new ModelAndView("community/Follow.jsp"); //forward방식 
 	}
-
-
-
-
 
 	/**
 	 *  수정폼
@@ -163,8 +152,6 @@ public class StoryController implements Controller {
 		//수정할 정보 1개 받기
 		String storyCode = request.getParameter("storyCode");
 		String storyLiter = request.getParameter("storyLiter");
-
-
 
 		storyService.update(new Story(Integer.parseInt(storyCode),storyLiter ));
 

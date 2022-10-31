@@ -52,20 +52,38 @@ public class AdminProductServiceImpl implements AdminProductService {
 	}
 
 	@Override
-	public void updateProductByProductCode(AdminTongyeDTO product, String saveDir) throws SQLException {
+	public void updateProductByProductCode(AdminTongyeDTO product, ProductImageDTO productImage, String saveDir) throws SQLException {
 		AdminTongyeDTO dbProduct=adminProductDAO.selectProductByProductCode(product.getProductCode());
 		
 		if(dbProduct==null) throw new SQLException("상품을 찾을수 없습니다");
 		
 		else if(dbProduct.getProductCode()!=product.getProductCode()) throw new SQLException("상품번호가 다르게 입력됐습니다");
 		
-		if(adminProductDAO.updateProductByProductCode(product)==0) throw new SQLException("상품정보 변경을 실패하였습니다");
+		if(adminProductDAO.updateProductByProductCode(product, productImage)==0) throw new SQLException("상품정보 변경을 실패하였습니다");
 		
 		//변경이 되었을대 기존 파일은 save폴더에서 삭제한다.
 		if(dbProduct.getImage()!=product.getImage()) {
 			String fileName = saveDir+"/"+ dbProduct.getImage();
 			new File(fileName).delete();
 		}
+		
+		ProductImageDTO dbProductImage=adminProductDAO.selectProductImageByProductImageCode(productImage.getImageCode());
+		//변경이 되었을대 기존 파일은 save폴더에서 삭제한다.
+		if(dbProductImage.getFileName()!=dbProductImage.getFileName()) {
+			String fileName = saveDir+"/"+ dbProductImage.getFileName();
+			new File(fileName).delete();
+		}
+	}
+	
+	@Override
+	public void updateProductNullImageByProductCode(AdminTongyeDTO product, String saveDir) throws SQLException {
+		AdminTongyeDTO dbProduct=adminProductDAO.selectProductByProductCode(product.getProductCode());
+		
+		if(dbProduct==null) throw new SQLException("상품을 찾을수 없습니다");
+		
+		else if(dbProduct.getProductCode()!=product.getProductCode()) throw new SQLException("상품번호가 다르게 입력됐습니다");
+		
+		if(adminProductDAO.updateProductByProductCode(product, null)==0) throw new SQLException("상품정보 변경을 실패하였습니다");
 	}
 
 	@Override

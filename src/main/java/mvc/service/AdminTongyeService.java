@@ -21,6 +21,11 @@ import mvc.dto.product.AdminTongyeDTO;
  *
  */
 public interface AdminTongyeService {
+	
+	/**
+	 * 메인 : 누적 매출순 한달기준
+	 */
+	List<AdminTongyeDTO> selectTongyeMain() throws SQLException;
 
 	/**
 	 * 1. 기본 : 상품전체 / 매출통계만

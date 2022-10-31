@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../common/header.jsp"/> 
 <!DOCTYPE html>
 <html>
@@ -17,141 +16,107 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <!--================================================================================-->
 <style type="text/css">
-.zipstory {
-	color: #fff; font-size: 30px; font-weight: bold; text-shadow: black;
+.zipfollowing {
+	color: #5a8742; font-size: 20px; font-weight: bold; text-shadow: black;
 }
+
+.contents {
+    max-width: 600px;	
+}
+
+#main_container {
+	padding-top: 70px;
+}
+
+.p-b-68, .p-tb-68, .p-all-68 {padding-bottom: 30px;}
+
 </style>
-
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/js/jquery-3.6.1.js"></script>
-<script type="text/javascript">
-	$(function() {
-		$(".heart_btn").click(function() {
-			let storyCode = $("#story_code").val();
-			let replyContent = $("#reply_content").val();
-			
-			$.ajax({
-				url : "ajax",
-				type : "post",
-				dataType : "json",
-				data : {
-					key:'reply',
-					methodName :'insert',
-					story_code : storyCode,
-					reply_content : replyContent
-				},
-				success : function(result) {
-					alert(11);
-					
-					
-				},
-				error : function(err) {
-					alert(err+"에러 발생했어요.");
-				}//error
-			});//ajax
-		});
-
-</script>
 
 </head>
 <body class="animsition">	
 <section class="bg-img1 txt-center p-lr-15 p-tb-92" 
 style="background-image: url('${pageContext.request.contextPath}/images/storyBG.jpg');">
-	<div class="zipstory">
-		그 집 Story
+	<div class="zipfollowing">
+		관심 있는 게시글을 팔로우해보세요!
 	</div>
 </section>
-	<!-- Product -->
-	<div class="bg0 m-t-23 p-b-140" style="margin-top: 80px;">
-		<div class="container">
-			<div class="row isotope-grid">
-				<!-- 게시물 -->
-				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
-					<!-- Block2 -->
-					<div class="block2">
-						<section class="b_inner">
-			            <div class="contents_box">
-			               <c:forEach items="${storylist}" var="story">
-			               	 <article class="contents cont01">
-			                    <header class="top">
-			                        <div class="user_container">
-			                            <div class="profile_img">
-			                                <img src="${pageContext.request.contextPath}/images/thumb001.jpg" alt="">
-			                            </div>
-			                            <div class="user_name">
-			                                <div class="nick_name"><a href="front?key=user&methodName=selectByUserCode&userCode=${user.userCode}">${story.user.nickname}</a></div> 
-			                                <a href="" 
-			                                style="text-decoration: none; font-weight: bold; color:#2982ed">
-			                                <c:choose>
-			                                	<c:when test="${story.follow}">
-			                                		팔로잉
-			                                	</c:when>
-			                                	<c:otherwise>
-			                                		팔로우
-			                                	</c:otherwise>
-			                                </c:choose>
-			                                </a>
-			                            </div>
-			                        </div>
-			                        
-			                    </header>
 
-			                    <div class="img_section">
-			                        <div class="trans_inner">
-			                            <div><a href="front?key=story&methodName=selectBystoryCode&storyCode=${story.storyCode }">
-			                            <img src="${pageContext.request.contextPath}/images/profile001.jpg"
-								alt="USER001"></a></div>
-			                        </div>
-			                    </div>
+<section id="container">
 
+    <div id="main_container">
 
-			                    <div class="bottom_icons">
-			                        <div class="left_icons">
-			                            <div class="heart_btn">
-			                            <c:choose>
-			                                	<c:when test="${story.like}">
-			                                		<div class="sprite_heart_icon_outline_red" data-name="heartbeat"></div>
-			                                	</c:when>
-			                                	<c:otherwise>
-			                                		<div class="sprite_heart_icon_outline" data-name="heartbeat"></div>
-			                                	</c:otherwise>
-			                                </c:choose>
-			                            </div>
-			                        </div>
+        <section class="c_inner">
 
-			                        <div class="right_icon">
-			                            
-			                        </div>
-			                    </div>
-							<div class="commet_container">
+            <div class="contents_box">
+
+                <article class="contents cont01">
+                    <header class="top">
+                        <div class="user_container">
+                            <div class="profile_img">
+                                <img src="${pageContext.request.contextPath}/images/thumb001.jpg" alt="">
+                            </div>
+                            <div class="user_name">
+                                <div class="nick_name">닉네임1ww23</div> 
+                                <a href="" 
+                                style="text-decoration: none; font-weight: bold; color:#2982ed">
+                                팔로우</a>
+                            </div>
+                        </div>
+                        <div class="sprite_more_icon"></div>
+                    </header>
+
+                    <div class="img_section">
+                        <div class="trans_inner">
+                            <div><img src="${pageContext.request.contextPath}/images/story001.jpg" alt=""></div>
+                        </div>
                     </div>
-			                </article>
-			               </c:forEach>
 
-			            </div>
+                    <div class="bottom_icons">
+                        <div class="left_icons">
+                            <div class="heart_btn">
+                                <div class="sprite_heart_icon_outline" data-name="heartbeat" alt="좋아요"></div>
+                            </div>
+                            <div>
+                                <div class="sprite_bubble_icon" alt="댓글"></div>
+                            </div>
+                        </div>
+                    </div>
 
-		        		</section>
+                    <div class="count_likes">
+                        좋아요
+                        <span class="count">2,351</span>
+                        개
+                    </div>
 
-					</div>
-				</div>
-				<!-- 게시물END -->
+                    <div class="commet_container">
+
+                        <div class="commet">
+                            <div class="nick_name">
+                                popo213
+                            </div>
+                            <div>
+                                네가 사는 그 집입니다.
+                                코멘트 넣어 주세요.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timer"></div>
+
+                    <div class="commit_field">
+                        <input type="text" placeholder="댓글을 입력하세요" 
+                        	style="border-bottom: 1px solid #ededed; padding: 0px 10px; width: 598px;">
+                        <div class="upload_btn">게시버튼</div>
+                    </div>
+
+
+                </article>
+
+            </div>
+
+        </section>
+    </div>
+</section>
 				
-				
-		<!--게시물 - 1 END -->
-
-		<!--게시물 - 2 END -->
-			</div>
-		</div>
-	</div>
-		
-	<!-- Back to top -->
-	<div class="btn-back-to-top" id="myBtn">
-		<span class="symbol-btn-back-to-top">
-			<i class="zmdi zmdi-chevron-up"></i>
-		</span>
-	</div>
-				
-
 <!--======================================================================================-->	
 	<script src="${pageContext.request.contextPath}/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--========================================================================================-->
@@ -178,7 +143,6 @@ style="background-image: url('${pageContext.request.contextPath}/images/storyBG.
 <!--===================================================================================-->
 	<script src="${pageContext.request.contextPath}/js/main.js"></script>
 
-</body>
 
 </body>
 </html>

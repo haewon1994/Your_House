@@ -1,6 +1,8 @@
 package mvc.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -9,7 +11,13 @@ import javax.servlet.http.HttpSession;
 
 import mvc.dao.user.UserDAO;
 import mvc.dao.user.UserDAOImpl;
+import mvc.dto.follow.Follow;
+import mvc.dto.story.Story;
 import mvc.dto.user.UserDTO;
+import mvc.service.FollowService;
+import mvc.service.FollowServiceImpl;
+import mvc.service.StoryService;
+import mvc.service.StoryServiceImpl;
 import mvc.service.UserService;
 import mvc.service.UserServiceImpl;
 
@@ -20,6 +28,8 @@ public class UserController implements Controller {
 
 	private UserService userService = new UserServiceImpl();
 	private UserDAO userDAO = new UserDAOImpl();
+	private StoryService storyService = new StoryServiceImpl();
+	private FollowService followService = new FollowServiceImpl();
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
@@ -157,6 +167,7 @@ public class UserController implements Controller {
 		//index.jsp이동 - redirect방식
 		return new ModelAndView("front?key=store&methodName=storeHome", true);
 	}
+	
 
 	/**
 	 * 로그아웃
@@ -171,7 +182,29 @@ public class UserController implements Controller {
 
 
 	}
-
+	
+	
+	public ModelAndView myPage(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		HttpSession userInfo = request.getSession();
+		
+		System.out.println(userInfo);
+		
+		//넘어오는 값 받기
+		UserDTO user = (UserDTO) request.getSession().getAttribute("loginUser");
+		int userCode = user.getUserCode();
+		
+		List<Story> storylist = storyService.selectAll(userCode);
+		List<UserDTO> followerlist = followService.searchFollower(userCode);
+		List<UserDTO> followinglist = followService.selectByUserCode(userCode);
+		
+		request.setAttribute("storylist", storylist);//뷰에서 ${list}
+		request.setAttribute("followerlist", followerlist);
+		request.setAttribute("followinglist", followinglist);
+		
+		
+		return new ModelAndView("mypage/myProfile.jsp");
+	}
 }
 
 
