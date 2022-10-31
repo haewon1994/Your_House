@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="../common/header.jsp"/>
 <!DOCTYPE html>
 <html>
@@ -85,7 +86,7 @@
 
 		</div>
 	</div>
-
+<div>
 <section id="my_container">
 
     <div id="main_container">
@@ -101,7 +102,7 @@
 
                 <div class="detail">
                     <div class="top">
-                        <div class="user_name" style="font-family: SCDream4; color: #04348c;">닉네임</div>
+                        <div class="user_name" style="font-family: SCDream4; color: #04348c;">${loginUser.nickname}</div>
                         <a href="profile_edit.html" class="profile_edit">
                         <img src="${pageContext.request.contextPath}/images/icons/gear_thin.svg" 
                         alt="수정" style="width: 20px; padding-right: 5px;">
@@ -112,15 +113,15 @@
                     <ul class="middle">
                         <li>
                             <span>사진</span>
-                            <span alt="내가 올린 사진 개수">22</span>
+                            <span alt="내가 올린 사진 개수">${storylist.size()}</span>
                         </li>
                         <li>
                             <span>팔로워</span>
-                            <a class="follower" href="/follower">30</a>
+                            <a class="follower" href="/follower">${followerlist.size()}</a>
                         </li>
                         <li>
                             <span>팔로잉</span>
-                             <a class="followee" href="/followee">24</a>
+                             <a class="followee" href="/followee">${followinglist.size()}</a>
                         </li>
                     </ul>                
 	                 <p class="about">
@@ -132,33 +133,11 @@
             </div>
 
             <div class="mylist_contents contents_container active">
-                <div class="pic">
-                    <a href="#" alt="storyDetail로 이동"><img src="${pageContext.request.contextPath}/images/img_section/img01.jpg" alt=""></a>
-                </div>
-                <div class="pic">
-                    <a href="#"><img src="${pageContext.request.contextPath}/images/img_section/img02.jpg" alt=""></a>
-                </div>
-                <div class="pic">
-                    <a href="#"> <img src="${pageContext.request.contextPath}/images/img_section/img03.jpg" alt=""></a>
-                </div>
-                <div class="pic">
-                    <a href="#"> <img src="${pageContext.request.contextPath}/images/img_section/img04.jpg" alt=""></a>
-                </div>
-                <div class="pic">
-                    <a href="#"> <img src="${pageContext.request.contextPath}/images/img_section/img05.jpg" alt=""></a>
-                </div>
-                <div class="pic">
-                    <a href="#"> <img src="${pageContext.request.contextPath}/images/img_section/img06.jpg" alt=""></a>
-                </div>
-                <div class="pic">
-                    <a href="#"> <img src="${pageContext.request.contextPath}/images/img_section/img02.jpg" alt=""></a>
-                </div>
-                <div class="pic">
-                    <a href="#"> <img src="${pageContext.request.contextPath}/images/img_section/img03.jpg" alt=""></a>
-                </div>
-                <div class="pic">
-                    <a href="#"> <img src="${pageContext.request.contextPath}/images/img_section/img01.jpg" alt=""></a>
-                </div>
+            	<c:forEach items="${storylist}" var="story">
+            		<div class="pic">
+                   		<a href="${pageContext.request.contextPath}/front?key=story&methodName=selectBystoryCode&storyCode=${story.storyCode}&flag=true" alt="storyDetail로 이동"><img src="${pageContext.request.contextPath}/save/${story.storyImage}" alt="사진"></a>
+               		</div>
+            	</c:forEach>
             </div>
 
 

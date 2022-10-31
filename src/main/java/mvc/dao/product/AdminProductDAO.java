@@ -38,10 +38,10 @@ public interface AdminProductDAO {
 	int insertProduct(AdminTongyeDTO product) throws SQLException;
 	
 	/**
-	 * 상품코드에 해당하는 상품 수정
+	 * 상품코드에 해당하는 상품+보조이미지 수정
 	 * @return : 1 = 수정성공 / 0 = 수정실패
 	 */
-	int updateProductByProductCode(AdminTongyeDTO product) throws SQLException;
+	int updateProductByProductCode (AdminTongyeDTO product, ProductImageDTO productImage ) throws SQLException;
 	
 	/**
 	 * 상품코드에 해당하는 상품의 재고량 수정 
@@ -49,6 +49,20 @@ public interface AdminProductDAO {
 	 * @return : 1 = 수정성공 / 0 = 수정실패
 	 */
 	int updateProductStockByProductCode(int stock, int productCode) throws SQLException;
+	
+	/**
+	 * 대표이미지(=image / 썸네일)
+	 * 변경 없을때 업데이트
+	 */
+	int updateProductNullImageByProductCode(AdminTongyeDTO product) throws SQLException;
+	
+	/**
+	 * 한번에 수정하는 메소드
+	 * @param productImage
+	 * @return
+	 * @throws SQLException
+	 */
+	int updateConnectImage(ProductImageDTO productImage) throws SQLException;
 	
 	/**
 	 * 상품코드에 해당하는 상품 조회 (수정페이지 등에 출력용)

@@ -46,7 +46,7 @@
    <jsp:include page="header.jsp"/>
      
     
-   <form class="container"  style="border-radius: 4px ;margin-top:50px; height:400px; margin-bottom:200px" enctype="multipart/form-data" action="admin" method="post">
+   <form class="container"  style="border-radius: 4px ;margin-top:50px; height:400px; margin-bottom:200px" enctype="multipart/form-data" action="admin?key=adminProduct&methodName=insertTotalProduct" method="post">
      <h1 style="font-family: Verdana, Geneva, Arial, sans-serif; margin-top:30px; margin-bottom:40px ;font-size-adjust: 50px; color: blue ">상품 등록</h1>
      <div style="display:flex; text-align:center; margin-top:8px"> 
      <label class="label_d">카테고리명:</label>
@@ -68,19 +68,17 @@
     </div>
     <div class="mb-3" style="margin-left:5px" >
           <label for="formFileMultiple" class="form-label" style="font-size:18px; margin-top:5px;  ">대표 이미지</label>
-          <input type="file">
+          <input type="file" name="image">
    </div>
    <div class="mb-3" style="margin-left:5px">
           <label for="formFileMultiple" class="form-label" style="font-size:18px; margin-top:5px">추가 이미지</label>
-          <input type="file">
+          <input type="file" name="fileName">
    </div>
    <div class="mb-5" style="margin-left:5px; margin-bottom:3px ">
      <label for="exampleFormControlTextarea1" class="form-label" style="font-size:18px">상품 상세설명</label>
      <textarea class="form-control" name="productDetail" style="border:0.2px solid black;" id="exampleFormControlTextarea1" rows="5" style="margin-bottom:10px" ></textarea>
    </div>
-    <input type="hidden" name ="key"  value="adminProduct">
-    <input type="hidden" name ="methodName"  value="insertTotalProduct">
-    <input type="submit" style="margin-top:0px" class="btn btn-outline-dark">등록</input>
+    <button style="margin-top:0px" class="btn btn-outline-dark">등록</button>
  
  </form>
 

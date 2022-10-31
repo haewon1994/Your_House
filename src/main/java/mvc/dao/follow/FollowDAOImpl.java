@@ -23,7 +23,7 @@ public class FollowDAOImpl implements FollowDAO {
 		//String sql= proFile.getProperty("follow.insert");//insert into liked values(?,?,?)
 		try {
 			con = DBUtil.getConnection();
-			ps = con.prepareStatement("insert into notice values(FOLLOW_SEQ.NEXTVAL, ?,?)");
+			ps = con.prepareStatement("insert into follow values(FOLLOW_SEQ.NEXTVAL, ?,?)");
 			ps.setInt(1, followingCode);
 			ps.setInt(2, followerCode);
 			
@@ -115,7 +115,8 @@ public class FollowDAOImpl implements FollowDAO {
 		//String sql= proFile.getProperty("Follow.selectByFollowingCode");//select * from Electronics where model_num=?
 		try {
 			con = DBUtil.getConnection();
-			ps = con.prepareStatement("select * from FOLLOW where FOLLOWING_CODE=?");
+			ps = con.prepareStatement("select * from Story where user_CODE=?");
+			ps.setInt(1, followingCode);
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
@@ -132,6 +133,31 @@ public class FollowDAOImpl implements FollowDAO {
 		return list ;
 	}
 
-	
+	@Override
+	public List<Integer> searchFollower(int userCode) throws SQLException {
+		Connection con=null;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		List<Integer> list = new ArrayList<Integer>();
+		
+		//String sql= proFile.getProperty("Follow.selectByUserCode");//select * from Electronics where model_num=?
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement("select FOLLOWER_CODE from FOLLOW where FOLLOWER_CODE=?");
+			ps.setInt(1, userCode);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+		
+				
+			   list.add(rs.getInt(1));
+			}
+			
+		}finally {
+			DBUtil.dbClose(con, ps, rs);
+		}
+		return list ;
+	}
+
 
 }

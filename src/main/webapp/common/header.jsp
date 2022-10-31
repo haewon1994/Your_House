@@ -58,20 +58,20 @@
 					<div class="menu-desktop">
 						<ul class="main-menu">
 							<li class="label1" data-label1="hot">
-								<a href="${pageContext.request.contextPath}/community/storyHome.jsp"><b style="font-size: 16px;">커뮤니티</b></a>
+								<a href="${pageContext.request.contextPath}/front?key=story&methodName=select"><b style="font-size: 16px;">커뮤니티</b></a>
 								<ul class="sub-menu">
-									<li><a href="front?key=story&methodName=select">홈</a></li>
-									<li><a href="blog-detail.html">팔로잉</a></li>
-									<li><a href="${pageContext.request.contextPath}/mypage/storyWriter.jsp">글쓰기</a></li>
+									<li><a href="${pageContext.request.contextPath}/front?key=story&methodName=select">홈</a></li>
+									<li><a href="${pageContext.request.contextPath}/front?key=follow&methodName=following">>팔로잉</a></li>
+								    <li><a href="${pageContext.request.contextPath}/community/write.jsp">글쓰기</a></li>
 								</ul>
 							</li>
 
 							<li class="active-menu">
 								<a href="${pageContext.request.contextPath}/front?key=store&methodName=storeHome"><b style="font-size: 16px;">스토어</b></a>
 								<ul class="sub-menu">
-									<li><a href="front?key=store&methodName=storeHome">홈</a></li>
-									<li><a href="../store/storeCategory.jsp">카테고리</a></li>
-									<li><a href="../store/storeBest.jsp">베스트</a></li>
+									<li><a href="${pageContext.request.contextPath}/front?key=store&methodName=storeHome">홈</a></li>
+									<li><a href="${pageContext.request.contextPath}/front?key=store&methodName=storeCategory">카테고리</a></li>
+									<li><a href="${pageContext.request.contextPath}/front?key=store&methodName=storeBest"">베스트</a></li>
 								</ul>
 							</li>
 
@@ -103,7 +103,7 @@
 										<a href="${pageContext.request.contextPath}/index.jsp">로그인</a>
 									</c:when>
 									<c:otherwise>
-										<a href="${pageContext.request.contextPath}/mypage/myProfile.jsp">${loginUser.nickname}</a>
+										<a href="${pageContext.request.contextPath}/front?key=user&methodName=myPage">${loginUser.nickname}</a>
 									</c:otherwise>
 								</c:choose>
 							</li>

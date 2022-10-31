@@ -6,6 +6,11 @@ public class ColorDTO {
 	private String colorName;
 
 	public ColorDTO() {}
+	
+	public ColorDTO(int productCode) {
+		super();
+		this.productCode = productCode;
+	}
 
 	public ColorDTO(String colorName) {
 		this.colorName = colorName;

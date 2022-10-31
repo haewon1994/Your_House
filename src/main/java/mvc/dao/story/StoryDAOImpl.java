@@ -157,13 +157,13 @@ public class StoryDAOImpl implements StoryDAO {
 		ResultSet rs=null;
 		List<Story> list = new ArrayList<Story>();
 		
-		String sql="SELECT * FROM STOYR";
+		String sql="SELECT * FROM STORY";
 		
 		//sql ="SELECT * FROM MEMBER WHERE 1=1 -- like ?";   // keyField =  1=1 --
 		
 		try {
 			if(keyWord != null && !keyWord.isEmpty()) {
-				sql += " WHERE storLiter LIKE '%' || ? || '%'order by created_reg desc";
+				sql += " WHERE storyLiter LIKE '%' || ? || '%'order by created_reg desc";
 			}
 			
 			ps = con.prepareStatement(sql);
@@ -190,8 +190,7 @@ public class StoryDAOImpl implements StoryDAO {
 		return list;
 	}
 
-
-	@Override
+	/*@Override
 	public int increamentByReadnum(int storyCode) throws SQLException {
 		Connection con=null;
 		PreparedStatement ps=null;
@@ -206,8 +205,7 @@ public class StoryDAOImpl implements StoryDAO {
 			DBUtil.dbClose(con, ps);
 		}
 		return result;
-	}
-
+	}*/
 
 	@Override
 	public List<Story> getBoardList(int pageNo) throws SQLException {
@@ -269,6 +267,60 @@ public class StoryDAOImpl implements StoryDAO {
 			DBUtil.dbClose(null, ps, rs);
 		}
 		return result;
+	}
+
+	@Override
+	public List<Story> selectByFollowingCode(int followCode) throws SQLException {
+		Connection con=null;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		List<Story> list = null;
+
+		//String sql= proFile.getProperty("Story.selectBynoticeCode");//select * from Electronics where model_num=?
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement("select * from Story where Story_CODE=?");
+			ps.setInt(1, followCode);
+
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				list.add(new Story(rs.getInt(1), rs.getInt(2), rs.getString(3),
+						rs.getString(4), rs.getString(5)));
+			}
+		}finally {
+			DBUtil.dbClose(con, ps, rs);
+		}
+		return list;
+	}
+
+
+
+
+
+	@Override
+	public List<Story> selectAll(int userCode) throws SQLException {
+		Connection con=null;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		List<Story> list = new ArrayList<Story>();
+
+		//String sql= proFile.getProperty("Story.selectAll");
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement("select * from Story where user_code =? order by CREATED_REG desc");
+			ps.setInt(1, userCode);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				Story story = 
+						new Story(rs.getInt(1), rs.getInt(2), rs.getString(3),
+								rs.getString(4), rs.getString(5));
+
+				list.add(story);
+			}
+		}finally {
+			DBUtil.dbClose(con, ps, rs);
+		}
+		return list;
 	}
 
 

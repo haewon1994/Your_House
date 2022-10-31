@@ -8,7 +8,7 @@ import mvc.dto.product.ProductDTO;
 
 public interface ProductService {
 
-	ProductDTO selectByProductCode(int prodcutCode) throws SQLException;
+	ProductDTO selectByProductCode(int userCode, int prodcutCode) throws SQLException;
 
 	void insert(ProductDTO product);
 
@@ -26,5 +26,5 @@ public interface ProductService {
 	/**
 	 * 실시간/역대 베스트 상품을 출력
 	 */
-	Map<String, List<ProductDTO>> totalBest() throws SQLException;
+	List<ProductDTO> totalBest() throws SQLException;
 }

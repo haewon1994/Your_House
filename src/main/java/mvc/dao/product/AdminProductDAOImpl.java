@@ -63,7 +63,7 @@ public class AdminProductDAOImpl implements AdminProductDAO {
 			con.setAutoCommit(false);//트랜잭션 처리위해 오토커밋끄기
 			
 			ps = con.prepareStatement(sql);
-			ps.setInt(1, product.getProductCode());
+			ps.setInt(1, product.getCategoryCode());
 			ps.setString(2, product.getProductName());
 			ps.setString(3, product.getImage());
 			ps.setString(4, product.getProductDetail());
@@ -96,7 +96,7 @@ public class AdminProductDAOImpl implements AdminProductDAO {
 		PreparedStatement ps=null;
 		int result=0;
 		String sql= proFile.getProperty("color.insertTotal");
-		//insert into color(color_code, product_code, color_name) values( color_seq.nextval, product_code_seq.currval , ? )
+		//insert into color(color_code, product_code, color_name) values( color_seq.nextval, product_seq.currval , ? )
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setString(1, color.getColorName());
@@ -119,7 +119,7 @@ public class AdminProductDAOImpl implements AdminProductDAO {
 		PreparedStatement ps=null;
 		int result=0;
 		String sql= proFile.getProperty("productImage.insertTotal");
-		//insert into product_image(image_code, product_code, file_name) values( image_code_seq.nextval, product_code_seq.currval , ? )
+		//insert into product_image(image_code, product_code, file_name) values( product_image_seq.nextval, product_seq.currval , ? )
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setString(1, productImage.getFileName());
@@ -145,7 +145,7 @@ public class AdminProductDAOImpl implements AdminProductDAO {
 		try {
 			con = DBUtil.getConnection();
 			ps = con.prepareStatement(sql);
-			ps.setInt(1, product.getProductCode());
+			ps.setInt(1, product.getCategoryCode());
 			ps.setString(2, product.getProductName());
 			ps.setString(3, product.getImage());
 			ps.setString(4, product.getProductDetail());
@@ -160,17 +160,85 @@ public class AdminProductDAOImpl implements AdminProductDAO {
 	}
 
 	@Override
-	public int updateProductByProductCode(AdminTongyeDTO product) throws SQLException {
+	public int updateProductByProductCode (AdminTongyeDTO product, ProductImageDTO productImage ) throws SQLException {
 		Connection con=null;
 		PreparedStatement ps=null;
 		int result=0;
-		String sql= proFile.getProperty("product.updateAll");
-		//update product set category_code = ? , product_name = ? , image = ? , product_detail = ? , stock = ? , price = ? where product_code = ?
+		if(product.getImage()==null) { //아래로 연결이 안되어 우선 이곳에서 처리
+			String sql= proFile.getProperty("product.updateNullImage");
+			//update product set category_code = ? , product_name = ? , product_detail = ? , stock = ? , price = ? where product_code = ?
+			try {
+				con = DBUtil.getConnection();
+				ps = con.prepareStatement(sql);
+				ps.setInt(1, product.getCategoryCode());
+				ps.setString(2, product.getProductName());
+				ps.setString(3, product.getProductDetail());
+				ps.setInt(4, product.getStock());
+				ps.setInt(5, product.getPrice());
+				ps.setInt(6, product.getProductCode());
+				
+				result = ps.executeUpdate();
+			}finally {
+				DBUtil.dbClose(con, ps);
+			}
+		}else if(product.getImage()!=null){
+			String sql= proFile.getProperty("product.updateAll");
+			//update product set category_code = ? , product_name = ? , image = ? , product_detail = ? , stock = ? , price = ? where product_code = ?
+			try {
+				con = DBUtil.getConnection();
+				ps = con.prepareStatement(sql);
+				ps.setInt(1, product.getCategoryCode());
+				ps.setString(2, product.getProductName());
+				ps.setString(3, product.getImage());
+				ps.setString(4, product.getProductDetail());
+				ps.setInt(5, product.getStock());
+				ps.setInt(6, product.getPrice());
+				ps.setInt(7, product.getProductCode());
+				
+				result = ps.executeUpdate();
+			}finally {
+				DBUtil.dbClose(con, ps);
+			}
+		}
+		if(productImage.getFileName()!=null){
+			this.updateConnectImage(productImage);
+		}
+		 
+		return result;
+	}
+
+	@Override
+	public int updateConnectImage(ProductImageDTO productImage) throws SQLException {
+		Connection con=null;
+		PreparedStatement ps=null;
+		int result=0;
+		String sql= proFile.getProperty("productImage.updateByCode");
+		//update product_image set file_name = ? where image_code = ?
 		try {
 			con = DBUtil.getConnection();
 			ps = con.prepareStatement(sql);
-			ps.setString(1, product.getImage());
-			ps.setString(2, product.getImage());
+			ps.setString(1, productImage.getFileName());
+			ps.setInt(2, productImage.getImageCode());
+			
+			result = ps.executeUpdate();
+		}finally {
+			DBUtil.dbClose(con, ps);
+		}
+		return result;
+	}
+	
+	@Override
+	public int updateProductNullImageByProductCode(AdminTongyeDTO product) throws SQLException {
+		Connection con=null;
+		PreparedStatement ps=null;
+		int result=0;
+		String sql= proFile.getProperty("product.updateNullImage");
+		//update product set category_code = ? , product_name = ? , product_detail = ? , stock = ? , price = ? where product_code = ?
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, product.getCategoryCode());
+			ps.setString(2, product.getProductName());
 			ps.setString(3, product.getProductDetail());
 			ps.setInt(4, product.getStock());
 			ps.setInt(5, product.getPrice());
@@ -211,7 +279,7 @@ public class AdminProductDAOImpl implements AdminProductDAO {
 		AdminTongyeDTO product = null;
 		
 		String sql= proFile.getProperty("product.selectByProductCode");//카테고리 이름도 나오게 join사용
-		//product_code, category_code, product_name, image, created_reg, product_detail, stock, price, category_name from product join product_category using(category_code) where product_code = ?
+		//select product_code, category_code, product_name, image, created_reg, product_detail, stock, price, category_name from product join product_category using(category_code) where product_code = ?
 		try {
 			con = DBUtil.getConnection();
 			ps = con.prepareStatement(sql);
