@@ -62,8 +62,8 @@
 								<a href="../community/storyHome.jsp"><b style="font-size: 16px;">커뮤니티</b></a>
 								<ul class="sub-menu">
 									<li><a href="front?key=story&methodName=select">홈</a></li>
-									<li><a href="blog-detail.html">스토리</a></li>
-								    <li><a href="${pageContext.request.contextPath}/community/storyWriter.jsp">글쓰기</a></li>
+									<li><a href="${pageContext.request.contextPath}/community/following.jsp">>팔로잉</a></li>
+								    <li><a href="${pageContext.request.contextPath}/community/write.jsp">글쓰기</a></li>
 								</ul>
 							</li>
 

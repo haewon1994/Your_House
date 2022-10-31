@@ -1,111 +1,227 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<jsp:include page="../common/header.jsp"/>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="css/style.css">
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+<script type="text/javascript" src="../js/jquery-3.6.1.min.js"></script>
+ 
+ 
+ 
+ 
+ <style>
+ 
 
-<SCRIPT language=javascript>
-function checkValid() {
-    var f = window.document.writeForm;
-		
-	if ( f.notice_category.value == ""||f.notice_category.value ==0) {
-	    alert( "공지 카테고리를 선택해주세요" );
-	    f.model_num.focus();
-		return false;
-    }
-	if ( f.subject.value == "" ) {
-		alert( "공지제목을 입력해 주세요." );
-		f.model_name.focus();
-		return false;
-	}
-	if ( f.noticContent.value == "" ) {
-		alert( "공지내용을 입력해 주세요." );
-		f.price.focus();
-		return false;
-    }
-    return true;
-}
-</SCRIPT>
+ .centers{
+ 
+  margin:auto;
+  background-color: red; 
+  border:1px solid black;
+  height:500px 
+  
+  
+  }
 
+ .navi{
 
-</HEAD>
-<BODY>
-
-<form name="writeForm" method="post" action="${path}/admin?key=notice&methodName=insert" 
-
-  onSubmit='return checkValid()' enctype="multipart/form-data">
-<!-- 
-     아래 문장으로 전송하면 post방식으로 전송이되고 현재 파일업로드때문에 enctype="multipart/form-data" 설정되어 있기때문에 
-     request로 값을 받을수가 없다. ( MulitpartRequest로 받아야한다.) 그런데 Controller로 가기전에 Controller를 찾기위해서 
-     DispatherServlet에서 request로 두개의 값을 받고 있기때문에 key, methodName은 get방식으로 별도로 전송해야한다.
+  height:100px;
+  background-color: yellow; 
+  margin-left:0px;
+  margin-right:0px;   
+ 
+  
+ }
+ 
+ 
+ 
+  .img_in{
+    height:500px;   
+    width: 532.5px;
+   
+    margin-top:10px; 
+    border-radius: 10px;
+    border-radius: 7px;
+    
+    
+      }
+  
+  .input_setting{
      
-	<input type="hidden" name="key" value = "elec" />
-	<input type="hidden" name="methodName" value = "insert" />  
+    width:410px;
+  
+  
+  }
+  
+  
+  .fon{
+  
+  font-family: Georgia, "Malgun Gothic", serif;
+  font-weight: 400;
+  font-family: Lorem Ipsum Dolor;
+
+ 
+  }
+  
+   .img_k{
+   
+   width:100% ;height:100%;
+   border-radius: 7px
+   
+   }
+   
+  
+   
+ 
+  
+</style>
 
 
- -->
-<table align="center" cellpadding="5" cellspacing="2" width="600" border="1" >
+ <script type="text/javascript">
+ 
+  
+
+  
+  $(function() {
+	
+		 
+	    
+	  
+	  
+	        document.
+		    getElementById("imgBuff").
+	        addEventListener("change",function(e){	
+	         
+	         let imgEle =document.getElementById("img_in");	 
+	        	
+	          if(!e.target.files[0]){
+	        	  imgEle.src="../images/uploads.jpg" 
+	        	  return;
+	          }
+	        	
+	           let divEle  = document.getElementById("img_div")             
+	           let imgFile	 =e.target.files[0]; 
+	           let url  =URL.createObjectURL(imgFile);  
+	           imgEle.src=url;
+	      
+	        },false); 
+ 
+	      		    
+		    
+		    
+		    
+		    })
+		    
+		    
+		    
+         		    
+		    
+ 
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  })
+ 
+
+  
+  
+  
+  
+  
+ 
+ 
+ 
+ 
+ </script>
+
+</head>
+<body>
+<jsp:include page="../common/header.jsp"/>
+   
+ <form class="container" name="Form" method="post" enctype="multipart/form-data"  style="margin-left:450px;  margin-top:50px" action= "${path}/front?key=story&methodName=insert"
+   onsubmit="return insertStory(this)">
+     
+  
+ 
+ 
+                    
+                  
+            
+             <div class="container">
+                 <div class="row">             
+                    <div class="col-md-5"> 
+                       <input class="form-control" id="imgBuff" type="file" id="formFileMultiple" name="storyImage" multiple>    
+                        <div id="img_div" class="img_in">     
+                             <!--이미지가 들어갈 div이다 -->  
+                         <img id="img_in" src="../images/uploads.jpg"class="img_k"  />                                  
+                       </div> 
+                   </div>             
+                   <div class="col-md-5"> 
+                 
+                      <label for="exampleFormControlTextarea1"  class="form-label fon">사진 설명</label>
+                      <textarea class="form-control input_setting" name="storyLiter" id="cid" rows="3" style="height:520px; width:532.5px; resize:none"></textarea>
+                   </div> 
+               </div>
+          
+           <button type="submit" style="margin-top:20px" class="btn btn-primary btn-lg">등록하기</button> 
+         </div>
+                  
+ </form>
+ 
+ 
+ 
+ <script type="text/javascript">
+
+ 
+ function insertStory(fr) {
+	 
+  	  
+ 
+	
+	
+	
+     
+    return true;
+   
+   
+   
+   
+   
+
+	 
+	  
+  
+  
+ 
+ 
+ }
+ 
+ 
+ </script>
+ 
 
 
 
-    <tr>
-        <td width="1220" height="20" colspan="2" bgcolor="#00cc00">
-            <p align="center"><font color="white" size="3"><b> 공지 등록 </b></font></p>
-        </td>
-    </tr>
-    <tr>
-        <td width="150" height="20" >
-            <p align="right"><b><span style="font-size:9pt;">카테고리</span></b></p>
-        </td>
-        <td width="450" height="20"><b><span style="font-size:9pt;">
-		 <select name="notice_category">
-       <option value="0">--공지 종류 --</option>
-	   <option value="공지">공지</option>
-	   <option value="이벤트">이벤트 </option>
-   </select>
-   <tr>
-        <td width="150" height="20">
-            <p align="right"><b><span style="font-size:9pt;">공지제목</span></b></p>
-        </td>
-        <td width="450" height="20" ><b><span style="font-size:9pt;">
-		<input type=text name="subject" size="50"></span></b></td>
-    </tr>
-		</tr>
-    <tr>
-        <td width="150" height="20">
-            <p align="right"><b><span style="font-size:9pt;">베너설정여부</span></b></p>
-        </td>
-        <td width="450" height="20"><b><span style="font-size:9pt;">
-		<input type="checkbox" name="isPrivate" value="1">베너설정		
-	</tr>
-    
-    <tr>
-        <td width="150" height="20">
-            <p align="right"><b><span style="font-size:9pt;">공지내용</span></b></p>
-        </td>
-        <td width="450" height="20"><b><span style="font-size:9pt;">
-		<textarea name="noticContent" cols="50" rows="10"></textarea></span></b></td>
-    </tr>
-    
-     <tr>
-        <td width="150" height="20">
-            <p align="right"><b><span style="font-size:9pt;">*파일첨부</span></b></p>
-        </td>
-        <td width="450" height="20">
-        	<b><span style="font-size:9pt;">
-        		 <input type="file" name="notice_image" maxlength="60" size="40">
-        	   </span></b>
-        </td>
-    </tr>
-    
-    <tr>
-        <td width="450" height="20" colspan="2" align="center"><b><span style="font-size:9pt;"><input type=submit value=공지등록하기> 
-        <input type=reset value=다시쓰기></span></b></td>
-    </tr>
-</table>
-
-</form>
-
-<hr>
-<div align=right><span style="font-size:9pt;">&lt;<a href="../notic?command=list">리스트로 돌아가기</a>&gt;</span></div>
-<jsp:include page="../common/footer.jsp"/>
+</body>
+</html>

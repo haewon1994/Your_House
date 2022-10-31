@@ -35,7 +35,7 @@ public class UserSessionCheckFilter implements Filter {
 		System.out.println("UserSessionCheck....");
 		//사전처리 -> 인증여부를 체크한다.
 	
-		/*
+		
 		String key = request.getParameter("key");
 		if(key==null || key.equals("")) {//조건식에 진입하는 key 넣기-Dispatcher서블릿에 입력된 그대로
 			
@@ -48,7 +48,7 @@ public class UserSessionCheckFilter implements Filter {
 				return ;//함수를 빠져나가라
 			}
 		}
-		*/
+		
 		chain.doFilter(request, response);
 	}
 

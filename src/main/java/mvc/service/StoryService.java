@@ -36,7 +36,6 @@ public interface StoryService {
 	 * StoryDAOImpl의 모델번호에 해당하는 레코드 수정  메소드 호출
 	 * */
 	void update(Story story) throws SQLException;
-
 	
 	
 	//
@@ -49,6 +48,10 @@ public interface StoryService {
 	   * */
 	
 	  Story selectByStoryCode(int storyCode) throws SQLException;
+	  
+	  
+	  List<Story> selectByFollowingCode(int user_code) throws SQLException;
+	
 	
 
 }

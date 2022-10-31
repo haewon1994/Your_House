@@ -99,7 +99,8 @@ style="background-image: url('${pageContext.request.contextPath}/images/storyBG.
 			                    <div class="img_section">
 			                        <div class="trans_inner">
 			                            <div><a href="front?key=story&methodName=selectBystoryCode&storyCode=${story.storyCode }">
-			                            <img src="${pageContext.request.contextPath}/images/story001.jpg" alt="" ></a></div>
+			                            <img src="${pageContext.request.contextPath}/save/${story.storyImage}"
+alt="USER001"></a></div>
 			                        </div>
 			                    </div>
 

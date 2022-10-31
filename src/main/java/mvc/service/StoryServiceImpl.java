@@ -114,7 +114,28 @@ public class StoryServiceImpl implements StoryService {
 	  
 	  
 	  
-	  return story; }
+	  return story; 
+	  }
+
+	@Override
+	public List<Story> selectByFollowingCode(int user_code) throws SQLException {
+		List<Story>  list = storyDAO.selectByFollowingCode();
+
+		for(Story story : list) {
+			//팔로우 정보
+			Follow fo = followDAO.isFollow(user_code, story.getUserCode());
+			if(fo!=null) {
+				story.setFollow(true);
+			}
+
+			
+			UserDTO user = userDAO.searchByUserCode(story.getUserCode());
+			story.setUser(user);
+		}
+		return list;
+	}
+
+
 	
 	/*
 	 * @Override public List<Story> selectAll(int pageNo) throws SQLException {
