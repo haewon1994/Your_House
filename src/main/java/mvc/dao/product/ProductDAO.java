@@ -68,8 +68,7 @@ public interface ProductDAO {
 	List<ProductDTO> categoryProduct(int category) throws SQLException;
 
 	/**
-	 * 실시간/역대 누적판매 순위 상품
-	 *//*
-		 * List<ProductDTO> totalBest(String keyword) throws SQLException;
-		 */
+	 * 실시간 누적판매 순위 상품
+	 */
+	List<ProductDTO> totalBest() throws SQLException;
 }
