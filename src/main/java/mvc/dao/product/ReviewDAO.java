@@ -1,5 +1,6 @@
 package mvc.dao.product;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -32,7 +33,7 @@ public interface ReviewDAO {
 	 * 사용변수 : possibleCheck (boolean)
 	 * ->true : 사용가능 / false : 불가능-등록불가,뷰에서 출력불가
 	 */
-	public boolean possibleCheck(int userCode, int productCode) throws SQLException; 
+	public boolean possibleCheck(Connection con, int userCode, int productCode) throws SQLException; 
 	
 	/**
 	 * 리뷰 별점 평균
@@ -40,7 +41,7 @@ public interface ReviewDAO {
 	 * 사용변수 : avgRating (double)
 	 * ->소수점 두자리 평점으로 나옴
 	 */
-	public double avgRating(int productCode) throws SQLException;
+	public double avgRating(Connection con, int productCode) throws SQLException;
 	
 	/**
 	 * 리뷰 전체 조회 출력

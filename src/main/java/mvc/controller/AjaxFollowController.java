@@ -21,27 +21,27 @@ public class AjaxFollowController implements AjaxController {
 	public void handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	public void isFollowCheck(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-PrintWriter out = response.getWriter();
-		
+		PrintWriter out = response.getWriter();
+
 		UserDTO user = (UserDTO) request.getSession().getAttribute("loginUser");
 		int userCode = user.getUserCode();
 		String followCode = request.getParameter("followCode");
-		
+
 		boolean result = service.isFollow(userCode, Integer.parseInt(followCode));
-		
+
 		if(result) {
 			out.print("팔로우 등록");
 		}else {
 			out.print("팔로우 취소");
 		}
 	}
-		
-		
-	
+
+
+
 
 }

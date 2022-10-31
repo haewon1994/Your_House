@@ -194,7 +194,7 @@ public class UserController implements Controller {
 		UserDTO user = (UserDTO) request.getSession().getAttribute("loginUser");
 		int userCode = user.getUserCode();
 		
-		List<Story> storylist = storyService.selectAll(userCode);
+		List<Story> storylist = storyService.selectByUserCode(userCode);
 		List<UserDTO> followerlist = followService.searchFollower(userCode);
 		List<UserDTO> followinglist = followService.selectByUserCode(userCode);
 		

@@ -57,8 +57,6 @@ public class StoreController implements Controller {
 	 */
 	public ModelAndView productDetail(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
-		
-
 		response.setContentType("text/html;charset=UTF-8");
 		
 		String url="error/signupError.jsp";
@@ -69,21 +67,14 @@ public class StoreController implements Controller {
 		int userCode = user.getUserCode();
 		
 		String productCode = request.getParameter("productCode");
-		
-		if(productCode.equals("") || productCode==null) {}
 
 		if (productCode.equals("") || productCode == null) {
 			request.setAttribute("errMsg", errMsg);
 		} else {
 			ProductDTO prdocut = proService.selectByProductCode(userCode, Integer.parseInt(productCode));
 			request.setAttribute("prodocut", prdocut);
-			
 			url="store/productDetail.jsp";
-
-			url = "store/productDetail.jsp";
 		}
-		
-
 		return new ModelAndView(url);
 	}
 	

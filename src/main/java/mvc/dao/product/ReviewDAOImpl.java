@@ -76,7 +76,6 @@ public class ReviewDAOImpl implements ReviewDAO {
 		Connection con=null;
 		PreparedStatement ps=null;
 		ResultSet rs=null;
-		ReviewDTO review = new ReviewDTO();
 		List<ReviewDTO> reviewList=new ArrayList<ReviewDTO>();
 		
 		String sql= proFile.getProperty("review.selectAllByCode");
@@ -87,7 +86,8 @@ public class ReviewDAOImpl implements ReviewDAO {
 			ps.setInt(1, productCode);
 			
 			rs = ps.executeQuery();
-			if(rs.next()) {
+			while(rs.next()) {
+				ReviewDTO review = new ReviewDTO();
 				review.setReviewCode(rs.getInt(1));
 				review.setUserCode(rs.getInt(2));
 				review.setProductCode(rs.getInt(3));
@@ -95,8 +95,9 @@ public class ReviewDAOImpl implements ReviewDAO {
 				review.setReviewContent(rs.getString(5));
 				review.setCreatedReg(rs.getString(6));
 				
-				review.setAvgRating(this.avgRating(productCode));
-				review.setCheck(this.possibleCheck(userCode, productCode));
+				review.setAvgRating(this.avgRating(con, productCode));
+				review.setCheck(this.possibleCheck(con, userCode, productCode));
+				reviewList.add(review);
 			}
 		}finally {
 			DBUtil.dbClose(con, ps, rs);
@@ -106,8 +107,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 	}
 	
 	@Override
-	public boolean possibleCheck(int userCode, int productCode) throws SQLException {
-		Connection con=null;
+	public boolean possibleCheck(Connection con, int userCode, int productCode) throws SQLException {
 		PreparedStatement ps=null;
 		ResultSet rs=null;
 		ReviewDTO review = new ReviewDTO();
@@ -116,7 +116,6 @@ public class ReviewDAOImpl implements ReviewDAO {
 		String sql= proFile.getProperty("review.selectCheckByUserProduct");
 		//select count(product_code) countOne, count(c.review_code) countTwo from orders a full join orders_detail b using(orders_code) full join review c using(product_code) where a.user_code= ? and product_code= ?
 		try {
-			con = DBUtil.getConnection();
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, userCode);
 			ps.setInt(2,  productCode);
@@ -129,15 +128,14 @@ public class ReviewDAOImpl implements ReviewDAO {
 				if(review.getCountOne()>review.getCountTwo()) possibleCheck=true;
 			}
 		}finally {
-			DBUtil.dbClose(con, ps, rs);
+			DBUtil.dbClose(null, ps, rs);
 		}
 		
 		return possibleCheck;
 	}
 
 	@Override
-	public double avgRating(int productCode) throws SQLException {
-		Connection con=null;
+	public double avgRating(Connection con, int productCode) throws SQLException {
 		PreparedStatement ps=null;
 		ResultSet rs=null;
 		double avgRating=0;
@@ -145,17 +143,14 @@ public class ReviewDAOImpl implements ReviewDAO {
 		String sql= proFile.getProperty("review.selectAvgRating");
 		//select avg(rating) from review
 		try {
-			con = DBUtil.getConnection();
 			ps = con.prepareStatement(sql);
-			ps.setInt(1,  productCode);
-			
 			rs = ps.executeQuery();
 			if(rs.next()) {
 				avgRating=(Math.round(rs.getDouble(1)*100)/100.0);//소숫점 2자리까지 표시(3번째에서 반올림)
 				
 			}
 		}finally {
-			DBUtil.dbClose(con, ps, rs);
+			DBUtil.dbClose(null, ps, rs);
 		}
 		
 		return avgRating;

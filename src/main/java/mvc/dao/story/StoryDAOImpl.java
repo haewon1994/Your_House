@@ -270,11 +270,11 @@ public class StoryDAOImpl implements StoryDAO {
 	}
 
 	@Override
-	public Story selectByFollowingCode(int followCode) throws SQLException {
+	public List<Story> selectByFollowingCode(int followCode) throws SQLException {
 		Connection con=null;
 		PreparedStatement ps=null;
 		ResultSet rs=null;
-		Story story = null;
+		List<Story> list = null;
 
 		//String sql= proFile.getProperty("Story.selectBynoticeCode");//select * from Electronics where model_num=?
 		try {
@@ -283,14 +283,44 @@ public class StoryDAOImpl implements StoryDAO {
 			ps.setInt(1, followCode);
 
 			rs = ps.executeQuery();
-			if(rs.next()) {
-				story = new Story(rs.getInt(1), rs.getInt(2), rs.getString(3),
-						rs.getString(4), rs.getString(5));
+			while(rs.next()) {
+				list.add(new Story(rs.getInt(1), rs.getInt(2), rs.getString(3),
+						rs.getString(4), rs.getString(5)));
 			}
 		}finally {
 			DBUtil.dbClose(con, ps, rs);
 		}
-		return story;
+		return list;
+	}
+
+
+
+
+
+	@Override
+	public List<Story> selectAll(int userCode) throws SQLException {
+		Connection con=null;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		List<Story> list = new ArrayList<Story>();
+
+		//String sql= proFile.getProperty("Story.selectAll");
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement("select * from Story where user_code =? order by CREATED_REG desc");
+			ps.setInt(1, userCode);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				Story story = 
+						new Story(rs.getInt(1), rs.getInt(2), rs.getString(3),
+								rs.getString(4), rs.getString(5));
+
+				list.add(story);
+			}
+		}finally {
+			DBUtil.dbClose(con, ps, rs);
+		}
+		return list;
 	}
 
 

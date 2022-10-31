@@ -1,5 +1,7 @@
 package mvc.dto.product;
 
+import mvc.dto.user.UserDTO;
+
 /**
  * 리뷰 DTO -> 상품에 ReviewList있음
  * 
@@ -15,11 +17,12 @@ public class ReviewDTO {
 	private String createdReg;
 	
 	private double avgRating;
-	
 	private boolean possibleCheck;
 	
 	private int countOne;
 	private int countTwo;
+	
+	private UserDTO user;
 	
 	public ReviewDTO() {
 		super();
@@ -166,6 +169,22 @@ public class ReviewDTO {
 
 	public void setAvgRating(double avgRating) {
 		this.avgRating = avgRating;
+	}
+
+	public boolean isPossibleCheck() {
+		return possibleCheck;
+	}
+
+	public void setPossibleCheck(boolean possibleCheck) {
+		this.possibleCheck = possibleCheck;
+	}
+
+	public UserDTO getUser() {
+		return user;
+	}
+
+	public void setUser(UserDTO user) {
+		this.user = user;
 	}
 	
 }
