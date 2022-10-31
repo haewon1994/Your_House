@@ -53,7 +53,7 @@ public interface StoryService {
 	  List<Story> selectByFollowingCode(int user_code) throws SQLException;
 	
 	
-
+	  List<Story> selectByUserCode(int userCode) throws SQLException;
 }
 
 

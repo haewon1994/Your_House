@@ -135,7 +135,7 @@
             <div class="mylist_contents contents_container active">
             	<c:forEach items="${storylist}" var="story">
             		<div class="pic">
-                   		<a href="${pageContext.request.contextPath}/front?key=story&methodName=selectBynoticeCode&storyCode=${story.storyCode}&flag=true" alt="storyDetail로 이동"><img src="${pageContext.request.contextPath}/images/img_section/img01.jpg" alt="사진"></a>
+                   		<a href="${pageContext.request.contextPath}/front?key=story&methodName=selectBystoryCode&storyCode=${story.storyCode}&flag=true" alt="storyDetail로 이동"><img src="${pageContext.request.contextPath}/save/${story.storyImage}" alt="사진"></a>
                		</div>
             	</c:forEach>
             </div>
