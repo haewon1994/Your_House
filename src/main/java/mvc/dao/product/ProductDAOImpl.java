@@ -309,9 +309,7 @@ public class ProductDAOImpl implements ProductDAO {
 		} finally {
 			DBUtil.dbClose(con, ps, rs);
 		}
-		
 		return list;
 	}
-
 
 }

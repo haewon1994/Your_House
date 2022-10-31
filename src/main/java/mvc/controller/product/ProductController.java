@@ -21,6 +21,7 @@ import mvc.controller.Controller;
 import mvc.controller.ModelAndView;
 import mvc.dto.product.ProductDTO;
 import mvc.dto.product.ProductImageDTO;
+import mvc.dto.user.UserDTO;
 import mvc.service.product.ProductService;
 import mvc.service.product.ProductServiceImpl;
 
@@ -46,10 +47,13 @@ public class ProductController implements Controller {
 
 	public ModelAndView selectByProductCode(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
+		UserDTO user = (UserDTO) request.getSession().getAttribute("loginUser");
+		int userCode = user.getUserCode();
+		
 		String productCode = request.getParameter("productCode");
 
 		//service ==> dao 호출
-		ProductDTO product = service.selectByProductCode(Integer.parseInt(productCode));
+		ProductDTO product = service.selectByProductCode(userCode, Integer.parseInt(productCode));
 		System.out.println(product);
 
 		request.setAttribute("product", product);

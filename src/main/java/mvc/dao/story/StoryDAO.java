@@ -13,7 +13,7 @@ public interface StoryDAO {
 	   * 조회수를 증가하는 기능
 	   * update Electronics set readnum = readnum + 1 where model_num=?
 	   * */
-	  int increamentByReadnum(int storyCode) throws SQLException;
+	/* int increamentByReadnum(int storyCode) throws SQLException; */
 	
 	/**
 	  * 레코드 전체 검색
@@ -65,6 +65,8 @@ public interface StoryDAO {
 	List<Story> list(String keyword);
 
 
+	Story selectByFollowingCode(int followCode) throws SQLException;
+	
 	  
 	}
 

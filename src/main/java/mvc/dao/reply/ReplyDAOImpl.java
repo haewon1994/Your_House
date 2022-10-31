@@ -22,7 +22,7 @@ public class ReplyDAOImpl implements ReplyDAO {
 		ResultSet rs=null;
 		List<Reply> list = new ArrayList<Reply>();
 
-		
+
 		String sql= proFile.getProperty("Reply.selectAll");//select * from Electronics  order by writeday desc
 		try {
 			con = DBUtil.getConnection();
@@ -50,11 +50,11 @@ public class ReplyDAOImpl implements ReplyDAO {
 		//String sql= proFile.getProperty("reply.insert");//insert into Electronics values(?,?,?,?,?,sysdate,0,?,?)
 		try {
 			con = DBUtil.getConnection();
-			ps = con.prepareStatement("insert into reply values(reply_SEQ.NEXTVAL, ?,?,?,sysdate+9/24,?)");
+			ps = con.prepareStatement("insert into reply values(reply_SEQ.NEXTVAL, ?,?,?,sysdate+9/24)");
 			ps.setInt(1, reply.getStoryCode());
 			ps.setInt(2, reply.getUserCode());
 			ps.setString(3, reply.getReplyContent());
-			
+
 
 			result = ps.executeUpdate();
 		}finally {
@@ -68,7 +68,7 @@ public class ReplyDAOImpl implements ReplyDAO {
 	public int delete(int replyCode) throws SQLException {
 		Connection con=null;
 		PreparedStatement ps=null;
-		
+
 		int result=0;
 		//String sql= proFile.getProperty("reply.delete");
 		try {
@@ -110,5 +110,29 @@ public class ReplyDAOImpl implements ReplyDAO {
 
 	}
 
+	@Override
+	public Reply serchReplyCode(int userCode, int storyCode) throws SQLException {
+		Connection con=null;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		Reply reply = null;
 
+		//String sql= proFile.getProperty("Reply.selectByReplyCode");//select * from Electronics where model_num=?
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement("select * from reply where story_code=? and user_code=? order by created_reg desc");
+			ps.setInt(1, storyCode);
+			ps.setInt(2, userCode);
+
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				reply = new Reply(rs.getInt(1), rs.getInt(2), rs.getInt(3),
+						rs.getString(4), rs.getString(5));
+			}
+		}finally {
+			DBUtil.dbClose(con, ps, rs);
+		}
+		return reply;
+
+	}
 }

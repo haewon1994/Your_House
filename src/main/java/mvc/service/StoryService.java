@@ -36,7 +36,6 @@ public interface StoryService {
 	 * StoryDAOImpl의 모델번호에 해당하는 레코드 수정  메소드 호출
 	 * */
 	void update(Story story) throws SQLException;
-
 	
 	
 	//
@@ -47,8 +46,12 @@ public interface StoryService {
 	   * ElectronicsDAOImpl의 모델번호에 해당하는 레코드 검색하는 메소드 호출
 	   * @param : boolean flag - 조회수 증가 여부를 판별하는 매개변수임(true이면 조회수증가 / false이면 조회수 증가 안함)
 	   * */
-	Story selectByStoryCode(int storyCode, boolean flag)
-			throws SQLException;
+	
+	  Story selectByStoryCode(int storyCode) throws SQLException;
+	  
+	  
+	  List<Story> selectByFollowingCode(int user_code) throws SQLException;
+	
 	
 
 }

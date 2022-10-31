@@ -3,6 +3,7 @@ package mvc.dao.liked;
 import java.sql.SQLException;
 import java.util.List;
 
+import mvc.dto.follow.Follow;
 import mvc.dto.liked.Liked;
 import mvc.dto.notice.Notice;
 import mvc.dto.story.Story;
@@ -31,11 +32,6 @@ public interface LikedDAO {
 	
 	
 	List<Story> selectByUserCode(int userCode)throws SQLException;
-	
-	 
-	
-
-	
 	
 
 }

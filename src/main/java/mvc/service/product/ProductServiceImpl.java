@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import mvc.dao.orders.OrdersDAO;
+import mvc.dao.orders.OrdersDAOImpl;
 import mvc.dao.product.ColorDAO;
 import mvc.dao.product.ColorDAOImpl;
 import mvc.dao.product.ProductDAO;
@@ -15,14 +17,22 @@ import mvc.dto.product.ProductDTO;
 public class ProductServiceImpl implements ProductService {
 	private ProductDAO proDAO = new ProductDAOImpl();
 	private ColorDAO colorDAO = new ColorDAOImpl();
+	private OrdersDAO orderDAO = new OrdersDAOImpl();
 
 	@Override
-	public ProductDTO selectByProductCode(int prodcutCode) throws SQLException {
+	public ProductDTO selectByProductCode(int userCode, int prodcutCode) throws SQLException {
 		//상품상세페이지
 		
 		ProductDTO product = proDAO.selectByProductCode(prodcutCode);
 		List<ColorDTO> colorlist = colorDAO.selectByProductCode(prodcutCode);
 		product.setColorList(colorlist);
+		
+		//주문정보, 주문상세정보 받아서 인수에 넣기
+		
+		//평균 별점 담기
+		//리뷰 담기
+		
+		
 		return product;
 	}
 

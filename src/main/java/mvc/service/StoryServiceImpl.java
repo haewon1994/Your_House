@@ -103,25 +103,40 @@ public class StoryServiceImpl implements StoryService {
 			throw new SQLException("수정되지않았습니다.^^");
 
 	}
+	
+	 @Override 
+	 public Story selectByStoryCode(int storyCode) throws SQLException{	 
+	 Story story = storyDAO.selectByStoryCode(storyCode); 
+	 if(story == null) throw
+	  new SQLException("상세보기에 오류가 발생했습니다."); 
+	 List<Reply> replylist =
+	  replyDAO.selectAll(storyCode); story.setReplyList(replylist);
+	  
+	  
+	  
+	  return story; 
+	  }
+
 	@Override
-	public Story selectByStoryCode(int storyCode, boolean flag) throws SQLException {
-		if(flag) {
-			if(storyDAO.increamentByReadnum(storyCode) == 0){//조회수 증가
-				throw new SQLException("조회수 증가 오류로 검색할수 없습니다.");
+	public List<Story> selectByFollowingCode(int user_code) throws SQLException {
+		List<Story>  list = storyDAO.selectByFollowingCode();
+
+		for(Story story : list) {
+			//팔로우 정보
+			Follow fo = followDAO.isFollow(user_code, story.getUserCode());
+			if(fo!=null) {
+				story.setFollow(true);
 			}
+
+			
+			UserDTO user = userDAO.searchByUserCode(story.getUserCode());
+			story.setUser(user);
 		}
-
-		Story story = storyDAO.selectByStoryCode(storyCode);
-		if(story == null)
-			throw new SQLException("상세보기에 오류가 발생했습니다.");
-		List<Reply> replylist = replyDAO.selectAll(storyCode);
-		story.setReplyList(replylist);
-
-
-
-		return story;
+		return list;
 	}
 
+
+	
 	/*
 	 * @Override public List<Story> selectAll(int pageNo) throws SQLException {
 	 * List<Story> list = storyDAO.getBoardList(pageNo);//페이징처리하는 dao호출
