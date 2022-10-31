@@ -64,7 +64,7 @@ public class FollowDAOImpl implements FollowDAO {
 		//String sql= proFile.getProperty("query.selectBymodelNum");//select * from Electronics where model_num=?
 		try {
 			con = DBUtil.getConnection();
-			ps = con.prepareStatement("select * from FOLLOW where FOLLOWER_CODE = ?  and FOLLOWING_CODE =?");
+			ps = con.prepareStatement("select * from FOLLOW where FOLLOWER_CODE = ?  and user_CODE =?");
 			ps.setInt(1, userCode);
 			ps.setInt(2, followerCode);
 

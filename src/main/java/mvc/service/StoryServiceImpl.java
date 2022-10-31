@@ -2,6 +2,7 @@ package mvc.service;
 
 import java.io.File;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import mvc.dao.follow.FollowDAO;
@@ -119,7 +120,8 @@ public class StoryServiceImpl implements StoryService {
 
 	@Override
 	public List<Story> selectByFollowingCode(int user_code) throws SQLException {
-		List<Story>  list = storyDAO.selectByFollowingCode();
+		List<Story>  list = new ArrayList<Story>();
+		list.add(storyDAO.selectByFollowingCode(user_code));
 
 		for(Story story : list) {
 			//팔로우 정보
