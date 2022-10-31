@@ -98,7 +98,7 @@
 									<div class="wrap-pic-w pos-relative">
 										<img src="${pageContext.request.contextPath}/images/product-detail-03.jpg" alt="IMG-PRODUCT">
 
-										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-03.jpg">
+										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/bed-product01-detail-03.jpg">
 											<i class="fa fa-expand"></i>
 										</a>
 									</div>
@@ -114,7 +114,7 @@
 							${prodocut.productName}
 						</h4>
 						<span class="mtext-106 cl2">
-							<fmt:formatNumber value="${prodocut.price }" type="currency"/>
+							<fmt:formatNumber value="${prodocut.price}" type="currency"/>
 						</span>
 						
 						<!--  -->
