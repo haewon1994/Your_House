@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <jsp:include page="../common/header.jsp" />
 <!DOCTYPE html>
 <html>
@@ -99,6 +100,12 @@
 </script>
 </head>
 <body>
+	<c:set var="string1" value="${prodocut.image}"/>
+	<c:set var="bb" value="${fn:split(string1,'.')[0]}"/>
+	<c:set var="cc" value="${fn:split(string1,'.')[1]}"/>
+	<c:set var="len" value="${fn:length(bb)}"/>
+	<c:set var="aa" value="${fn:substring(bb,0,len-1)}"/>
+
 	<input type="hidden" id="productCode" value="${prodocut.productCode}">
 
 	<!-- breadcrumb -->
@@ -112,7 +119,6 @@
 		</div>
 	</div>
 
-
 	<!-- Product Detail -->
 	<section class="sec-product-detail bg0 p-t-65 p-b-60">
 		<div class="container">
@@ -125,10 +131,10 @@
 
 							<div class="slick3 gallery-lb">
 								<div class="item-slick3"
-									data-thumb="${pageContext.request.contextPath}/images/product-detail-01.jpg">
+									data-thumb="${pageContext.request.contextPath}/save/${prodocut.image}">
 									<div class="wrap-pic-w pos-relative">
 										<img
-											src="${pageContext.request.contextPath}/images/product-detail-01.jpg"
+											src="${pageContext.request.contextPath}/save/${prodocut.image}"
 											alt="IMG-PRODUCT"> <a
 											class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
 											href="images/product-detail-01.jpg"> <i
@@ -138,10 +144,10 @@
 								</div>
 
 								<div class="item-slick3"
-									data-thumb="${pageContext.request.contextPath}/images/product-detail-02.jpg">
+									data-thumb="${pageContext.request.contextPath}/save/${aa}2.${cc}">
 									<div class="wrap-pic-w pos-relative">
 										<img
-											src="${pageContext.request.contextPath}/images/product-detail-02.jpg"
+											src="${pageContext.request.contextPath}/save/${aa}2.${cc}"
 											alt="IMG-PRODUCT"> <a
 											class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
 											href="images/product-detail-02.jpg"> <i
@@ -151,10 +157,10 @@
 								</div>
 
 								<div class="item-slick3"
-									data-thumb="${pageContext.request.contextPath}/images/product-detail-03.jpg">
+									data-thumb="${pageContext.request.contextPath}/save/${aa}3.${cc}"">
 									<div class="wrap-pic-w pos-relative">
 										<img
-											src="${pageContext.request.contextPath}/images/product-detail-03.jpg"
+											src="${pageContext.request.contextPath}/save/${aa}3.${cc}""
 											alt="IMG-PRODUCT"> <a
 											class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
 											href="images/product-detail-03.jpg"> <i
@@ -349,7 +355,7 @@
 
 	<!--===============================================================================================-->
 	<script
-		src="${pageContext.request.contextPath}/vendor/jquery/jquery-3.2.1.min.js"></script>
+		src="${pageContext.request.contextPath}/js/jquery-3.6.1.js"></script>
 	<!--===============================================================================================-->
 	<script
 		src="${pageContext.request.contextPath}/vendor/animsition/js/animsition.min.js"></script>

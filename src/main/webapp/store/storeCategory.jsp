@@ -122,7 +122,7 @@
 					<!-- product-01 -->
 						<div class="block1">
 							<div class="block1-pic hov-img0">
-								<img src="${pageContext.request.contextPath}/images/product-01.jpg" alt="IMG-PRODUCT">
+								<img src="${pageContext.request.contextPath}/save/${product1.image}" alt="IMG-PRODUCT">
 							</div>
 	
 							<div class="block1-txt flex-w flex-t p-t-14">
@@ -162,7 +162,7 @@
 					<!-- product-01 -->
 						<div class="block1">
 							<div class="block1-pic hov-img0">
-								<img src="${pageContext.request.contextPath}/images/product-01.jpg" alt="IMG-PRODUCT">
+								<img src="${pageContext.request.contextPath}/save/${product1.image}" alt="IMG-PRODUCT">
 							</div>
 	
 							<div class="block1-txt flex-w flex-t p-t-14">
@@ -202,7 +202,7 @@
 					<!-- product-01 -->
 						<div class="block1">
 							<div class="block1-pic hov-img0">
-								<img src="${pageContext.request.contextPath}/images/product-01.jpg" alt="IMG-PRODUCT">
+								<img src="${pageContext.request.contextPath}/save/${product1.image}" alt="IMG-PRODUCT">
 							</div>
 	
 							<div class="block1-txt flex-w flex-t p-t-14">
@@ -242,7 +242,7 @@
 					<!-- product-01 -->
 						<div class="block1">
 							<div class="block1-pic hov-img0">
-								<img src="${pageContext.request.contextPath}/images/product-01.jpg" alt="IMG-PRODUCT">
+								<img src="${pageContext.request.contextPath}/save/${product1.image}" alt="IMG-PRODUCT">
 							</div>
 	
 							<div class="block1-txt flex-w flex-t p-t-14">

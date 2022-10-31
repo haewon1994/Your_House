@@ -127,10 +127,9 @@
 										<!-- 이미지 -->
 										<div class="block1-pic hov-img0">
 											<img
-												src="${pageContext.request.contextPath}/images/product-01.jpg"
+												src="${pageContext.request.contextPath}/save/${proR.image}"
 												alt="IMG-PRODUCT">
 										</div>
-
 										<!-- 상품정보 -->
 										<div class="block1-txt flex-w flex-t p-t-14">
 											<div class="block2-txt-child1 flex-col-l ">
@@ -169,7 +168,7 @@
 										<!-- 이미지 -->
 										<div class="block2-pic hov-img0">
 											<img
-												src="${pageContext.request.contextPath}/images/product-02.jpg"
+												src="${pageContext.request.contextPath}/save/${proB.image}"
 												alt="IMG-PRODUCT">
 										</div>
 
@@ -199,7 +198,7 @@
 
 	<!--===============================================================================================-->
 	<script
-		src="${pageContext.request.contextPath}/vendor/jquery/jquery-3.2.1.min.js"></script>
+		src="${pageContext.request.contextPath}/js/jquery-3.6.1.js"></script>
 	<!--===============================================================================================-->
 	<script
 		src="${pageContext.request.contextPath}/vendor/animsition/js/animsition.min.js"></script>
