@@ -79,7 +79,7 @@ public class StoryController implements Controller {
 		String storyImage = m.getParameter("story_image"); //베너
 		String storyLiter = m.getParameter("story_liter");
 		String storyReg = m.getParameter("story_reg");
-		
+		System.out.println(storyImage);
 		
 		Story story = 
 			new Story(0,Integer.parseInt(userCode), storyImage, storyLiter,null);
@@ -113,7 +113,7 @@ public class StoryController implements Controller {
 		story = storyService.selectByStoryCode(Integer.parseInt(storyCode), true);
 		request.setAttribute("story", story);
 		
-		return new ModelAndView("story/read.jsp"); //forward방식 
+		return new ModelAndView("community/storyDetail.jsp"); //forward방식 
 	}
 	
 	

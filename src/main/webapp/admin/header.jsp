@@ -103,7 +103,7 @@
 						        <a href="login.html">로그인</a>	
                                </c:when>
                                <c:otherwise>
-                                <p>{sessionScope.loginAdminId} </p>  
+                                <p>${sessionScope.loginAdminId} </p>  
                                </c:otherwise> 
                              </c:choose>		
                              </li>

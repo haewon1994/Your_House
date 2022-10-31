@@ -157,13 +157,13 @@ public class StoryDAOImpl implements StoryDAO {
 		ResultSet rs=null;
 		List<Story> list = new ArrayList<Story>();
 		
-		String sql="SELECT * FROM STOYR";
+		String sql="SELECT * FROM STORY";
 		
 		//sql ="SELECT * FROM MEMBER WHERE 1=1 -- like ?";   // keyField =  1=1 --
 		
 		try {
 			if(keyWord != null && !keyWord.isEmpty()) {
-				sql += " WHERE storLiter LIKE '%' || ? || '%'order by created_reg desc";
+				sql += " WHERE storyLiter LIKE '%' || ? || '%'order by created_reg desc";
 			}
 			
 			ps = con.prepareStatement(sql);
@@ -191,7 +191,7 @@ public class StoryDAOImpl implements StoryDAO {
 	}
 
 
-	@Override
+	/*@Override
 	public int increamentByReadnum(int storyCode) throws SQLException {
 		Connection con=null;
 		PreparedStatement ps=null;
@@ -206,7 +206,7 @@ public class StoryDAOImpl implements StoryDAO {
 			DBUtil.dbClose(con, ps);
 		}
 		return result;
-	}
+	}*/
 
 
 	@Override

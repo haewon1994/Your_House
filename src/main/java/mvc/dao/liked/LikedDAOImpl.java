@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import mvc.dto.follow.Follow;
 import mvc.dto.liked.Liked;
 import mvc.dto.notice.Notice;
 import mvc.dto.story.Story;
@@ -108,6 +109,4 @@ public class LikedDAOImpl implements LikedDAO {
 		return list ;
 	}
 		
-
-
 }

@@ -28,7 +28,7 @@ public class AdminController implements Controller {
 	/**
 	 * admin 로그인 기능
 	 * */
-	public ModelAndView adminlogin(HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView adminLogin(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
     
 		//두개의 전송되는 값을 받는다.
@@ -47,7 +47,7 @@ public class AdminController implements Controller {
 
 		//index.jsp이동 - redirect방식
 		
-		return new ModelAndView("notice/write.jsp", true);
+		return new ModelAndView("admin/adminIndex.jsp", true);
 	}
 
 	/**

@@ -48,4 +48,18 @@ public class FollowServiceImpl implements FollowService {
 		return followList;
 	}
 
+	
+	@Override
+	public List<UserDTO> searchFollower(int userCode) throws SQLException {
+		List<Integer> userCodeList = followDAO.selectByUserCode(userCode);
+		
+		List<UserDTO> followerList = new ArrayList<UserDTO>();
+		
+		for(int i : userCodeList) {
+			UserDTO user = userDAO.searchByUserCode(i);
+			followerList.add(user);
+		}
+		return followerList;
+	}
+
 }
