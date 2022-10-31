@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import mvc.dto.product.AdminTongyeDTO;
+import mvc.dto.product.ProductCategoryDTO;
+import mvc.service.AdminProductService;
+import mvc.service.AdminProductServiceImpl;
 import mvc.service.AdminTongyeService;
 import mvc.service.AdminTongyeServiceImpl;
 
@@ -29,6 +32,7 @@ import mvc.service.AdminTongyeServiceImpl;
 public class AdminTongyeController implements Controller {
 
 	public AdminTongyeService adminTongyeService=new AdminTongyeServiceImpl();
+	public AdminProductService adminProductService=new AdminProductServiceImpl();
 	
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
@@ -36,6 +40,42 @@ public class AdminTongyeController implements Controller {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	/**
+	 * 관리자 메인 인덱스 접속용 메소드
+	 * ->매출 누적순 한달기준
+	 * 인수 : ${adminTongyeList}
+	 * 
+	 * 연결 경로 : admin/adminIndex.jsp (최근생성순 상품리스트)
+	 */
+	public ModelAndView mainMove(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		List<AdminTongyeDTO> adminTongyeList=new ArrayList<AdminTongyeDTO>();
+		adminTongyeList=adminTongyeService.selectTongyeMain();
+		
+		//뷰에서 ${adminTongyeList}
+		request.setAttribute("adminTongyeList", adminTongyeList);
+		
+		return new ModelAndView("admin/adminIndex.jsp"); //forward방식으로 이동
+	
+	}
+	
+	/*
+	 * 관리자 메인 인덱스 접속용 메소드
+	 * 
+	 * 뷰에서 사용 인수 : ${categoryList}
+	 * 연결 경로 : admin/prolist.jsp (정산페이지 메인으로 사용)
+	 
+	public ModelAndView mainMove(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		List<ProductCategoryDTO> categoryList=adminProductService.selectAllProductCategory();
+		
+		//뷰에서 ${categoryList}
+		request.setAttribute("categoryList", categoryList);
+		
+		return new ModelAndView("admin/prolist.jsp"); //forward방식으로 이동
+	
+	}*/
 
 	/**
 	 * 통계만 리턴하는 메소드

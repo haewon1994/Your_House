@@ -44,10 +44,17 @@ public interface AdminProductService {
 	
 	//////////////////////////////////////////
 	/**
-	 * 상품코드에 해당하는 상품 수정(사진, 색상은 수정 없음)
+	 * 상품코드에 해당하는 상품+보조사진 수정(색상은 수정 없음)
 	 * 썸네일(대표이미지) 변경시 이전 파일은 삭제
 	 */
-	void updateProductByProductCode(AdminTongyeDTO product, String saveDir) throws SQLException;
+	void updateProductByProductCode(AdminTongyeDTO product, ProductImageDTO productImage, String saveDir) throws SQLException;
+	
+	/**
+	 * 상품 업데이트 : 대표이미지(썸네일) 값 없을때->우선 보류중 작동안됨(위 코드로 통합사용)
+	 * 
+	 */
+	void updateProductNullImageByProductCode(AdminTongyeDTO product, String saveDir) throws SQLException;
+	
 	
 	/**
 	 * 상품코드에 해당하는 재고량 수정(상품정보만)

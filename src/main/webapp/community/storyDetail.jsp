@@ -38,6 +38,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    
 <!--================================================================================-->
 <style type="text/css">
 .zipfollowing {
@@ -54,6 +55,118 @@
 
 .w-full
 {padding-top: 60px;}
+
+.dateRegi {
+	display: block;
+	margin-top: 6px;
+    font-size: 14px;
+    line-height: 20px;
+    color: rgb(130, 140, 148);
+    letter-spacing: -0.3px; 
+}
+
+.userNic {
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 20px;
+	display: flex;
+}
+
+.userBox {
+	margin-left: 2px;
+}
+
+.css-ars5a6 {
+    margin: 0px;
+    background: none;
+    font-style: inherit;
+    font-variant: inherit;
+    font-stretch: inherit;
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 18px;
+    display: inline-flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    width: auto;
+    height: 40px;
+    border-radius: 4px;
+    padding: 0px 16px;
+    font-weight: 400;
+    box-sizing: border-box;
+    text-align: center;
+    color: rgb(47, 52, 56);
+    border: 1px solid rgb(218, 221, 224);
+}
+
+.css-18fcvol {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 0px;
+    border: 0px;
+    font-size: 0px;
+    text-align: left;
+    background: none;
+}
+
+.css-11p1ur6 {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    width: 100%;
+    margin: 24px 0px 16px;
+    padding: 0px 16px;
+    box-sizing: border-box;
+}
+
+.css-12qrk2e {
+    margin: 0px;
+    border: none;
+    background: none rgb(53, 197, 240);
+    font-style: inherit;
+    font-variant: inherit;
+    font-stretch: inherit;
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 18px;
+    display: inline-flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    width: auto;
+    height: 40px;
+    border-radius: 4px;
+    padding: 0px 16px;
+    box-sizing: border-box;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    font-weight: 700;
+}
+
+.css-e8ub58 {
+    display: inline-block;
+    font-size: 18px;
+    line-height: 1;
+    vertical-align: middle;
+}
+
+.css-ekg9qb {
+    vertical-align: middle;
+    margin-left: 6px;
+}
+
+hov-btn1:hover {
+  border-color: #222;
+  background-color: #222;
+  color: #fff;
+}
+
 </style>
 <script type="text/javascript" src="../js/jquery-3.6.1.js"></script>
 <script type="text/javascript">
@@ -91,6 +204,22 @@
 
   <div id="main_container">
      <section class="c_inner">
+     <div class="css-11p1ur6 e1y3nubp8">
+     <button class="css-18fcvol e1y3nubp7">
+     <div class="userBox">
+      <span class="userNic">작성자</span>
+      <span class="dateRegi">1일전</span>
+     </div>
+     </button>
+     <button class="e1y3nubp0 css-ars5a6">
+     <span class="_check_18 css-e8ub58"></span>
+     <span class="css-ekg9qb">팔로잉</span>
+     </button>
+     <button class="e1y3nubp1 css-12qrk2e">
+     <span class="_add_18 css-e8ub58"></span>
+     <span class="css-ekg9qb">팔로우</span>
+     </button>
+     </div>
          <div class="contents_box">
              <article class="contents cont01">
                 <img src="${pageContext.request.contextPath}/images/story001.jpg" 
@@ -165,7 +294,7 @@
 	<script src="${pageContext.request.contextPath}/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
 	<script src="${pageContext.request.contextPath}/vendor/animsition/js/animsition.min.js"></script>
-<!--===============================================================================================-->
+<!--=============================================================================================-->
 	<script src="${pageContext.request.contextPath}/vendor/bootstrap/js/popper.js"></script>
 	<script src="${pageContext.request.contextPath}/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->

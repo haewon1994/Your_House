@@ -35,6 +35,35 @@ public class AdminTongyeDAOImpl implements AdminTongyeDAO {
 	}
 
 	@Override
+	public List<AdminTongyeDTO> selectTongyeMain() throws SQLException {
+		Connection con=null;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		List<AdminTongyeDTO> tongyeList=new ArrayList<AdminTongyeDTO>();
+		
+		String sql=proFile.getProperty("selectTongyeMain");
+		//select rownum, dd.* from (select sum(unit_price*order_qty) sum_price, sum(order_qty) sum_qty, product_code, category_code, product_name, image, created_reg, product_detail, stock, price, category_name from product a full join product_category b using(category_code) full join orders_detail c using(product_code) full join orders c using(orders_code) where orders_reg >= (sysdate+9/24-30) and orders_reg < (sysdate+1+9/24) group by category_name, product_code, category_code, product_name, image, created_reg, product_detail, stock, price order by sum_qty desc, created_reg desc) dd where rownum<=10
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				AdminTongyeDTO tongye = new AdminTongyeDTO(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4),
+						rs.getInt(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getInt(10),
+						rs.getInt(11), rs.getString(12));
+				
+				tongyeList.add(tongye);
+			}
+		}finally {
+			DBUtil.dbClose(con, ps, rs);
+		}
+		return tongyeList;
+	
+		
+	}
+
+	@Override
 	public List<AdminTongyeDTO> selectTongyePrAllSum(String startDate, String lastDate) throws SQLException {
 		Connection con=null;
 		PreparedStatement ps=null;

@@ -77,24 +77,25 @@ public class AdminProductController implements Controller {
 	 */
 	public ModelAndView insertTotalProduct(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		
+		System.out.println("AdminProductController insertTotal확인용");
 		//폼에서 파일업로드를 위해 enctype="multipart/form-data" 설정이 되어 있기때문에 
 		//request아닌 MultipartRequest로 처리한다. - cos.jar
-		String saveDir = request.getServletContext().getRealPath("/productImages");
+		String saveDir = request.getServletContext().getRealPath("productImages");
 		int maxSize=1024*1024*100; //100MB
 		String encoding="UTF-8";
 		
 		//만든파일 오류나면 이걸로 사용
-		//DefaultFileRenamePolicy renamePolicy = new DefaultFileRenamePolicy(); 
+		DefaultFileRenamePolicy renamePolicy = new DefaultFileRenamePolicy(); 
 		
-		//직접만든 파일중복처리 클래스 사용
-		FileRenameTimeIndex renamePolicy=new FileRenameTimeIndex();
+		//직접만든 파일중복처리 클래스 사용->오류발생, 우선 위 파일 사용
+		//FileRenameTimeIndex renamePolicy=new FileRenameTimeIndex();
 
 		MultipartRequest m = 
 			new MultipartRequest(request,saveDir, maxSize, encoding, renamePolicy);
 		
 		//전송된 데이터 받기 
 		String categoryCode = m.getParameter("categoryCode");
+		System.out.println(categoryCode);
 		String productName = m.getParameter("productName");
 		String productDetail = m.getParameter("productDetail");
 		String stock = m.getParameter("stock");
@@ -105,34 +106,26 @@ public class AdminProductController implements Controller {
 					Integer.parseInt(stock), Integer.parseInt(price));
 
 		//상품-대표이미지(썸네일) 첨부됐을때 파일명 변경하여 저장->if문 조건식은 업그레이드 대비
-		if(m.getFilesystemName("image") != null) {
-			//파일이름저장
-			product.setImage(m.getFilesystemName("image"));
-		}
+		//파일이름저장
+		product.setImage(m.getFilesystemName("image"));
 		
 		//색상 등록됐을때
 		//null일때 처리필요?? 테스트시 참고
-		ColorDTO color=null;
-		
-		if(m.getParameter("colorName")!=null){
 		String colorName = m.getParameter("colorName");
-		color = new ColorDTO(colorName);
-		}
+		ColorDTO color = new ColorDTO(colorName);
+		System.out.println(color);
 		
 		//상품이미지 등록됐을때(null아니면) : 파일첨부, 이름 db저장
-		//null일때 처리필요?? 테스트시 참고
-		ProductImageDTO productImage=null;
-		
+		//null일때 처리필요?? 테스트시 참고 -> null 담기안됨/ notnull이니 그냥 쓰기
 		//!!!!application.getInIt 파일 이름이 fileName인데 안겹치나? 테스트시 주의 (매핑리스너,web.xml)
-		if(m.getFilesystemName("fileName") != null) {
-			String fileName=m.getFilesystemName("fileName");
-			productImage=new ProductImageDTO(fileName);
-			productImage.setFileName(fileName);
-		}
+		String fileName=m.getFilesystemName("fileName");
+		ProductImageDTO productImage=new ProductImageDTO(fileName);
+		productImage.setFileName(fileName);
+		System.out.println(fileName);
 		
 		adminProductService.insertTotalProduct(product, color, productImage);
 		
-		return new ModelAndView("admin/prolist.jsp", true);//redicrect
+		return new ModelAndView("admin?key=adminProduct&methodName=selectMainTotalProduct", true);//redicrect
 	}
 	
 	/**
@@ -173,6 +166,8 @@ public class AdminProductController implements Controller {
 		List<ColorDTO> colorList=adminProductService.selectAllColorByProductCode(Integer.parseInt(productCode));
 		List<ProductImageDTO> productImageList=adminProductService.selectAllProductImageByProductCode(Integer.parseInt(productCode));
 		List<ProductCategoryDTO> categoryList=adminProductService.selectAllProductCategory();
+		
+		//System.out.println("colorName="+colorList.get(2));
 		
 		request.setAttribute("product", product);//뷰에서 ${product}
 		request.setAttribute("colorList", colorList);//뷰에서 ${colorList}
@@ -231,7 +226,7 @@ public class AdminProductController implements Controller {
 		
 		//폼에서 파일업로드를 위해 enctype="multipart/form-data" 설정이 되어 있기때문에 
 		//request아닌 MultipartRequest로 처리한다. - cos.jar
-		String saveDir = request.getServletContext().getRealPath("/productImages");
+		String saveDir = request.getServletContext().getRealPath("productImages");
 		int maxSize=1024*1024*100; //100MB
 		String encoding="UTF-8";
 		
@@ -279,9 +274,18 @@ public class AdminProductController implements Controller {
 	}
 	
 	//////////////////////////////////////////
+	/*
+	 * //상품이미지 등록됐을때(null아니면) : 파일첨부, 이름 db저장
+		//null일때 처리필요?? 테스트시 참고 -> null 담기안됨/ notnull이니 그냥 쓰기
+		//!!!!application.getInIt 파일 이름이 fileName인데 안겹치나? 테스트시 주의 (매핑리스너,web.xml)
+		String fileName=m.getFilesystemName("fileName");
+		ProductImageDTO productImage=new ProductImageDTO(fileName);
+		productImage.setFileName(fileName);
+		System.out.println(fileName);
+	 */
 	
 	/**
-	 * 상품코드에 해당하는 상품 수정(사진, 색상은 수정 없음)
+	 * 상품코드에 해당하는 상품+보조이미지 수정(색상은 수정 없음)
 	 * 
 	 * 상품 수정시에도 파일 업로드 필요(대표이미지-썸네일)
 	 * 프론트 설정 : enctype="multipart/form-data"
@@ -291,8 +295,8 @@ public class AdminProductController implements Controller {
 	 * 
 	 * 변경시 기존 파일 삭제(서비스에서)
 	 *
-	 * 완료후 연결뷰 : 상품관리 메인페이지
-	 * -> admin/prolist.jsp
+	 * 완료후 연결뷰 : 상품관리 상세페이지(상품코드 가지고감)
+	 * -> admin?key=adminProduct&methodName=selectDetailTotalProductByProductCode&productCode="+productCode
 	 */
 	public ModelAndView updateProductByProductCode(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
@@ -303,10 +307,10 @@ public class AdminProductController implements Controller {
 		String encoding="UTF-8";
 		
 		//만든파일 오류나면 이걸로 사용
-		//DefaultFileRenamePolicy renamePolicy = new DefaultFileRenamePolicy(); 
+		DefaultFileRenamePolicy renamePolicy = new DefaultFileRenamePolicy(); 
 		
-		//직접만든 파일중복처리 클래스 사용
-		FileRenameTimeIndex renamePolicy=new FileRenameTimeIndex();
+		//직접만든 파일중복처리 클래스 사용->오류생김, 우선 위 파일로 사용
+		//FileRenameTimeIndex renamePolicy=new FileRenameTimeIndex();
 
 		MultipartRequest m = 
 			new MultipartRequest(request,saveDir, maxSize, encoding, renamePolicy);
@@ -318,20 +322,35 @@ public class AdminProductController implements Controller {
 		String productDetail = m.getParameter("productDetail");
 		String stock = m.getParameter("stock");
 		String price = m.getParameter("price");
-		
 		AdminTongyeDTO product = 
 			new AdminTongyeDTO(Integer.parseInt(productCode), Integer.parseInt(categoryCode), productName, productDetail, 
 					Integer.parseInt(stock), Integer.parseInt(price));
+		//파일이름저장
+		product.setImage(m.getFilesystemName("image"));
 
+		
 		//상품-대표이미지(썸네일) 첨부됐을때 파일명 변경하여 저장->if문 조건식은 업그레이드 대비
-		if(m.getFilesystemName("image") != null) {
+		/* 조건문 안먹혀서 DAO쪽에서 구분하는것으로 변경
+		 if(m.getFilesystemName("image") != null) {
 			//파일이름저장
 			product.setImage(m.getFilesystemName("image"));
-		}
+
+			adminProductService.updateProductByProductCode(product, saveDir);
+			
+		} else {
+		//else if(m.getFilesystemName("image").equals(m.getParameter("image"))==true) {
+			
+			adminProductService.updateProductNullImageByProductCode(product, saveDir);
+		} */
 		
-		adminProductService.updateProductByProductCode(product, saveDir);
+		//사진받기
+		String imageCode=m.getParameter("imageCode");
+		ProductImageDTO productImage=new ProductImageDTO(Integer.parseInt(imageCode), Integer.parseInt(productCode), m.getFilesystemName("fileName"));
+
+		adminProductService.updateProductByProductCode(product, productImage, saveDir);
 		
-		return new ModelAndView("admin/prolist.jsp", true);//redicrect
+		
+		return new ModelAndView("admin?key=adminProduct&methodName=selectDetailTotalProductByProductCode&productCode="+productCode, true);//redicrect
 	}
 	
 	/**
@@ -455,7 +474,7 @@ public class AdminProductController implements Controller {
 	 * 카테고리 전체 조회(List)
 	 *
 	 * 완료후 연결뷰 : 카테고리 관리 메인페이지
-	 * -> admin/categoryList.jsp
+	 * -> admin/prowrite.jsp
 	 */
 	public ModelAndView selectAllProductCategory(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
@@ -465,7 +484,7 @@ public class AdminProductController implements Controller {
 		//뷰에서 ${categoryList}
 		request.setAttribute("categoryList", categoryList);
 		
-		return new ModelAndView("admin/categoryList.jsp"); //forward방식으로 이동
+		return new ModelAndView("admin/prowrite.jsp"); //forward방식으로 이동
 	}
 
 	/**

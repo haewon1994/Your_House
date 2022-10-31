@@ -8,7 +8,7 @@ import mvc.dto.product.ProductDTO;
 
 public interface ProductService {
 
-	ProductDTO selectByProductCode(int prodcutCode) throws SQLException;
+	ProductDTO selectByProductCode(int userCode, int prodcutCode) throws SQLException;
 
 	void insert(ProductDTO product);
 

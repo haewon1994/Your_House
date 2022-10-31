@@ -23,6 +23,11 @@ import mvc.dto.product.AdminTongyeDTO;
 public interface AdminTongyeDAO {
 
 	/**
+	 * 메인 누적매출순 한달기준
+	 */
+	List<AdminTongyeDTO> selectTongyeMain() throws SQLException;
+	
+	/**
 	 * 1. 기본 : 상품전체 / 매출통계만
 	 */
 	List<AdminTongyeDTO> selectTongyePrAllSum(String startDate, String lastDate) throws SQLException;

@@ -64,9 +64,8 @@
 							<li class="active-menu"  style="margin-left: 50px"  >
 								<a href="index.html"><b style="font-size: 22px;">상품</b></a>
 								<ul class="sub-menu">
-									<li><a href="index.html">목록</a></li>
-									<li><a href="product.html">등록</a></li>
-									
+									<li><a href="${pageContext.request.contextPath}/admin?key=adminProduct&methodName=selectMainTotalProduct">목록</a></li>
+									<li><a href="${pageContext.request.contextPath}/admin?key=adminProduct&methodName=selectAllProductCategory">등록</a></li>
 								</ul>
 							</li>
 							<li class="active-menu" style="margin-left: 50px">
@@ -95,12 +94,12 @@
 					<div class="wrap-icon-header flex-w flex-r-m h-full">
 						<ul class="main-menu">
 							<li>
-								<a href="user.html"><img src="${pageContext.request.contextPath}/images/icons/user.png" style=""></a>
+								<a href="${pageContext.request.contextPath}/index.jsp"><img src="${pageContext.request.contextPath}/images/icons/user.png" style=""></a>
 							</li>
 							<li>    
 						     <c:choose>    								
 						       <c:when test="${empty sessionScope.loginAdmin}"> 			  
-						        <a href="login.html">로그인</a>	
+						        <a href="${pageContext.request.contextPath}/index.jsp">로그인</a>	
                                </c:when>
                                <c:otherwise>
                                 <p>${sessionScope.loginAdminId} </p>  
@@ -108,7 +107,7 @@
                              </c:choose>		
                              </li>
 							<li>
-								<a href="contact.html">고객센터</a>
+								<a href=""></a>
 							</li>
 						</ul>
 							

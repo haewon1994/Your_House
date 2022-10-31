@@ -12,6 +12,13 @@ public class AdminTongyeServiceImpl implements AdminTongyeService {
 	private AdminTongyeDAO adminTongyeDAO=new AdminTongyeDAOImpl();
 	
 	@Override
+	public List<AdminTongyeDTO> selectTongyeMain() throws SQLException {
+		List<AdminTongyeDTO> adminTongyeList=adminTongyeDAO.selectTongyeMain();
+		
+		return adminTongyeList;
+	}
+
+	@Override
 	public List<AdminTongyeDTO> selectTongyePrAllSum(String startDate, String lastDate) throws SQLException {
 		List<AdminTongyeDTO> adminTongyeList=adminTongyeDAO.selectTongyePrAllPro(startDate, lastDate);
 		

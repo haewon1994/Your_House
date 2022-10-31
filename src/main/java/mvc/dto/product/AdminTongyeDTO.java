@@ -10,6 +10,9 @@ package mvc.dto.product;
 public class AdminTongyeDTO {
 	//각각 중복값 제외+통계 조회시 필요없는 내용 삭제
 	
+	//rownum
+	private int rownum; //행번호(베스트메뉴 등등)
+	
 	//합계출력 
 	private int sumPrice; //매출금액
 	private int sumQty; //매출수량
@@ -33,6 +36,31 @@ public class AdminTongyeDTO {
 	private String lastDate;
 
 	public AdminTongyeDTO() {
+	}
+
+	public AdminTongyeDTO(int rownum, int sumPrice, int sumQty, int productCode, int categoryCode, String productName,
+			String image, String createdReg, String productDetail, int stock, int price, String categoryName) {
+		super();
+		this.rownum = rownum;
+		this.sumPrice = sumPrice;
+		this.sumQty = sumQty;
+		this.productCode = productCode;
+		this.categoryCode = categoryCode;
+		this.productName = productName;
+		this.image = image;
+		this.createdReg = createdReg;
+		this.productDetail = productDetail;
+		this.stock = stock;
+		this.price = price;
+		this.categoryName = categoryName;
+	}
+
+	public int getRownum() {
+		return rownum;
+	}
+
+	public void setRownum(int rownum) {
+		this.rownum = rownum;
 	}
 
 	/**

@@ -62,7 +62,7 @@ style="background-image: url('${pageContext.request.contextPath}/images/storyBG.
                                 팔로우</a>
                             </div>
                         </div>
-                        <div class="sprite_more_icon"></div>
+                        
                     </header>
 
                     <div class="img_section">
@@ -105,7 +105,7 @@ style="background-image: url('${pageContext.request.contextPath}/images/storyBG.
                     <div class="commit_field">
                         <input type="text" placeholder="댓글을 입력하세요" 
                         	style="border-bottom: 1px solid #ededed; padding: 0px 10px; width: 598px;">
-                        <div class="upload_btn">게시버튼</div>
+                        <button class="upload_btn" data-name="update_btn">게시버튼</button>
                     </div>
 
 

@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>네가 사는 그 집</title>
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/svc" href="${pageContext.request.contextPath}/images/icons/favicon.png"/>
+	<link rel="icon" type="image/svc" href="${pageContext.request.contextPath}/images/icons/logo_thumb.svg"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -34,8 +34,7 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/vendor/perfect-scrollbar/perfect-scrollbar.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/util.css">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
-	
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">	
 <!--===============================================================================================-->
 
 </head>
@@ -51,7 +50,7 @@
 				<nav class="limiter-menu-desktop p-l-45">
 					
 					<!-- Logo desktop -->		
-					<a href="${pageContext.request.contextPath}/store/storeHome.jsp" class="logo">
+					<a href="${pageContext.request.contextPath }/front?key=store&methodName=storeHome" class="logo">
 						<img src="${pageContext.request.contextPath}/images/icons/NIZIP_logo.svg" style="width: 250px;" alt="IMG-LOGO">
 					</a>
 
@@ -59,15 +58,16 @@
 					<div class="menu-desktop">
 						<ul class="main-menu">
 							<li class="label1" data-label1="hot">
-								<a href="../community/storyHome.jsp"><b style="font-size: 16px;">커뮤니티</b></a>
+								<a href="${pageContext.request.contextPath}/community/storyHome.jsp"><b style="font-size: 16px;">커뮤니티</b></a>
 								<ul class="sub-menu">
 									<li><a href="front?key=story&methodName=select">홈</a></li>
-									<li><a href="blog-detail.html">스토리</a></li>
+									<li><a href="blog-detail.html">팔로잉</a></li>
+									<li><a href="${pageContext.request.contextPath}/mypage/storyWriter.jsp">글쓰기</a></li>
 								</ul>
 							</li>
 
 							<li class="active-menu">
-								<a href="front?key=store&methodName=storeHome"><b style="font-size: 16px;">스토어</b></a>
+								<a href="${pageContext.request.contextPath}/front?key=store&methodName=storeHome"><b style="font-size: 16px;">스토어</b></a>
 								<ul class="sub-menu">
 									<li><a href="front?key=store&methodName=storeHome">홈</a></li>
 									<li><a href="../store/storeCategory.jsp">카테고리</a></li>
@@ -89,17 +89,21 @@
 					<!-- Icon header -->
 					<div class="wrap-icon-header flex-w flex-r-m h-full">
 						<ul class="main-menu">
-							<li>
+							<li class="active-menu">
 								<a href="../mypage/myProfile.jsp"><img src="${pageContext.request.contextPath}/images/icons/user.png" style=""></a>
+								<ul class="sub-menu">
+									<li><a href="${pageContext.request.contextPath}/mypage/myProfile.jsp">프로필</a></li>
+									<li><a href="${pageContext.request.contextPath}/mypage/myShopping.jsp">나의 쇼핑</a></li>
+								</ul>
 							</li>
 
 							<li>
 								<c:choose>
 									<c:when test="${empty loginUser}">
-										<a href="../index.jsp">로그인</a>
+										<a href="${pageContext.request.contextPath}/index.jsp">로그인</a>
 									</c:when>
 									<c:otherwise>
-										<a href="${pageContext.request.contextPath}/mypage/myProfile.jsp">${loginUser.nickname}</a>
+										<a href="${pageContext.request.contextPath}/front?key=user&methodName=myPage">${loginUser.nickname}</a>
 									</c:otherwise>
 								</c:choose>
 							</li>
@@ -122,7 +126,7 @@
 							
 						<div class="shopingCart">
 							
-								<a href="../store/cart.jsp"><img src="${pageContext.request.contextPath}/images/icons/shopping-cart.png" style="width: 30%;"></a>
+								<a href="${pageContext.request.contextPath}/store/cart.jsp"><img src="${pageContext.request.contextPath}/images/icons/shopping-cart.png" style="width: 30%;"></a>
 							</div>
 				
 						</div>
@@ -167,7 +171,8 @@
 					<a href="index.html">커뮤니티</a>
 					<ul class="sub-menu-m">
 						<li><a href="index.html">홈</a></li>
-						<li><a href="home-02.html">스토리</a></li>
+						<li><a href="#">팔로잉</a></li>
+						<li><a href="#">글쓰기</a></li>
 					</ul>
 					<span class="arrow-main-menu-m">
 						<i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -297,7 +302,7 @@
 <!--===============================================================================================-->
 	<script src="${pageContext.request.contextPath}/js/main.js"></script>
 <!--===============================================================================================-->
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"> </script>  
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.1.js"> </script>  
 	<script type="text/javascript">
 	
 		/*MAIN slid*/

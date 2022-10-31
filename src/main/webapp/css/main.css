@@ -95,6 +95,21 @@
   src: url('../fonts/SCDream7.otf'); 
 }
 
+@font-face {
+  font-family: LotteHappy_Bold;
+  src: url('../fonts/12롯데마트행복Bold.ttf'); 
+}
+
+@font-face {
+  font-family: LotteHappy_Medium;
+  src: url('../fonts/12롯데마트행복Medium.ttf'); 
+}
+
+@font-face {
+  font-family: LotteHappy_Light;
+  src: url('../fonts/12롯데마트행복Light.ttf'); 
+}
+
 /*//////////////////////////////////////////////////////////////////
 [ RS PLUGIN ]*/
 
@@ -449,6 +464,7 @@ input#search-bar{
   top:100%;
   left: 0;
 }
+
 
 .sub-menu a {
   font-family: Poppins-Regular;
@@ -2531,7 +2547,7 @@ input.numberProduct {
 }
 
 .size-208 {
-  width: 34.5%;
+  width: 40%;
 }
 
 .size-209 {
