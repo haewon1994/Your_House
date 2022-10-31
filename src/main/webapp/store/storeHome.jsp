@@ -120,7 +120,7 @@
 													alt="IMG-PRODUCT">
 											 -->
 												<img
-													src="${pageContext.request.contextPath}/images/blog-03.jpg"
+													src="${pageContext.request.contextPath}/save/${product.image}"
 													alt="IMG-PRODUCT">
 	
 											</div>
