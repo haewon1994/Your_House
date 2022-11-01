@@ -92,7 +92,7 @@
 								<tr class="table_row">
 									<td class="column-1">
 										<div class="how-itemcart1" >
-											<img src="${pageContext.request.contextPath}/images/item-cart-04.jpg" alt="IMG">
+											<img src="${pageContext.request.contextPath}/save/${map.value.product.image}" alt="IMG">
 										</div>
 										<input type="hidden"  value="${map.key}" class="789456">
 									</td>

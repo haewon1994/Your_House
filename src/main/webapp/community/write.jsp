@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-<script type="text/javascript" src="../js/jquery-3.6.1.min.js"></script>
+<script type="text/javascript" src="${path}/js/jquery-3.6.1.min.js"></script>
  
  
  
@@ -84,7 +84,7 @@
   
 
   
-  $(function() {
+  $(function(){
 	
 		 
 	    
@@ -92,27 +92,30 @@
 	  
 	        document.
 		    getElementById("imgBuff").
-	        addEventListener("change",function(e){	
+	        addEventListener("input", function(e){	
 	         
-	         let imgEle =document.getElementById("img_in");	 
-	        	
-	          if(!e.target.files[0]){
-	        	  imgEle.src="../images/uploads.jpg" 
-	        	  return;
-	          }
+	           let imgEle =document.getElementById("img_ins");	 
+	           let arr= e.target.files
+	         
+	           
+	           
+	           if(!e.target.files[0]){
+		        	  imgEle.src="../images/uploads.jpg" 
+		        	  return;
+		          }
 	        	
 	           let divEle  = document.getElementById("img_div")             
-	           let imgFile	 =e.target.files[0]; 
+	           let imgFile	=e.target.files[0]; 
 	           let url  =URL.createObjectURL(imgFile);  
 	           imgEle.src=url;
 	      
-	        },false); 
+	        },false); // 이벤트 등록 끝
  
 	      		    
 		    
 		    
 		    
-		    })
+		    })//onload
 		    
 		    
 		    
@@ -141,8 +144,7 @@
   
   
   
-  })
- 
+
 
   
   
@@ -174,8 +176,8 @@
                        <input class="form-control" id="imgBuff" type="file" id="formFileMultiple" name="storyImage" multiple>    
                         <div id="img_div" class="img_in">     
                              <!--이미지가 들어갈 div이다 -->  
-                         <img id="img_in" src="../images/uploads.jpg"class="img_k"  />                                  
-                       </div> 
+                         <img id="img_ins" src="${path}/images/uploads.jpg"class="img_k"  />                                  
+                       </div>
                    </div>             
                    <div class="col-md-5"> 
                  
@@ -197,9 +199,12 @@
  function insertStory(fr) {
 	 
   	  
- 
+	      let arr  = fr.storyImage.files
 	
-	
+	if(if arr.length<0){
+	alert("사진을 등록해주세요")	
+ 	return false;
+	}
 	
      
     return true;

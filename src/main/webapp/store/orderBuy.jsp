@@ -240,7 +240,7 @@ form {
 										<div class="product_thumb"
 											style="float: left; width: 150px; hight: 150px;">
 											<picture style="argin-right: 50px;"> <img
-												src="${pageContext.request.contextPath}/images/product-06.jpg"
+												src="${pageContext.request.contextPath}/save/${map.value.product.image}"
 												alt="My Image" style="width: 100px; height: 100px;"> </picture>
 										</div>
 									</div>

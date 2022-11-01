@@ -157,7 +157,7 @@
 						<div class="blog-item">
 							<div class="hov-img0">
 								<a href="${pageContext.request.contextPath}/front?key=story&methodName=selectBystoryCode&storyCode=${story.storyCode}"> <img
-									src="${pageContext.request.contextPath}/images/blog-03.jpg"
+									src="${pageContext.request.contextPath}/save/${story.storyImage}"
 									alt="IMG-BLOG">
 								</a>
 							</div>

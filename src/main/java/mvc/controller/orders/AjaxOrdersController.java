@@ -64,6 +64,7 @@ public class AjaxOrdersController implements AjaxController {
 		service.insert(order);
 		
 		request.getSession().removeAttribute("basketMap");
+		request.getSession().removeAttribute("totalPrice");
 		
 		out.print("결제완료");
 		
